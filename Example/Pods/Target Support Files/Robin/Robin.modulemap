@@ -1,0 +1,6 @@
+framework module Robin {
+  umbrella header "Robin-umbrella.h"
+
+  export *
+  module * { export * }
+}

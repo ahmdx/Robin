@@ -1,0 +1,22 @@
+{
+  "name": "Robin",
+  "version": "0.1.0",
+  "summary": "A short description of Robin.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/ahmdx/Robin",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Ahmed Mohamed": "dev@ahmd.pro"
+  },
+  "source": {
+    "git": "https://github.com/ahmdx/Robin.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "Robin/Classes/**/*"
+}

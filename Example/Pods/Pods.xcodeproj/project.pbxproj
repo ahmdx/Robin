@@ -1,0 +1,743 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1BE8AE4017AAAB95577D0E4C7F8BB7CE /* Pods-Robin_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 87D32F3C2B9236F61CF989277538EA78 /* Pods-Robin_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3D4EF772DA6D9C76CB5C8CAD852C4019 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		3DF020CEC4819C698E46529EAA67AB6E /* RobinNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E06B1A791BC55E714B1456130AD0A2 /* RobinNotification.swift */; };
+		459F03563A846168A2E38A4FC1ACAEF7 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1BDF1ADEBD94C6BBD1A51ACBC48C4A /* Scheduler.swift */; };
+		57F8079FE07441A6851FA13040F4AC92 /* UILocalNotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F70058BABB2DEF8483234ADE944613E /* UILocalNotificationScheduler.swift */; };
+		6511E8A318D258547FF755D5AB3D9FC3 /* Pods-Robin_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 47E60CB9C5441781CE20CEFC784EA5C4 /* Pods-Robin_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		785C95E75E55B1BE657AF36C2544CC31 /* Pods-Robin_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D6A097E785301415288E41DB78701A /* Pods-Robin_Tests-dummy.m */; };
+		BA9FA5CD95512517E40624FF93E64540 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		C0503C706A337A447EC428010733C1FD /* Robin-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C189BF15E8A2782A41207DF8DF034A83 /* Robin-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C2560412A29B6244E4E5816073E8C2ED /* Robin-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 005A45CCC1CC4BC88B549BA80CC9F1BD /* Robin-dummy.m */; };
+		F46F7B706A2174FABBB972A5EEE8C3EA /* Pods-Robin_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C0A6ACE4F179B4B927152BB9C92C57D4 /* Pods-Robin_Example-dummy.m */; };
+		F51ECA05E3CEEE46930F7EA97980469D /* UserNotificationsScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A41DE3ABA72A1F6C061E4ADD1B0D190 /* UserNotificationsScheduler.swift */; };
+		F828F71BBBF8E2CEE3D84853991F8F91 /* Robin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3207E7479082E573691CC47B4BF01C2E /* Robin.swift */; };
+		FFE685B0BBA34BC75A266FA46947EAD6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F486CEFB40BB92BDBCDEF3E8EEC79EB8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63F4CAA75A60516E06413D7CF0D4AA26;
+			remoteInfo = Robin;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		005A45CCC1CC4BC88B549BA80CC9F1BD /* Robin-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Robin-dummy.m"; sourceTree = "<group>"; };
+		01E94A2A3C2791BCBCE74D2E3642B4A4 /* Pods-Robin_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Robin_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		11E5B19D7D2E4F60BAAA607656BEA45E /* Robin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Robin.framework; path = Robin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		142F1E2152B6393A166F1A146F096D96 /* Pods-Robin_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Robin_Tests-frameworks.sh"; sourceTree = "<group>"; };
+		223F796B904335F4260C4A2E04213D67 /* Pods-Robin_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Robin_Example.modulemap"; sourceTree = "<group>"; };
+		3207E7479082E573691CC47B4BF01C2E /* Robin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Robin.swift; sourceTree = "<group>"; };
+		3EF5191836597FF0190403536806981A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		47E60CB9C5441781CE20CEFC784EA5C4 /* Pods-Robin_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Robin_Tests-umbrella.h"; sourceTree = "<group>"; };
+		4DC0632CBB6F0ABDB4B40537E8D9800A /* Pods-Robin_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Robin_Example.release.xcconfig"; sourceTree = "<group>"; };
+		59522D40B55387ACEEF115E07982F526 /* Pods-Robin_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Robin_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		6A41DE3ABA72A1F6C061E4ADD1B0D190 /* UserNotificationsScheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UserNotificationsScheduler.swift; sourceTree = "<group>"; };
+		6B1BDF1ADEBD94C6BBD1A51ACBC48C4A /* Scheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
+		75D1C2E1695654082A918D3116C06632 /* Pods-Robin_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Robin_Tests-resources.sh"; sourceTree = "<group>"; };
+		7705C2DCD81F46669ECA485BD3E2D722 /* Pods_Robin_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Robin_Example.framework; path = "Pods-Robin_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7881E7DC5E0F7C0864AB25144E60C48F /* Pods-Robin_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Robin_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		87D32F3C2B9236F61CF989277538EA78 /* Pods-Robin_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Robin_Example-umbrella.h"; sourceTree = "<group>"; };
+		92D6A097E785301415288E41DB78701A /* Pods-Robin_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Robin_Tests-dummy.m"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		976DAA7105AD4DCA7CC37C4F8B0596BA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		99555E2FBFAAAE79E4FA2BC22696E85A /* Pods-Robin_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Robin_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		9F70058BABB2DEF8483234ADE944613E /* UILocalNotificationScheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UILocalNotificationScheduler.swift; sourceTree = "<group>"; };
+		A224BE5146750F6B8FE2D1990DEEB0A9 /* Pods-Robin_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Robin_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		AEB32B28B5781E27BA7F6CC47E74B68B /* Pods-Robin_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Robin_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		AEC7EB0C3B4DCC986BF16AB3D75712E3 /* Pods-Robin_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Robin_Example-frameworks.sh"; sourceTree = "<group>"; };
+		B1E06B1A791BC55E714B1456130AD0A2 /* RobinNotification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RobinNotification.swift; sourceTree = "<group>"; };
+		C0A6ACE4F179B4B927152BB9C92C57D4 /* Pods-Robin_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Robin_Example-dummy.m"; sourceTree = "<group>"; };
+		C189BF15E8A2782A41207DF8DF034A83 /* Robin-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Robin-umbrella.h"; sourceTree = "<group>"; };
+		C4CAD7A5CCB2CFC13ACC8EC5DE52F3EC /* Robin.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Robin.xcconfig; sourceTree = "<group>"; };
+		CFB140E419F26182F51CCDA82AAF33B6 /* Pods_Robin_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Robin_Tests.framework; path = "Pods-Robin_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8104BDADC219231DA5DD74A925B5E82 /* Robin.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Robin.modulemap; sourceTree = "<group>"; };
+		DA1B4130FD27D833BECF333FA81896A1 /* Robin-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Robin-prefix.pch"; sourceTree = "<group>"; };
+		DC932B51195036CDA2028BB431E6CD45 /* Pods-Robin_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Robin_Tests.modulemap"; sourceTree = "<group>"; };
+		E3F197F6E477D10982F6E7FCFD119B09 /* Pods-Robin_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Robin_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		F57AB62EBAF9950D31BB33DC44DD9B2F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FBF7FD5B756607E50AB776C90AC055C8 /* Pods-Robin_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Robin_Example-resources.sh"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		61E855F73F31B6188415E7F791AAD176 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D4EF772DA6D9C76CB5C8CAD852C4019 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CB02BF371AEC87488634A2BC9EE9590 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA9FA5CD95512517E40624FF93E64540 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB8CAF6594A7E87679C1A8264BB44A4E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFE685B0BBA34BC75A266FA46947EAD6 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1CB43B0235261D0286CC7E0ACD211FB7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7705C2DCD81F46669ECA485BD3E2D722 /* Pods_Robin_Example.framework */,
+				CFB140E419F26182F51CCDA82AAF33B6 /* Pods_Robin_Tests.framework */,
+				11E5B19D7D2E4F60BAAA607656BEA45E /* Robin.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		37FC60E2DF9B978F7057CF90D10A3760 /* Pods-Robin_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				3EF5191836597FF0190403536806981A /* Info.plist */,
+				DC932B51195036CDA2028BB431E6CD45 /* Pods-Robin_Tests.modulemap */,
+				99555E2FBFAAAE79E4FA2BC22696E85A /* Pods-Robin_Tests-acknowledgements.markdown */,
+				01E94A2A3C2791BCBCE74D2E3642B4A4 /* Pods-Robin_Tests-acknowledgements.plist */,
+				92D6A097E785301415288E41DB78701A /* Pods-Robin_Tests-dummy.m */,
+				142F1E2152B6393A166F1A146F096D96 /* Pods-Robin_Tests-frameworks.sh */,
+				75D1C2E1695654082A918D3116C06632 /* Pods-Robin_Tests-resources.sh */,
+				47E60CB9C5441781CE20CEFC784EA5C4 /* Pods-Robin_Tests-umbrella.h */,
+				7881E7DC5E0F7C0864AB25144E60C48F /* Pods-Robin_Tests.debug.xcconfig */,
+				AEB32B28B5781E27BA7F6CC47E74B68B /* Pods-Robin_Tests.release.xcconfig */,
+			);
+			name = "Pods-Robin_Tests";
+			path = "Target Support Files/Pods-Robin_Tests";
+			sourceTree = "<group>";
+		};
+		4AC3F0628F40F76E58288387CA970DD4 /* Robin */ = {
+			isa = PBXGroup;
+			children = (
+				B6FA42F89B8B83EBC33E58CF919A96A6 /* Classes */,
+			);
+			name = Robin;
+			path = Robin;
+			sourceTree = "<group>";
+		};
+		4D3263A904046F73758AF7BA7FF0BB23 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C7898790AD34AA15E60A93FB12EB5AE7 /* Robin */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		58696301C08DC4F0F5865CECF8CFD550 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				819064C4ADA62CFC3D9C9A58B982D752 /* Pods-Robin_Example */,
+				37FC60E2DF9B978F7057CF90D10A3760 /* Pods-Robin_Tests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				4D3263A904046F73758AF7BA7FF0BB23 /* Development Pods */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				1CB43B0235261D0286CC7E0ACD211FB7 /* Products */,
+				58696301C08DC4F0F5865CECF8CFD550 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		819064C4ADA62CFC3D9C9A58B982D752 /* Pods-Robin_Example */ = {
+			isa = PBXGroup;
+			children = (
+				F57AB62EBAF9950D31BB33DC44DD9B2F /* Info.plist */,
+				223F796B904335F4260C4A2E04213D67 /* Pods-Robin_Example.modulemap */,
+				E3F197F6E477D10982F6E7FCFD119B09 /* Pods-Robin_Example-acknowledgements.markdown */,
+				A224BE5146750F6B8FE2D1990DEEB0A9 /* Pods-Robin_Example-acknowledgements.plist */,
+				C0A6ACE4F179B4B927152BB9C92C57D4 /* Pods-Robin_Example-dummy.m */,
+				AEC7EB0C3B4DCC986BF16AB3D75712E3 /* Pods-Robin_Example-frameworks.sh */,
+				FBF7FD5B756607E50AB776C90AC055C8 /* Pods-Robin_Example-resources.sh */,
+				87D32F3C2B9236F61CF989277538EA78 /* Pods-Robin_Example-umbrella.h */,
+				59522D40B55387ACEEF115E07982F526 /* Pods-Robin_Example.debug.xcconfig */,
+				4DC0632CBB6F0ABDB4B40537E8D9800A /* Pods-Robin_Example.release.xcconfig */,
+			);
+			name = "Pods-Robin_Example";
+			path = "Target Support Files/Pods-Robin_Example";
+			sourceTree = "<group>";
+		};
+		B6FA42F89B8B83EBC33E58CF919A96A6 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				3207E7479082E573691CC47B4BF01C2E /* Robin.swift */,
+				B1E06B1A791BC55E714B1456130AD0A2 /* RobinNotification.swift */,
+				6B1BDF1ADEBD94C6BBD1A51ACBC48C4A /* Scheduler.swift */,
+				9F70058BABB2DEF8483234ADE944613E /* UILocalNotificationScheduler.swift */,
+				6A41DE3ABA72A1F6C061E4ADD1B0D190 /* UserNotificationsScheduler.swift */,
+			);
+			name = Classes;
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C7898790AD34AA15E60A93FB12EB5AE7 /* Robin */ = {
+			isa = PBXGroup;
+			children = (
+				4AC3F0628F40F76E58288387CA970DD4 /* Robin */,
+				CD16DFB9665E3FFCE45BBC2C4B697FE2 /* Support Files */,
+			);
+			name = Robin;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		CD16DFB9665E3FFCE45BBC2C4B697FE2 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				976DAA7105AD4DCA7CC37C4F8B0596BA /* Info.plist */,
+				D8104BDADC219231DA5DD74A925B5E82 /* Robin.modulemap */,
+				C4CAD7A5CCB2CFC13ACC8EC5DE52F3EC /* Robin.xcconfig */,
+				005A45CCC1CC4BC88B549BA80CC9F1BD /* Robin-dummy.m */,
+				DA1B4130FD27D833BECF333FA81896A1 /* Robin-prefix.pch */,
+				C189BF15E8A2782A41207DF8DF034A83 /* Robin-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/Robin";
+			sourceTree = "<group>";
+		};
+		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		128AE74083847C4B888F16C8F2866731 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0503C706A337A447EC428010733C1FD /* Robin-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8877661771561B3141C681CB9A09D753 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BE8AE4017AAAB95577D0E4C7F8BB7CE /* Pods-Robin_Example-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E902E22AB3A6957CF1A14FCA334B5073 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6511E8A318D258547FF755D5AB3D9FC3 /* Pods-Robin_Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		1F4C288E3832349F9FC14CF0D160072F /* Pods-Robin_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 93E2CC16BEFDB1B638E28ACFF58B74D4 /* Build configuration list for PBXNativeTarget "Pods-Robin_Example" */;
+			buildPhases = (
+				39007182B70D7B5C50E612565B7B17E0 /* Sources */,
+				61E855F73F31B6188415E7F791AAD176 /* Frameworks */,
+				8877661771561B3141C681CB9A09D753 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CDF2BCFB79889A49981571DFBFCC01D3 /* PBXTargetDependency */,
+			);
+			name = "Pods-Robin_Example";
+			productName = "Pods-Robin_Example";
+			productReference = 7705C2DCD81F46669ECA485BD3E2D722 /* Pods_Robin_Example.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		50022924DB2674793F15E5E119A7060D /* Pods-Robin_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 26F7734F2D586139CC5784999585D0BF /* Build configuration list for PBXNativeTarget "Pods-Robin_Tests" */;
+			buildPhases = (
+				279BB4703C44F86A370FD6814023D946 /* Sources */,
+				CB8CAF6594A7E87679C1A8264BB44A4E /* Frameworks */,
+				E902E22AB3A6957CF1A14FCA334B5073 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-Robin_Tests";
+			productName = "Pods-Robin_Tests";
+			productReference = CFB140E419F26182F51CCDA82AAF33B6 /* Pods_Robin_Tests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		63F4CAA75A60516E06413D7CF0D4AA26 /* Robin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0B1AAFAC5C9D2F8E4C7606392B0841DD /* Build configuration list for PBXNativeTarget "Robin" */;
+			buildPhases = (
+				7D19633D4981C80EF2B1FDC039CE6384 /* Sources */,
+				8CB02BF371AEC87488634A2BC9EE9590 /* Frameworks */,
+				128AE74083847C4B888F16C8F2866731 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Robin;
+			productName = Robin;
+			productReference = 11E5B19D7D2E4F60BAAA607656BEA45E /* Robin.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 1CB43B0235261D0286CC7E0ACD211FB7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1F4C288E3832349F9FC14CF0D160072F /* Pods-Robin_Example */,
+				50022924DB2674793F15E5E119A7060D /* Pods-Robin_Tests */,
+				63F4CAA75A60516E06413D7CF0D4AA26 /* Robin */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		279BB4703C44F86A370FD6814023D946 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				785C95E75E55B1BE657AF36C2544CC31 /* Pods-Robin_Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		39007182B70D7B5C50E612565B7B17E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F46F7B706A2174FABBB972A5EEE8C3EA /* Pods-Robin_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7D19633D4981C80EF2B1FDC039CE6384 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2560412A29B6244E4E5816073E8C2ED /* Robin-dummy.m in Sources */,
+				F828F71BBBF8E2CEE3D84853991F8F91 /* Robin.swift in Sources */,
+				3DF020CEC4819C698E46529EAA67AB6E /* RobinNotification.swift in Sources */,
+				459F03563A846168A2E38A4FC1ACAEF7 /* Scheduler.swift in Sources */,
+				57F8079FE07441A6851FA13040F4AC92 /* UILocalNotificationScheduler.swift in Sources */,
+				F51ECA05E3CEEE46930F7EA97980469D /* UserNotificationsScheduler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CDF2BCFB79889A49981571DFBFCC01D3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Robin;
+			target = 63F4CAA75A60516E06413D7CF0D4AA26 /* Robin */;
+			targetProxy = F486CEFB40BB92BDBCDEF3E8EEC79EB8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		345CC476DF4A7516DBD2220CF5035FF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		60E672CF68D8B0748338B30A7FDB9C08 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AEB32B28B5781E27BA7F6CC47E74B68B /* Pods-Robin_Tests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Robin_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Robin_Tests/Pods-Robin_Tests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Robin_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		63148F38F7D198876C14AEE87F56AF00 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7881E7DC5E0F7C0864AB25144E60C48F /* Pods-Robin_Tests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Robin_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Robin_Tests/Pods-Robin_Tests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Robin_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		717E77604BFBB04BEAF56608A1CB2EDE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7DB20B47B9EE489AE64E44086DA2161E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C4CAD7A5CCB2CFC13ACC8EC5DE52F3EC /* Robin.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Robin/Robin-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Robin/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Robin/Robin.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Robin;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		859B9D1DF090EAA4159D87CBDD096C59 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 59522D40B55387ACEEF115E07982F526 /* Pods-Robin_Example.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Robin_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Robin_Example/Pods-Robin_Example.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Robin_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		909E5E5A8C7F55126BCA733CBCCAE67A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4DC0632CBB6F0ABDB4B40537E8D9800A /* Pods-Robin_Example.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Robin_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Robin_Example/Pods-Robin_Example.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Robin_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D9846E307DDB526CE2ED6DDAACF3C474 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C4CAD7A5CCB2CFC13ACC8EC5DE52F3EC /* Robin.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Robin/Robin-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Robin/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Robin/Robin.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Robin;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0B1AAFAC5C9D2F8E4C7606392B0841DD /* Build configuration list for PBXNativeTarget "Robin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D9846E307DDB526CE2ED6DDAACF3C474 /* Debug */,
+				7DB20B47B9EE489AE64E44086DA2161E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		26F7734F2D586139CC5784999585D0BF /* Build configuration list for PBXNativeTarget "Pods-Robin_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63148F38F7D198876C14AEE87F56AF00 /* Debug */,
+				60E672CF68D8B0748338B30A7FDB9C08 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				345CC476DF4A7516DBD2220CF5035FF3 /* Debug */,
+				717E77604BFBB04BEAF56608A1CB2EDE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		93E2CC16BEFDB1B638E28ACFF58B74D4 /* Build configuration list for PBXNativeTarget "Pods-Robin_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				859B9D1DF090EAA4159D87CBDD096C59 /* Debug */,
+				909E5E5A8C7F55126BCA733CBCCAE67A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
