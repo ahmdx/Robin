@@ -22,7 +22,7 @@ pod "Robin"
 
 ## Author
 
-ahmedabadie, dev@ahmd.pro
+Ahmed Mohamed, dev@ahmd.pro
 
 ## License
 
