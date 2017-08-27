@@ -22,7 +22,7 @@ pod "Robin"
 
 ## Author
 
-ahmedabadie, badie.ahmed@icloud.com
+Ahmed Abdelbadie, badie.ahmed@icloud.com
 
 ## License
 
