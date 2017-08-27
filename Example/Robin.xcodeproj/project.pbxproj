@@ -30,7 +30,7 @@
 /* Begin PBXFileReference section */
 		36B8C02DA892B7A7B388C71A /* Pods_Robin_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Robin_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EE2AFF9A15E4694B31AA0FD /* Pods-Robin_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Robin_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Robin_Tests/Pods-Robin_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		3F5640310FE096C57220CE37 /* Robin.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = Robin.podspec; path = ../Robin.podspec; sourceTree = "<group>"; };
+		3F5640310FE096C57220CE37 /* Robin.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Robin.podspec; path = ../Robin.podspec; sourceTree = "<group>"; };
 		4DDD2E6CFAD38C62ED93D9F6 /* Pods-Robin_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Robin_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Robin_Tests/Pods-Robin_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* Robin_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Robin_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -43,8 +43,8 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		8523C9F260F9F2B1C586A2C7 /* Pods-Robin_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Robin_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Robin_Example/Pods-Robin_Example.release.xcconfig"; sourceTree = "<group>"; };
-		D4811652FADB3C1EB9A6DC11 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		D74E3639FA69F0AD86BC799D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		D4811652FADB3C1EB9A6DC11 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		D74E3639FA69F0AD86BC799D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		E9C7E22FF1E3391DD68C5CC2 /* Pods_Robin_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Robin_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA22BFAD13811163EB6698FC /* Pods-Robin_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Robin_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Robin_Example/Pods-Robin_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -536,6 +536,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Robin_Example.app/Robin_Example";
 			};
 			name = Debug;
 		};
@@ -552,6 +553,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Robin_Example.app/Robin_Example";
 			};
 			name = Release;
 		};
