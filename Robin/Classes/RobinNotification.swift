@@ -56,7 +56,7 @@ public class RobinNotification {
     public var badge: NSNumber?                = nil
     
     /// The sound name of the notification.
-    public var sound: String                   = "iOSDefaultSound"
+    public var sound: String                   = RobinNotification.defaultSoundName
     
     /// The repeat interval of the notification.
     public var repeats: Repeats                = .none
@@ -65,13 +65,15 @@ public class RobinNotification {
     internal(set) public var scheduled: Bool   = false
     
     /// A key that holds the identifier of the notification for UILocalNotification which is tored in the `userInfo` property.
-    public let identifierKey: String          = "RobinNotificationIdentifierKey"
+    public static let identifierKey: String    = "RobinNotificationIdentifierKey"
+    
+    public static let defaultSoundName: String = "RobinNotificationDefaultSound"
     
     public init(identifier: String = UUID().uuidString, body: String, date: Date = Date().next(hours: 1)) {
         self.identifier = identifier
         self.body = body
         self.date = date
-        self.userInfo = [self.identifierKey : self.identifier]
+        self.userInfo = [RobinNotification.identifierKey : self.identifier]
     }
     
     /// Adds a value to the specified key in the `userInfo` property. Note that the value is not added if the key is equal to the `identifierKey`.
@@ -81,7 +83,7 @@ public class RobinNotification {
     ///   - key: The key to set the value of.
     public func setUserInfo(value: Any, forKey key: AnyHashable) {
         if let keyString = key as? String {
-            if (keyString == self.identifierKey) {
+            if (keyString == RobinNotification.identifierKey) {
                 return
             }
         }
@@ -93,7 +95,7 @@ public class RobinNotification {
     /// - Parameter key: The key to remove the value of.
     public func removeUserInfoValue(forKey key: AnyHashable) {
         if let keyString = key as? String {
-            if (keyString == self.identifierKey) {
+            if (keyString == RobinNotification.identifierKey) {
                 return
             }
         }
