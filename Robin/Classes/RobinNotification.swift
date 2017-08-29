@@ -64,9 +64,10 @@ public class RobinNotification {
     /// The status of the notification.
     internal(set) public var scheduled: Bool   = false
     
-    /// A key that holds the identifier of the notification for UILocalNotification which is tored in the `userInfo` property.
+    /// A key that holds the identifier of the notification for UILocalNotification which is stored in the `userInfo` property.
     public static let identifierKey: String    = "RobinNotificationIdentifierKey"
     
+    /// A key used to represent iOS default notification sound name.
     public static let defaultSoundName: String = "RobinNotificationDefaultSound"
     
     public init(identifier: String = UUID().uuidString, body: String, date: Date = Date().next(hours: 1)) {
