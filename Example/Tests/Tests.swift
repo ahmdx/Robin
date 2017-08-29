@@ -52,11 +52,11 @@ class Tests: XCTestCase {
         XCTAssertEqual(badge, notification.badge)
         
 //        Tests userInfo property
-        let userInfo: [AnyHashable : Any]   = [notification.identifierKey : notification.identifier]
-        XCTAssertEqual(userInfo[notification.identifierKey] as! String, notification.userInfo![notification.identifierKey] as! String)
+        let userInfo: [AnyHashable : Any]   = [RobinNotification.identifierKey : notification.identifier]
+        XCTAssertEqual(userInfo[RobinNotification.identifierKey] as! String, notification.userInfo![RobinNotification.identifierKey] as! String)
         
 //        Tests sound property
-        XCTAssertEqual("iOSDefaultSound", notification.sound)
+        XCTAssertEqual(RobinNotification.defaultSoundName, notification.sound)
         let sound: String                   = "SoundName"
         notification.sound                  = sound
         XCTAssertEqual(sound, notification.sound)
@@ -85,9 +85,9 @@ class Tests: XCTestCase {
         
         XCTAssertEqual(value, notification.userInfo[key] as! String)
         
-        notification.setUserInfo(value: value, forKey: notification.identifierKey)
+        notification.setUserInfo(value: value, forKey: RobinNotification.identifierKey)
         
-        XCTAssertNotEqual(value, notification.userInfo[notification.identifierKey] as! String)
+        XCTAssertNotEqual(value, notification.userInfo[RobinNotification.identifierKey] as! String)
     }
     
     /// Tests whether setting a RobinNotification userInfo key succeeds or not.
@@ -102,9 +102,9 @@ class Tests: XCTestCase {
         
         XCTAssertNil(notification.userInfo[key])
         
-        notification.removeUserInfoValue(forKey: notification.identifierKey)
+        notification.removeUserInfoValue(forKey: RobinNotification.identifierKey)
         
-        XCTAssertEqual(notification.identifier, notification.userInfo[notification.identifierKey] as? String)
+        XCTAssertEqual(notification.identifier, notification.userInfo[RobinNotification.identifierKey] as? String)
     }
     
     /// Tests whether initialized RobinNotifications have different identifiers.
