@@ -27,15 +27,15 @@
 /// - day: The notification should repeat every day.
 /// - week: The notification should repeat every week.
 /// - month: The notification should repeat every month.
-public enum Repeats {
-    case none
-    case hour
-    case day
-    case week
-    case month
+public enum Repeats: String {
+    case none  = "None"
+    case hour  = "Hour"
+    case day   = "Day"
+    case week  = "Week"
+    case month = "Month"
 }
 
-public class RobinNotification {
+public class RobinNotification: NSObject {
     
     /// A string assigned to the notification for later access.
     fileprivate(set) public var identifier: String!
@@ -64,6 +64,25 @@ public class RobinNotification {
     /// The status of the notification.
     internal(set) public var scheduled: Bool   = false
     
+    public override var description: String {
+        var result = ""
+        result += "RobinNotification: \(self.identifier!)\n"
+        if let title = self.title {
+            result += "\tTitle: \(title)\n"
+        }
+        result += "\tBody: \(self.body!)\n"
+        result += "\tFires at: \(self.date!)\n"
+        result += "\tUser info: \(self.userInfo!)\n"
+        if let badge = self.badge {
+            result += "\tBadge: \(badge)\n"
+        }
+        result += "\tSound name: \(self.sound)\n"
+        result += "\tRepeats every: \(self.repeats.rawValue)\n"
+        result += "\tScheduled: \(self.scheduled)"
+        
+        return result
+    }
+    
     /// A key that holds the identifier of the notification for UILocalNotification which is stored in the `userInfo` property.
     public static let identifierKey: String    = "RobinNotificationIdentifierKey"
     
@@ -75,6 +94,14 @@ public class RobinNotification {
         self.body = body
         self.date = date
         self.userInfo = [RobinNotification.identifierKey : self.identifier]
+    }
+    
+    /// Creates a `RobinNotification` from the passed `SystemNotification`. For the details of the creation process, have a look at the system notifications extensions that implement the `SystemNotification` protocol.
+    ///
+    /// - Parameter notification: The system notification to create the `RobinNotification` from.
+    /// - Returns: The `RobinNotification` if the creation succeeded, nil otherwise.
+    public static func notification(withSystemNotification notification: SystemNotification) -> RobinNotification? {
+        return notification.robinNotification()
     }
     
     /// Adds a value to the specified key in the `userInfo` property. Note that the value is not added if the key is equal to the `identifierKey`.
