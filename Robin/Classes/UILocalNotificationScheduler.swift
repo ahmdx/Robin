@@ -26,6 +26,9 @@ internal class UILocalNotificationScheduler: Scheduler {
         
         let notificationSettings = UIUserNotificationSettings(types: types, categories: nil)
         UIApplication.shared.registerUserNotificationSettings(notificationSettings)
+        
+        
+        
     }
     
     func schedule(notification: RobinNotification) -> RobinNotification? {
