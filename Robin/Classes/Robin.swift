@@ -20,6 +20,11 @@
 // THE SOFTWARE.
 //
 
+/// The maximum allowed notifications to be scheduled at a time by iOS.
+///- Important: Do not change this value. Changing this value to be over
+/// 64 will cause some notifications to be discarded by iOS.
+internal let MAX_ALLOWED_NOTIFICATIONS = 64
+
 public class Robin {
     private static let instance: Robin = Robin()
     public static var shared: Robin {
@@ -27,11 +32,6 @@ public class Robin {
     }
     
     private var scheduler: Scheduler!
-    
-    /// The maximum allowed notifications to be scheduled at a time by iOS.
-    ///- Important: Do not change this value. Changing this value to be over
-    /// 64 will cause some notifications to be discarded by iOS.
-    internal static let MAX_ALLOWED_NOTIFICATIONS = 64
     
     /// The maximum number of allowed notifications to be scheduled. Four slots
     /// are reserved if you would like to schedule notifications without them being dropped
