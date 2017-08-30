@@ -44,7 +44,7 @@ public class Robin {
     
     private init () {
         if #available(iOS 10, *) {
-//            self.scheduler = UserNotificationsScheduler()
+            self.scheduler = UserNotificationsScheduler()
         } else {
             self.scheduler = UILocalNotificationScheduler()
         }
