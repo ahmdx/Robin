@@ -40,12 +40,15 @@ internal class UILocalNotificationScheduler: Scheduler {
         let localNotification = UILocalNotification()
         
         if #available(iOS 8.2, *) {
-            localNotification.alertTitle = notification.title
+            localNotification.alertTitle             = notification.title
         }
-        localNotification.alertBody      = notification.body
-        localNotification.fireDate       = notification.date.removeSeconds()
-        localNotification.soundName      = (notification.sound == RobinNotification.defaultSoundName) ? UILocalNotificationDefaultSoundName : notification.sound
-        localNotification.userInfo       = notification.userInfo
+        localNotification.alertBody                  = notification.body
+        localNotification.fireDate                   = notification.date.removeSeconds()
+        localNotification.soundName                  = (notification.sound == RobinNotification.defaultSoundName) ? UILocalNotificationDefaultSoundName : notification.sound
+        localNotification.userInfo                   = notification.userInfo
+        if let badge = notification.badge {
+            localNotification.applicationIconBadgeNumber = badge as! Int
+        }
         
         if (notification.repeats != .none) {
             switch notification.repeats {
