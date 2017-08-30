@@ -1,3 +1,25 @@
+//
+// Copyright (c) 2017 Ahmed Abdelbadie <badie.ahmed@icloud.com>
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+//
+
 import UIKit
 import XCTest
 import Robin
@@ -16,7 +38,7 @@ class Tests: XCTestCase {
     
 //    MARK:- RobinNotification
     
-    /// Tests whether the initialization of RobinNotification succeeds.
+    /// Tests whether the initialization of `RobinNotification` succeeds.
     func testNotificationInitialization() {
         let body: String                    = "This is a test notification"
         let notification: RobinNotification = RobinNotification(body: body)
@@ -65,7 +87,7 @@ class Tests: XCTestCase {
         XCTAssertFalse(notification.scheduled)
     }
     
-    /// Tests whether the initialization of RobinNotification with a custom identifier succeeds.
+    /// Tests whether the initialization of `RobinNotification` with a custom identifier succeeds.
     func testNotificationInitializationWithIdentifier() {
         let body: String                    = "This is a test notification"
         let identifier: String              = "Identifier"
@@ -75,7 +97,7 @@ class Tests: XCTestCase {
         XCTAssertEqual(body, notification.body)
     }
     
-    /// Tests whether setting a RobinNotification userInfo key succeeds or not.
+    /// Tests whether setting a `RobinNotification` userInfo key succeeds or not.
     func testNotificationUserInfoSet() {
         let notification: RobinNotification = RobinNotification(body: "Notification")
         
@@ -90,7 +112,7 @@ class Tests: XCTestCase {
         XCTAssertNotEqual(value, notification.userInfo[RobinNotification.identifierKey] as! String)
     }
     
-    /// Tests whether setting a RobinNotification userInfo key succeeds or not.
+    /// Tests whether setting a `RobinNotification` userInfo key succeeds or not.
     func testNotificationUserInfoRemove() {
         let notification: RobinNotification = RobinNotification(body: "Notification")
         
