@@ -43,17 +43,10 @@ class RobinTests: XCTestCase {
         
         let scheduledNotification = Robin.shared.schedule(notification: notification)
         
-        let countExpectation: XCTestExpectation = expectation(description: "Scheduled system notifications count should be 1")
-        
         XCTAssertNotNil(scheduledNotification)
         XCTAssertTrue(notification.scheduled)
         XCTAssertTrue(scheduledNotification!.scheduled)
-        Robin.shared.scheduledCount() { scheduledCount in
-            XCTAssertEqual(1, scheduledCount)
-            
-            countExpectation.fulfill()
-        }
-        wait(for: [countExpectation], timeout: 1)
+        XCTAssertEqual(1, Robin.shared.scheduledCount())
     }
     
     /// Tests whether scheduling multiple `RobinNotification`s succeeds.
@@ -65,13 +58,7 @@ class RobinTests: XCTestCase {
             let _ = Robin.shared.schedule(notification: notification)
         }
         
-        let countExpectation: XCTestExpectation = expectation(description: "Scheduled system notifications count should be \(count)")
-        Robin.shared.scheduledCount() { scheduledCount in
-            XCTAssertEqual(count, scheduledCount)
-            
-            countExpectation.fulfill()
-        }
-        wait(for: [countExpectation], timeout: 1)
+        XCTAssertEqual(count, Robin.shared.scheduledCount())
     }
     
     /// Tests whether scheduling a `RobinNotification` beyond the allowed maximum succeeds.
@@ -89,14 +76,7 @@ class RobinTests: XCTestCase {
         
         XCTAssertNil(overflowNotification)
         XCTAssertFalse(notification.scheduled)
-        
-        let countExpectation: XCTestExpectation = expectation(description: "Scheduled system notifications count should be \(count)")
-        Robin.shared.scheduledCount() { scheduledCount in
-            XCTAssertEqual(count, scheduledCount)
-            
-            countExpectation.fulfill()
-        }
-        wait(for: [countExpectation], timeout: 1)
+        XCTAssertEqual(count, Robin.shared.scheduledCount())
     }
     
     /// Tests whether rescheduling a `RobinNotification` beyond the allowed maximum succeeds.
@@ -110,19 +90,12 @@ class RobinTests: XCTestCase {
         
         let _                       = Robin.shared.reschedule(notification: notification)
         
-        //        let rescheduledNotification = Robin.shared.notification(withIdentifier: notification.identifier)
-        //
-        //        XCTAssertNotNil(rescheduledNotification)
-        ////        XCTAssertTrue(rescheduledNotification!.scheduled)
-        ////        XCTAssertEqual(rescheduledNotification!.date, notification.date)
-        ////        XCTAssertEqual(1, Robin.shared.scheduledCount())
-        //        let countExpectation: XCTestExpectation = expectation(description: "Scheduled system notifications count should be 1")
-        //        Robin.shared.scheduledCount() { scheduledCount in
-        //            XCTAssertEqual(1, scheduledCount)
-        //
-        //            countExpectation.fulfill()
-        //        }
-        //        wait(for: [countExpectation], timeout: 1)
+        let rescheduledNotification = Robin.shared.notification(withIdentifier: notification.identifier)
+        
+        XCTAssertNotNil(rescheduledNotification)
+        XCTAssertTrue(rescheduledNotification!.scheduled)
+        XCTAssertEqual(rescheduledNotification!.date, notification.date)
+        XCTAssertEqual(1, Robin.shared.scheduledCount())
     }
     
     /// Tests whether canceling a scheduled system notification succeeds.
@@ -136,13 +109,7 @@ class RobinTests: XCTestCase {
         XCTAssertNotNil(scheduledNotification)
         XCTAssertFalse(notification.scheduled)
         XCTAssertFalse(scheduledNotification!.scheduled)
-        let countExpectation: XCTestExpectation = expectation(description: "Scheduled system notifications count should be 0")
-        Robin.shared.scheduledCount() { scheduledCount in
-            XCTAssertEqual(0, scheduledCount)
-            
-            countExpectation.fulfill()
-        }
-        wait(for: [countExpectation], timeout: 1)
+        XCTAssertEqual(0, Robin.shared.scheduledCount())
     }
     
     /// Tests whether canceling a scheduled system notification by identifier succeeds.
@@ -154,14 +121,7 @@ class RobinTests: XCTestCase {
         Robin.shared.cancel(withIdentifier: notification.identifier)
         
         XCTAssertTrue(notification.scheduled)
-        
-        let countExpectation: XCTestExpectation = expectation(description: "Scheduled system notifications count should be 0")
-        Robin.shared.scheduledCount() { scheduledCount in
-            XCTAssertEqual(0, scheduledCount)
-            
-            countExpectation.fulfill()
-        }
-        wait(for: [countExpectation], timeout: 1)
+        XCTAssertEqual(0, Robin.shared.scheduledCount())
     }
     
     /// Tests whether canceling multiple scheduled system notifications by identifier succeeds.
@@ -176,13 +136,7 @@ class RobinTests: XCTestCase {
         
         Robin.shared.cancel(withIdentifier: identifier)
         
-        let countExpectation: XCTestExpectation = expectation(description: "Scheduled system notifications count should be 0")
-        Robin.shared.scheduledCount() { scheduledCount in
-            XCTAssertEqual(0, scheduledCount)
-            
-            countExpectation.fulfill()
-        }
-        wait(for: [countExpectation], timeout: 1)
+        XCTAssertEqual(0, Robin.shared.scheduledCount())
     }
     
     /// Tests whether canceling all scheduled system notifications succeeds.
@@ -196,13 +150,7 @@ class RobinTests: XCTestCase {
         
         Robin.shared.cancelAll()
         
-        let countExpectation: XCTestExpectation = expectation(description: "Scheduled system notifications count should be 0")
-        Robin.shared.scheduledCount() { scheduledCount in
-            XCTAssertEqual(0, scheduledCount)
-            
-            countExpectation.fulfill()
-        }
-        wait(for: [countExpectation], timeout: 1)
+        XCTAssertEqual(0, Robin.shared.scheduledCount())
     }
     
     /// Tests whether retrieving a scheduled system notification by identifier succeeds.
@@ -216,26 +164,19 @@ class RobinTests: XCTestCase {
         
         let _                = Robin.shared.schedule(notification: notification)
         
-        //        let retrievedNotification = Robin.shared.notification(withIdentifier: notification.identifier)
+        let retrievedNotification = Robin.shared.notification(withIdentifier: notification.identifier)
         
-        let notificationExpectation: XCTestExpectation = expectation(description: "Notification should not be nil")
-        
-        Robin.shared.notification(withIdentifier: notification.identifier) { retrievedNotification in
-            XCTAssertEqual(retrievedNotification?.title, notification.title)
-            XCTAssertEqual(retrievedNotification?.identifier, notification.identifier)
-            XCTAssertEqual(retrievedNotification?.body, notification.body)
-            XCTAssertEqual(retrievedNotification?.date, notification.date.removeSeconds())
-            XCTAssertEqual(retrievedNotification?.userInfo.count, notification.userInfo.count)
-            XCTAssertEqual(retrievedNotification?.badge, notification.badge)
-            XCTAssertEqual(retrievedNotification?.sound, notification.sound)
-            XCTAssertEqual(retrievedNotification?.repeats, notification.repeats)
-            XCTAssertEqual(retrievedNotification?.scheduled, notification.scheduled)
-            XCTAssertTrue(retrievedNotification!.scheduled)
-            
-            notificationExpectation.fulfill()
-        }
-        wait(for: [notificationExpectation], timeout: 1)
-        //        XCTAssertEqual(1, Robin.shared.scheduledCount())
+        XCTAssertEqual(retrievedNotification?.title, notification.title)
+        XCTAssertEqual(retrievedNotification?.identifier, notification.identifier)
+        XCTAssertEqual(retrievedNotification?.body, notification.body)
+        XCTAssertEqual(retrievedNotification?.date, notification.date.removeSeconds())
+        XCTAssertEqual(retrievedNotification?.userInfo.count, notification.userInfo.count)
+        XCTAssertEqual(retrievedNotification?.badge, notification.badge)
+        XCTAssertEqual(retrievedNotification?.sound, notification.sound)
+        XCTAssertEqual(retrievedNotification?.repeats, notification.repeats)
+        XCTAssertEqual(retrievedNotification?.scheduled, notification.scheduled)
+        XCTAssertTrue(retrievedNotification!.scheduled)
+        XCTAssertEqual(1, Robin.shared.scheduledCount())
     }
     
 }
