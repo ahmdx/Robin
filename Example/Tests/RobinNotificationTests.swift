@@ -59,8 +59,9 @@ class RobinNotificationTests: XCTestCase {
         XCTAssertEqual(badge, notification.badge)
         
         //        Tests userInfo property
-        let userInfo: [AnyHashable : Any]   = [RobinNotification.identifierKey : notification.identifier]
+        let userInfo: [AnyHashable : Any]   = [RobinNotification.identifierKey : notification.identifier, RobinNotification.dateKey : notification.date]
         XCTAssertEqual(userInfo[RobinNotification.identifierKey] as! String, notification.userInfo![RobinNotification.identifierKey] as! String)
+        XCTAssertEqual(userInfo[RobinNotification.dateKey] as! Date, notification.userInfo![RobinNotification.dateKey] as! Date)
         
         //        Tests sound property
         XCTAssertEqual(RobinNotification.defaultSoundName, notification.sound)
