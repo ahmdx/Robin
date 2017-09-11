@@ -44,7 +44,11 @@ public class RobinNotification: NSObject {
     public var body: String!
     
     /// The date in which the notification is set to fire on.
-    public var date: Date!
+    public var date: Date! {
+        didSet {
+            self.userInfo[RobinNotification.dateKey] = self.date
+        }
+    }
     
     /// A dictionary that holds additional information.
     private(set) public var userInfo: [AnyHashable : Any]!
@@ -65,7 +69,7 @@ public class RobinNotification: NSObject {
     internal(set) public var scheduled: Bool   = false
     
     public override var description: String {
-        var result = ""
+        var result                             = ""
         result += "RobinNotification: \(self.identifier!)\n"
         if let title = self.title {
             result += "\tTitle: \(title)\n"
@@ -83,8 +87,11 @@ public class RobinNotification: NSObject {
         return result
     }
     
-    /// A key that holds the identifier of the notification for UILocalNotification which is stored in the `userInfo` property.
+    /// A key that holds the identifier of the notification which; stored in the `userInfo` property.
     public static let identifierKey: String    = "RobinNotificationIdentifierKey"
+    
+    /// A key that holds the date of the notification; stored in the `userInfo` property.
+    public static let dateKey: String          = "RobinNotificationDateKey"
     
     /// A key used to represent iOS default notification sound name.
     public static let defaultSoundName: String = "RobinNotificationDefaultSound"
@@ -93,7 +100,10 @@ public class RobinNotification: NSObject {
         self.identifier = identifier
         self.body = body
         self.date = date
-        self.userInfo = [RobinNotification.identifierKey : self.identifier]
+        self.userInfo = [
+            RobinNotification.identifierKey : self.identifier,
+            RobinNotification.dateKey : self.date
+        ]
     }
     
     /// Creates a `RobinNotification` from the passed `SystemNotification`. For the details of the creation process, have a look at the system notifications extensions that implement the `SystemNotification` protocol.
@@ -104,26 +114,26 @@ public class RobinNotification: NSObject {
         return notification.robinNotification()
     }
     
-    /// Adds a value to the specified key in the `userInfo` property. Note that the value is not added if the key is equal to the `identifierKey`.
+    /// Adds a value to the specified key in the `userInfo` property. Note that the value is not added if the key is equal to the `identifierKey` or `dateKey`.
     ///
     /// - Parameters:
     ///   - value: The value to set.
     ///   - key: The key to set the value of.
     public func setUserInfo(value: Any, forKey key: AnyHashable) {
         if let keyString = key as? String {
-            if (keyString == RobinNotification.identifierKey) {
+            if (keyString == RobinNotification.identifierKey || keyString == RobinNotification.dateKey) {
                 return
             }
         }
         self.userInfo[key] = value;
     }
     
-    /// Removes the value of the specified key. Note that the value is not removed if the key is equal to the `identifierKey`.
+    /// Removes the value of the specified key. Note that the value is not removed if the key is equal to the `identifierKey` or `dateKey`.
     ///
     /// - Parameter key: The key to remove the value of.
     public func removeUserInfoValue(forKey key: AnyHashable) {
         if let keyString = key as? String {
-            if (keyString == RobinNotification.identifierKey) {
+            if (keyString == RobinNotification.identifierKey || keyString == RobinNotification.dateKey) {
                 return
             }
         }
