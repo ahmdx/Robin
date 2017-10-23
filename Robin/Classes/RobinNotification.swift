@@ -60,7 +60,7 @@ public class RobinNotification: NSObject {
     public var badge: NSNumber?                = nil
     
     /// The sound name of the notification.
-    public var sound: String                   = RobinNotification.defaultSoundName
+    public var sound: RobinNotificationSound   = RobinNotificationSound()
     
     /// The repeat interval of the notification.
     public var repeats: Repeats                = .none
@@ -68,8 +68,17 @@ public class RobinNotification: NSObject {
     /// The status of the notification.
     internal(set) public var scheduled: Bool   = false
     
+    /// A key that holds the identifier of the notification which; stored in the `userInfo` property.
+    public static let identifierKey: String    = "RobinNotificationIdentifierKey"
+    
+    /// A key that holds the date of the notification; stored in the `userInfo` property.
+    public static let dateKey: String          = "RobinNotificationDateKey"
+    
+    /// A key used to represent iOS default notification sound name.
+    public static let defaultSoundName: String = "RobinNotificationDefaultSound"
+    
     public override var description: String {
-        var result                             = ""
+        var result  = ""
         result += "RobinNotification: \(self.identifier!)\n"
         if let title = self.title {
             result += "\tTitle: \(title)\n"
@@ -86,15 +95,6 @@ public class RobinNotification: NSObject {
         
         return result
     }
-    
-    /// A key that holds the identifier of the notification which; stored in the `userInfo` property.
-    public static let identifierKey: String    = "RobinNotificationIdentifierKey"
-    
-    /// A key that holds the date of the notification; stored in the `userInfo` property.
-    public static let dateKey: String          = "RobinNotificationDateKey"
-    
-    /// A key used to represent iOS default notification sound name.
-    public static let defaultSoundName: String = "RobinNotificationDefaultSound"
     
     public init(identifier: String = UUID().uuidString, body: String, date: Date = Date().next(hours: 1)) {
         self.identifier = identifier
