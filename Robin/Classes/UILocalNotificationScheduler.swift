@@ -26,9 +26,6 @@ internal class UILocalNotificationScheduler: Scheduler {
         
         let notificationSettings = UIUserNotificationSettings(types: types, categories: nil)
         UIApplication.shared.registerUserNotificationSettings(notificationSettings)
-        
-        
-        
     }
     
     func schedule(notification: RobinNotification) -> RobinNotification? {
@@ -40,17 +37,27 @@ internal class UILocalNotificationScheduler: Scheduler {
             return nil
         }
         
-        let localNotification = UILocalNotification()
+        let localNotification                             = UILocalNotification()
         
         if #available(iOS 8.2, *) {
-            localNotification.alertTitle             = notification.title
+            localNotification.alertTitle                  = notification.title
         }
-        localNotification.alertBody                  = notification.body
-        localNotification.fireDate                   = notification.date.removeSeconds()
-        localNotification.soundName                  = (notification.sound == RobinNotification.defaultSoundName) ? UILocalNotificationDefaultSoundName : notification.sound
-        localNotification.userInfo                   = notification.userInfo
+        localNotification.alertBody                       = notification.body
+        localNotification.fireDate                        = notification.date.removeSeconds()
+        var soundName: String
+        if let name = notification.sound.name {
+            soundName                                     = (name == RobinNotification.defaultSoundName) ? UILocalNotificationDefaultSoundName : name
+            localNotification.soundName                   = soundName
+        } else {
+            if let sound = notification.sound.sound as? String {
+                localNotification.soundName               = sound
+            } else {
+                localNotification.soundName               = UILocalNotificationDefaultSoundName
+            }
+        }
+        localNotification.userInfo                        = notification.userInfo
         if let badge = notification.badge {
-            localNotification.applicationIconBadgeNumber = badge as! Int
+            localNotification.applicationIconBadgeNumber  = badge as! Int
         }
         
         if (notification.repeats != .none) {
@@ -65,7 +72,7 @@ internal class UILocalNotificationScheduler: Scheduler {
         
         UIApplication.shared.scheduleLocalNotification(localNotification)
         
-        notification.scheduled = true
+        notification.scheduled                            = true
         
         return notification
     }
@@ -144,7 +151,11 @@ internal class UILocalNotificationScheduler: Scheduler {
     }
     
     func scheduledCount() -> Int {
-        return (UIApplication.shared.scheduledLocalNotifications?.count)!
+        guard let scheduledNotifications = UIApplication.shared.scheduledLocalNotifications else {
+            return 0
+        }
+        
+        return scheduledNotifications.count
     }
     
 //    MARK:- Testing
@@ -161,10 +172,11 @@ internal class UILocalNotificationScheduler: Scheduler {
         }
         
         for scheduledNotification in scheduledNotifications {
-            if let notificationIdentifier = scheduledNotification.userInfo?[RobinNotification.identifierKey] as? String {
-                let notification = self.notification(withIdentifier: notificationIdentifier)
+            if let _ = scheduledNotification.userInfo?[RobinNotification.identifierKey] as? String {
+//                let notification = self.notification(withIdentifier: notificationIdentifier)
+                let notification: RobinNotification = scheduledNotification.robinNotification()!
                 
-                print(notification!)
+                print(notification)
             }
         }
     }
