@@ -113,8 +113,6 @@ extension UNNotificationRequest: SystemNotification {
             components.hour  = comps.hour
             
             return calendar.date(from: components)!
-        default:
-            return date
         }
     }
     
