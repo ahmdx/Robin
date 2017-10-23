@@ -74,7 +74,7 @@ public extension Date {
         components.hour = (time / 100) + (offset / 60)
         var date = calendar.date(from: components)!
         if date < Date() {
-            date = date.next(minutes: 60*24)
+            date = date.next(days: 1)
         }
         
         return date
