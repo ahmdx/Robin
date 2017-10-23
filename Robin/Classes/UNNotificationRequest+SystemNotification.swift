@@ -22,47 +22,135 @@
 
 import UserNotifications
 
+@available(iOS 10.0, *)
 extension UNNotificationRequest: SystemNotification {
     
-    /// Creates a `RobinNotification` from the `UILocalNotification` instance. For the creation to succeed, the `UILocalNotification` instance's `userInfo` property should contain a key, see `RobinNotification.identifierKey`, with a string value as the identifier.
-    ///
-    /// - Returns: The `RobinNotification` if the creation succeeded, nil otherwise.
     public func robinNotification() -> RobinNotification? {
-        guard let userInfo = self.userInfo, let identifier = userInfo[RobinNotification.identifierKey] as? String else {
-            return nil
-        }
+        let content = self.content
         
-        let notification           = RobinNotification(identifier: identifier, body: self.alertBody!, date: self.fireDate!)
+        let notification           = RobinNotification(identifier: self.identifier, body: content.body, date: Date())
         
+        let userInfo = content.userInfo
         for (key, value) in userInfo {
             notification.setUserInfo(value: value, forKey: key)
         }
-        if #available(iOS 8.2, *) {
-            notification.title     = self.alertTitle
+        
+        if content.title.trimmingCharacters(in: .whitespaces).characters.count > 0 {
+            notification.title     = content.title
         }
-        notification.badge         = self.applicationIconBadgeNumber as NSNumber
-        if self.soundName != UILocalNotificationDefaultSoundName {
-            if let soundName       = self.soundName {
-                notification.sound = soundName
+        
+        if let trigger = self.trigger as? UNCalendarNotificationTrigger {
+            var date: Date?
+            if let originalDate    = notification.userInfo[RobinNotification.dateKey] as? Date {
+                date               = originalDate
+            }
+            notification.repeats   = self.repeats(dateComponents: trigger.dateComponents)
+            notification.date      = self.date(fromDateComponents: trigger.dateComponents, repeats: notification.repeats, originalDate: date)
+        }
+        
+        notification.badge         = content.badge
+
+        if let sound = content.sound {
+            if sound != UNNotificationSound.default() {
+                notification.sound = RobinNotificationSound(sound: sound)
             }
         }
         
-        var repeats: Repeats
-        switch self.repeatInterval {
-        case NSCalendar.Unit.hour:
-            repeats                = .hour
-        case NSCalendar.Unit.day:
-            repeats                = .day
-        case NSCalendar.Unit.weekOfYear:
-            repeats                = .week
-        case NSCalendar.Unit.month:
-            repeats                = .month
-        default: repeats           = .none
-        }
-        
-        notification.repeats       = repeats
         notification.scheduled     = true
         
         return notification
+    }
+    
+    /// Since repeating a `UNCalendarNotificationTrigger` nullifies some of the
+    /// date components, the original date needs to be stored. Robin stores this date
+    /// in the notification's `userInfo` property using `RobinNotification.dateKey`.
+    /// This original date is used to fill those nullified components.
+    ///
+    /// - Parameters:
+    ///   - dateComponents: The `UNCalendarNotificationTrigger` date components.
+    ///   - repeats: The repeat interval of the trigger.
+    ///   - originalDate: The original date stored to fill the nullified components. Uses current date if passed as `nil`.
+    /// - Returns: The filled date using the original date.
+    private func date(fromDateComponents dateComponents: DateComponents, repeats: Repeats, originalDate: Date?) -> Date {
+        let calendar: Calendar         = Calendar.current
+        var components: DateComponents = dateComponents
+        
+        var date: Date
+        if originalDate == nil {
+            date = Date()
+        } else {
+            date = originalDate!
+        }
+        
+        switch repeats {
+        case .none:
+            return calendar.date(from: components)!
+        case .month:
+            let comps        = calendar.dateComponents([.year, .month], from: date)
+            components.year  = comps.year
+            components.month = comps.month
+            
+            return calendar.date(from: components)!
+        case .week:
+            let comps        = calendar.dateComponents([.year, .month, .day], from: date)
+            components.year  = comps.year
+            components.month = comps.month
+            components.day   = comps.day
+            
+            return calendar.date(from: components)!
+        case .day:
+            let comps        = calendar.dateComponents([.year, .month, .day], from: date)
+            components.year  = comps.year
+            components.month = comps.month
+            components.day   = comps.day
+            
+            return calendar.date(from: components)!
+        case .hour:
+            let comps        = calendar.dateComponents([.year, .month, .day, .hour], from: date)
+            components.year  = comps.year
+            components.month = comps.month
+            components.day   = comps.day
+            components.hour  = comps.hour
+            
+            return calendar.date(from: components)!
+        default:
+            return date
+        }
+    }
+    
+    private func repeats(dateComponents components: DateComponents) -> Repeats {
+        if self.doesRepeatNone(dateComponents: components) {
+            return .none
+        } else if doesRepeatMonth(dateComponents: components) {
+            return .month
+        } else if doesRepeatWeek(dateComponents: components) {
+            return .week
+        } else if doesRepeatDay(dateComponents: components) {
+            return .day
+        } else if doesRepeatHour(dateComponents: components) {
+            return .hour
+        }
+        
+        return .none
+    }
+    
+    private func doesRepeatNone(dateComponents components: DateComponents) -> Bool {
+        return components.year != nil && components.month != nil && components.day != nil && components.hour != nil && components.minute != nil
+    }
+    
+    private func doesRepeatMonth(dateComponents components: DateComponents) -> Bool {
+        return components.day != nil && components.hour != nil && components.minute != nil
+    }
+    
+    private func doesRepeatWeek(dateComponents components: DateComponents) -> Bool {
+        return components.weekday != nil && components.hour != nil && components.minute != nil && components.second != nil
+    }
+    
+    private func doesRepeatDay(dateComponents components: DateComponents) -> Bool {
+        return components.hour != nil && components.minute != nil && components.second != nil
+    }
+    
+    private func doesRepeatHour(dateComponents components: DateComponents) -> Bool {
+        return components.minute != nil && components.second != nil
     }
 }

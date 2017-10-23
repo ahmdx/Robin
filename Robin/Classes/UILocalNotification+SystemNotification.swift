@@ -39,9 +39,9 @@ extension UILocalNotification: SystemNotification {
             notification.title     = self.alertTitle
         }
         notification.badge         = self.applicationIconBadgeNumber as NSNumber
-        if self.soundName != UILocalNotificationDefaultSoundName {
-            if let soundName       = self.soundName {
-                notification.sound = soundName
+        if let soundName = self.soundName {
+            if soundName != UILocalNotificationDefaultSoundName {
+                notification.sound = RobinNotificationSound(sound: soundName)
             }
         }
         
