@@ -1,8 +1,8 @@
 {
   "name": "Robin",
   "version": "0.1.0",
-  "summary": "A short description of Robin.",
-  "description": "TODO: Add long description of the pod here.",
+  "summary": "A backwards-compatible notification scheduler written in Swift.",
+  "description": "Robin is a backwards-compatible notification scheduler that provides a universal interface to schedule notifications using both UILocalNotification and UserNotifications.",
   "homepage": "https://github.com/ahmedabadie/Robin",
   "license": {
     "type": "MIT",
