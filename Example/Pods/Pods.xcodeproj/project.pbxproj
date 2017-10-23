@@ -8,22 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		1BE8AE4017AAAB95577D0E4C7F8BB7CE /* Pods-Robin_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 87D32F3C2B9236F61CF989277538EA78 /* Pods-Robin_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		21B6709020E875D855902416C5F17A01 /* SystemNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D8B1DB7425C53AB891BE4922602858 /* SystemNotification.swift */; };
-		2889CCCDD1DD2E670E55B0BE4C82CB01 /* RobinNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391527EF6914A2DAE2E9874D35D404A7 /* RobinNotification.swift */; };
-		3B5155742555247B6E4E5DCFFD4989C5 /* UILocalNotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96B1085C4C214DB3101EFC6B72ACCE1 /* UILocalNotificationScheduler.swift */; };
+		2051D0C5C80E479A204B73266CBC566B /* RobinNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBB503FB4317955DFFFC51F97F68BE3 /* RobinNotification.swift */; };
+		2E2459CAA56777C3883CACBD6BF81C05 /* SystemNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D433C80F6B2A14680E2F0D8EF52E6B78 /* SystemNotification.swift */; };
 		3D4EF772DA6D9C76CB5C8CAD852C4019 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		3FA044D9AB66A0FFBB52FA9C5F909880 /* UILocalNotification+SystemNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8A4F25B5C74F4A5A4B54120F85BCF0 /* UILocalNotification+SystemNotification.swift */; };
+		4D1EFD7945B52D1FC39167A86D6CDB8C /* RobinNotificationSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844DDFCE2D765501B20FD3185551BDF4 /* RobinNotificationSound.swift */; };
+		5F379FA9EC9168785F68F0814CF80950 /* UNNotificationSound+SystemNotificationSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8DA9F06E15CEB973FDAEE6C4F435EA /* UNNotificationSound+SystemNotificationSound.swift */; };
+		60617C0ED9B4846455A18E4B6C9395B3 /* String+SystemNotificationSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BF5C8F04803D12C7B8F0A2898CD0B1 /* String+SystemNotificationSound.swift */; };
 		6511E8A318D258547FF755D5AB3D9FC3 /* Pods-Robin_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 47E60CB9C5441781CE20CEFC784EA5C4 /* Pods-Robin_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6594D836964E20E5411ABA4FB024E3AA /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464EC8E1BA84964BB84735A3BBE5D7BB /* Scheduler.swift */; };
-		6E5B77A6CA607E9FE33DD921A4E0A1FC /* RobinAuthorizationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF28FC61535A6ADE2E456AE9E7EDCD8 /* RobinAuthorizationOptions.swift */; };
+		69FE976550507D160DE159B52CA90CBB /* UserNotificationsScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBD0DF627A6BB73B96583C08976B83 /* UserNotificationsScheduler.swift */; };
+		6E8D439CFFA20EFB304DB3F84070A29E /* Robin.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF1F93F95C94A5297CC291A9629DD65 /* Robin.swift */; };
+		7097C56F938316CF1F3DC2EF1CDAD2F7 /* UNNotificationRequest+SystemNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017C329C4C53760F981BC81DD8E0D597 /* UNNotificationRequest+SystemNotification.swift */; };
 		785C95E75E55B1BE657AF36C2544CC31 /* Pods-Robin_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D6A097E785301415288E41DB78701A /* Pods-Robin_Tests-dummy.m */; };
-		79C411A2B51F512A7349198EFE7E2FE1 /* Robin-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC892216A79BC5A7C2D8DF96D17EE61 /* Robin-dummy.m */; };
-		A177EE177FE603F8BD77D1375C6EC105 /* Date+Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450631845C1C8E64E56983F3C1A9AB88 /* Date+Scheduler.swift */; };
-		AD9A354B7610A1CF645224551079AE72 /* UILocalNotification+SystemNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70C84BC8722FC139CD11B3A14BD2D26 /* UILocalNotification+SystemNotification.swift */; };
-		B5BDEDB3CF2644A6F234305D01D9D718 /* Robin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4528172C26350DD71FBACAC4176E4A19 /* Robin.swift */; };
+		B2A6EC3E5F3CDC125DB1B1E976EBD54D /* Robin-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E84FEB5E15FA4643DE5CCFC723D400 /* Robin-dummy.m */; };
 		BA9FA5CD95512517E40624FF93E64540 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		C0503C706A337A447EC428010733C1FD /* Robin-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1693D46C459737CD7E323202231AE143 /* Robin-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D2907C195BDD5A4222B07345C05889E9 /* UserNotificationsScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791BAA309DE238281DD165E351FABB9B /* UserNotificationsScheduler.swift */; };
-		E85CB4CEE0C74EEC879F3500A3CB5351 /* UNNotificationRequest+SystemNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFC4555AE38EEFFF349ED0B9B4AE83C /* UNNotificationRequest+SystemNotification.swift */; };
+		BD14797D303862C7555D36EFF8165170 /* SystemNotificationSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5351D80B5A069877BE62DF51C196EBC3 /* SystemNotificationSound.swift */; };
+		C0503C706A337A447EC428010733C1FD /* Robin-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BE1D941349388AF96F2C46B4AEAC9ED /* Robin-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C813BC00A6681C674909A841B59E0ABB /* Date+Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D1DBD82BA6BAED40265069BD6A62BB /* Date+Scheduler.swift */; };
+		C8F919D52F8AF4196B70202E2C5B406B /* RobinAuthorizationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD26294812384AB334682F72AAF94F16 /* RobinAuthorizationOptions.swift */; };
+		CFA80E18F9EB78BE43672B83CF3A499E /* UILocalNotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C6C79E128C27965D68062EDB4686FC /* UILocalNotificationScheduler.swift */; };
+		E93320CC2DD43B4573B8F96BB830AB08 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A2CF370B6DB69A9E329DD660B581A2 /* Scheduler.swift */; };
 		F46F7B706A2174FABBB972A5EEE8C3EA /* Pods-Robin_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C0A6ACE4F179B4B927152BB9C92C57D4 /* Pods-Robin_Example-dummy.m */; };
 		FFE685B0BBA34BC75A266FA46947EAD6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 /* End PBXBuildFile section */
@@ -39,47 +43,51 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		017C329C4C53760F981BC81DD8E0D597 /* UNNotificationRequest+SystemNotification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UNNotificationRequest+SystemNotification.swift"; path = "Robin/Classes/UNNotificationRequest+SystemNotification.swift"; sourceTree = "<group>"; };
 		01E94A2A3C2791BCBCE74D2E3642B4A4 /* Pods-Robin_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Robin_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		0FD1DFC7820B683B9B646568AA5160F6 /* Robin-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Robin-prefix.pch"; sourceTree = "<group>"; };
+		10E84FEB5E15FA4643DE5CCFC723D400 /* Robin-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Robin-dummy.m"; sourceTree = "<group>"; };
 		11E5B19D7D2E4F60BAAA607656BEA45E /* Robin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Robin.framework; path = Robin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		142F1E2152B6393A166F1A146F096D96 /* Pods-Robin_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Robin_Tests-frameworks.sh"; sourceTree = "<group>"; };
-		1693D46C459737CD7E323202231AE143 /* Robin-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Robin-umbrella.h"; sourceTree = "<group>"; };
-		1DF28FC61535A6ADE2E456AE9E7EDCD8 /* RobinAuthorizationOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RobinAuthorizationOptions.swift; path = Robin/Classes/RobinAuthorizationOptions.swift; sourceTree = "<group>"; };
 		223F796B904335F4260C4A2E04213D67 /* Pods-Robin_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Robin_Example.modulemap"; sourceTree = "<group>"; };
-		2CC892216A79BC5A7C2D8DF96D17EE61 /* Robin-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Robin-dummy.m"; sourceTree = "<group>"; };
-		2DFC4555AE38EEFFF349ED0B9B4AE83C /* UNNotificationRequest+SystemNotification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UNNotificationRequest+SystemNotification.swift"; path = "Robin/Classes/UNNotificationRequest+SystemNotification.swift"; sourceTree = "<group>"; };
-		391527EF6914A2DAE2E9874D35D404A7 /* RobinNotification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RobinNotification.swift; path = Robin/Classes/RobinNotification.swift; sourceTree = "<group>"; };
+		326FB24B6B6579F07301441E86188308 /* Robin.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Robin.xcconfig; sourceTree = "<group>"; };
 		3EF5191836597FF0190403536806981A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		450631845C1C8E64E56983F3C1A9AB88 /* Date+Scheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Date+Scheduler.swift"; path = "Robin/Classes/Date+Scheduler.swift"; sourceTree = "<group>"; };
-		4528172C26350DD71FBACAC4176E4A19 /* Robin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Robin.swift; path = Robin/Classes/Robin.swift; sourceTree = "<group>"; };
-		45D8B1DB7425C53AB891BE4922602858 /* SystemNotification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SystemNotification.swift; path = Robin/Classes/SystemNotification.swift; sourceTree = "<group>"; };
-		464EC8E1BA84964BB84735A3BBE5D7BB /* Scheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Scheduler.swift; path = Robin/Classes/Scheduler.swift; sourceTree = "<group>"; };
 		47E60CB9C5441781CE20CEFC784EA5C4 /* Pods-Robin_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Robin_Tests-umbrella.h"; sourceTree = "<group>"; };
+		4A8A4F25B5C74F4A5A4B54120F85BCF0 /* UILocalNotification+SystemNotification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UILocalNotification+SystemNotification.swift"; path = "Robin/Classes/UILocalNotification+SystemNotification.swift"; sourceTree = "<group>"; };
 		4DC0632CBB6F0ABDB4B40537E8D9800A /* Pods-Robin_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Robin_Example.release.xcconfig"; sourceTree = "<group>"; };
-		551CEE3CE2576A7E9E438B31E80C72F4 /* Robin-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Robin-prefix.pch"; sourceTree = "<group>"; };
+		4FBB503FB4317955DFFFC51F97F68BE3 /* RobinNotification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RobinNotification.swift; path = Robin/Classes/RobinNotification.swift; sourceTree = "<group>"; };
+		5351D80B5A069877BE62DF51C196EBC3 /* SystemNotificationSound.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SystemNotificationSound.swift; path = Robin/Classes/SystemNotificationSound.swift; sourceTree = "<group>"; };
 		59522D40B55387ACEEF115E07982F526 /* Pods-Robin_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Robin_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		68BF5C8F04803D12C7B8F0A2898CD0B1 /* String+SystemNotificationSound.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+SystemNotificationSound.swift"; path = "Robin/Classes/String+SystemNotificationSound.swift"; sourceTree = "<group>"; };
+		6E859ACA1332246E9CC894FC92C62563 /* Robin.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Robin.modulemap; sourceTree = "<group>"; };
+		743FCBD9F292609E08312C012792AF50 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75D1C2E1695654082A918D3116C06632 /* Pods-Robin_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Robin_Tests-resources.sh"; sourceTree = "<group>"; };
 		7705C2DCD81F46669ECA485BD3E2D722 /* Pods_Robin_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Robin_Example.framework; path = "Pods-Robin_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7881E7DC5E0F7C0864AB25144E60C48F /* Pods-Robin_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Robin_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		791BAA309DE238281DD165E351FABB9B /* UserNotificationsScheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UserNotificationsScheduler.swift; path = Robin/Classes/UserNotificationsScheduler.swift; sourceTree = "<group>"; };
+		7BE1D941349388AF96F2C46B4AEAC9ED /* Robin-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Robin-umbrella.h"; sourceTree = "<group>"; };
+		844DDFCE2D765501B20FD3185551BDF4 /* RobinNotificationSound.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RobinNotificationSound.swift; path = Robin/Classes/RobinNotificationSound.swift; sourceTree = "<group>"; };
 		87D32F3C2B9236F61CF989277538EA78 /* Pods-Robin_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Robin_Example-umbrella.h"; sourceTree = "<group>"; };
-		8C3A5098921E4731C39035DA46F6F427 /* Robin.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Robin.xcconfig; sourceTree = "<group>"; };
+		8D8DA9F06E15CEB973FDAEE6C4F435EA /* UNNotificationSound+SystemNotificationSound.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UNNotificationSound+SystemNotificationSound.swift"; path = "Robin/Classes/UNNotificationSound+SystemNotificationSound.swift"; sourceTree = "<group>"; };
 		92D6A097E785301415288E41DB78701A /* Pods-Robin_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Robin_Tests-dummy.m"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		99555E2FBFAAAE79E4FA2BC22696E85A /* Pods-Robin_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Robin_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		A224BE5146750F6B8FE2D1990DEEB0A9 /* Pods-Robin_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Robin_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		A96B1085C4C214DB3101EFC6B72ACCE1 /* UILocalNotificationScheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UILocalNotificationScheduler.swift; path = Robin/Classes/UILocalNotificationScheduler.swift; sourceTree = "<group>"; };
-		AB3049DD48C2A114B67126BDB356648D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AEB32B28B5781E27BA7F6CC47E74B68B /* Pods-Robin_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Robin_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		AEC7EB0C3B4DCC986BF16AB3D75712E3 /* Pods-Robin_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Robin_Example-frameworks.sh"; sourceTree = "<group>"; };
 		C0A6ACE4F179B4B927152BB9C92C57D4 /* Pods-Robin_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Robin_Example-dummy.m"; sourceTree = "<group>"; };
+		C7A2CF370B6DB69A9E329DD660B581A2 /* Scheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Scheduler.swift; path = Robin/Classes/Scheduler.swift; sourceTree = "<group>"; };
+		CD26294812384AB334682F72AAF94F16 /* RobinAuthorizationOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RobinAuthorizationOptions.swift; path = Robin/Classes/RobinAuthorizationOptions.swift; sourceTree = "<group>"; };
 		CFB140E419F26182F51CCDA82AAF33B6 /* Pods_Robin_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Robin_Tests.framework; path = "Pods-Robin_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D70C84BC8722FC139CD11B3A14BD2D26 /* UILocalNotification+SystemNotification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UILocalNotification+SystemNotification.swift"; path = "Robin/Classes/UILocalNotification+SystemNotification.swift"; sourceTree = "<group>"; };
+		D433C80F6B2A14680E2F0D8EF52E6B78 /* SystemNotification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SystemNotification.swift; path = Robin/Classes/SystemNotification.swift; sourceTree = "<group>"; };
+		D9D1DBD82BA6BAED40265069BD6A62BB /* Date+Scheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Date+Scheduler.swift"; path = "Robin/Classes/Date+Scheduler.swift"; sourceTree = "<group>"; };
 		DC932B51195036CDA2028BB431E6CD45 /* Pods-Robin_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Robin_Tests.modulemap"; sourceTree = "<group>"; };
 		E3F197F6E477D10982F6E7FCFD119B09 /* Pods-Robin_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Robin_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		E9C6C79E128C27965D68062EDB4686FC /* UILocalNotificationScheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UILocalNotificationScheduler.swift; path = Robin/Classes/UILocalNotificationScheduler.swift; sourceTree = "<group>"; };
+		EBF1F93F95C94A5297CC291A9629DD65 /* Robin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Robin.swift; path = Robin/Classes/Robin.swift; sourceTree = "<group>"; };
 		F57AB62EBAF9950D31BB33DC44DD9B2F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F8DBD0DF627A6BB73B96583C08976B83 /* UserNotificationsScheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UserNotificationsScheduler.swift; path = Robin/Classes/UserNotificationsScheduler.swift; sourceTree = "<group>"; };
 		FBF7FD5B756607E50AB776C90AC055C8 /* Pods-Robin_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Robin_Example-resources.sh"; sourceTree = "<group>"; };
-		FCFCF6F1106B6D056523D9F8F0AFBA9B /* Robin.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Robin.modulemap; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,10 +146,10 @@
 			path = "Target Support Files/Pods-Robin_Tests";
 			sourceTree = "<group>";
 		};
-		4DFEA06CCBC0F76364EF98D3DA1B3E0C /* Development Pods */ = {
+		56936A2060E569E4D54B10E1D4516B6E /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				7D53DC259A50FD876DECDB9DA9588D6C /* Robin */,
+				AAC8329416BE097D3F9FBD78940873B6 /* Robin */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
@@ -155,30 +163,11 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		7D53DC259A50FD876DECDB9DA9588D6C /* Robin */ = {
-			isa = PBXGroup;
-			children = (
-				450631845C1C8E64E56983F3C1A9AB88 /* Date+Scheduler.swift */,
-				4528172C26350DD71FBACAC4176E4A19 /* Robin.swift */,
-				1DF28FC61535A6ADE2E456AE9E7EDCD8 /* RobinAuthorizationOptions.swift */,
-				391527EF6914A2DAE2E9874D35D404A7 /* RobinNotification.swift */,
-				464EC8E1BA84964BB84735A3BBE5D7BB /* Scheduler.swift */,
-				45D8B1DB7425C53AB891BE4922602858 /* SystemNotification.swift */,
-				D70C84BC8722FC139CD11B3A14BD2D26 /* UILocalNotification+SystemNotification.swift */,
-				A96B1085C4C214DB3101EFC6B72ACCE1 /* UILocalNotificationScheduler.swift */,
-				2DFC4555AE38EEFFF349ED0B9B4AE83C /* UNNotificationRequest+SystemNotification.swift */,
-				791BAA309DE238281DD165E351FABB9B /* UserNotificationsScheduler.swift */,
-				E678EA8ABB38303C504087883D102557 /* Support Files */,
-			);
-			name = Robin;
-			path = ../..;
-			sourceTree = "<group>";
-		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				4DFEA06CCBC0F76364EF98D3DA1B3E0C /* Development Pods */,
+				56936A2060E569E4D54B10E1D4516B6E /* Development Pods */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
 				1CB43B0235261D0286CC7E0ACD211FB7 /* Products */,
 				58696301C08DC4F0F5865CECF8CFD550 /* Targets Support Files */,
@@ -203,6 +192,29 @@
 			path = "Target Support Files/Pods-Robin_Example";
 			sourceTree = "<group>";
 		};
+		AAC8329416BE097D3F9FBD78940873B6 /* Robin */ = {
+			isa = PBXGroup;
+			children = (
+				D9D1DBD82BA6BAED40265069BD6A62BB /* Date+Scheduler.swift */,
+				EBF1F93F95C94A5297CC291A9629DD65 /* Robin.swift */,
+				CD26294812384AB334682F72AAF94F16 /* RobinAuthorizationOptions.swift */,
+				4FBB503FB4317955DFFFC51F97F68BE3 /* RobinNotification.swift */,
+				844DDFCE2D765501B20FD3185551BDF4 /* RobinNotificationSound.swift */,
+				C7A2CF370B6DB69A9E329DD660B581A2 /* Scheduler.swift */,
+				68BF5C8F04803D12C7B8F0A2898CD0B1 /* String+SystemNotificationSound.swift */,
+				D433C80F6B2A14680E2F0D8EF52E6B78 /* SystemNotification.swift */,
+				5351D80B5A069877BE62DF51C196EBC3 /* SystemNotificationSound.swift */,
+				4A8A4F25B5C74F4A5A4B54120F85BCF0 /* UILocalNotification+SystemNotification.swift */,
+				E9C6C79E128C27965D68062EDB4686FC /* UILocalNotificationScheduler.swift */,
+				017C329C4C53760F981BC81DD8E0D597 /* UNNotificationRequest+SystemNotification.swift */,
+				8D8DA9F06E15CEB973FDAEE6C4F435EA /* UNNotificationSound+SystemNotificationSound.swift */,
+				F8DBD0DF627A6BB73B96583C08976B83 /* UserNotificationsScheduler.swift */,
+				D1FE9575451F017400D475248480D340 /* Support Files */,
+			);
+			name = Robin;
+			path = ../..;
+			sourceTree = "<group>";
+		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,26 +223,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D1FE9575451F017400D475248480D340 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				743FCBD9F292609E08312C012792AF50 /* Info.plist */,
+				6E859ACA1332246E9CC894FC92C62563 /* Robin.modulemap */,
+				326FB24B6B6579F07301441E86188308 /* Robin.xcconfig */,
+				10E84FEB5E15FA4643DE5CCFC723D400 /* Robin-dummy.m */,
+				0FD1DFC7820B683B9B646568AA5160F6 /* Robin-prefix.pch */,
+				7BE1D941349388AF96F2C46B4AEAC9ED /* Robin-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/Robin";
+			sourceTree = "<group>";
+		};
 		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
 			isa = PBXGroup;
 			children = (
 				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
 			);
 			name = iOS;
-			sourceTree = "<group>";
-		};
-		E678EA8ABB38303C504087883D102557 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				AB3049DD48C2A114B67126BDB356648D /* Info.plist */,
-				FCFCF6F1106B6D056523D9F8F0AFBA9B /* Robin.modulemap */,
-				8C3A5098921E4731C39035DA46F6F427 /* Robin.xcconfig */,
-				2CC892216A79BC5A7C2D8DF96D17EE61 /* Robin-dummy.m */,
-				551CEE3CE2576A7E9E438B31E80C72F4 /* Robin-prefix.pch */,
-				1693D46C459737CD7E323202231AE143 /* Robin-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/Robin";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,7 +314,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0B1AAFAC5C9D2F8E4C7606392B0841DD /* Build configuration list for PBXNativeTarget "Robin" */;
 			buildPhases = (
-				CFF1BB8C7B7D10586787B82649502D50 /* Sources */,
+				20D7E5D7B05DCEB5E1D1A6BB1C00BAFC /* Sources */,
 				8CB02BF371AEC87488634A2BC9EE9590 /* Frameworks */,
 				128AE74083847C4B888F16C8F2866731 /* Headers */,
 			);
@@ -344,6 +356,28 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		20D7E5D7B05DCEB5E1D1A6BB1C00BAFC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C813BC00A6681C674909A841B59E0ABB /* Date+Scheduler.swift in Sources */,
+				B2A6EC3E5F3CDC125DB1B1E976EBD54D /* Robin-dummy.m in Sources */,
+				6E8D439CFFA20EFB304DB3F84070A29E /* Robin.swift in Sources */,
+				C8F919D52F8AF4196B70202E2C5B406B /* RobinAuthorizationOptions.swift in Sources */,
+				2051D0C5C80E479A204B73266CBC566B /* RobinNotification.swift in Sources */,
+				4D1EFD7945B52D1FC39167A86D6CDB8C /* RobinNotificationSound.swift in Sources */,
+				E93320CC2DD43B4573B8F96BB830AB08 /* Scheduler.swift in Sources */,
+				60617C0ED9B4846455A18E4B6C9395B3 /* String+SystemNotificationSound.swift in Sources */,
+				2E2459CAA56777C3883CACBD6BF81C05 /* SystemNotification.swift in Sources */,
+				BD14797D303862C7555D36EFF8165170 /* SystemNotificationSound.swift in Sources */,
+				3FA044D9AB66A0FFBB52FA9C5F909880 /* UILocalNotification+SystemNotification.swift in Sources */,
+				CFA80E18F9EB78BE43672B83CF3A499E /* UILocalNotificationScheduler.swift in Sources */,
+				7097C56F938316CF1F3DC2EF1CDAD2F7 /* UNNotificationRequest+SystemNotification.swift in Sources */,
+				5F379FA9EC9168785F68F0814CF80950 /* UNNotificationSound+SystemNotificationSound.swift in Sources */,
+				69FE976550507D160DE159B52CA90CBB /* UserNotificationsScheduler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		279BB4703C44F86A370FD6814023D946 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -357,24 +391,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F46F7B706A2174FABBB972A5EEE8C3EA /* Pods-Robin_Example-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CFF1BB8C7B7D10586787B82649502D50 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A177EE177FE603F8BD77D1375C6EC105 /* Date+Scheduler.swift in Sources */,
-				79C411A2B51F512A7349198EFE7E2FE1 /* Robin-dummy.m in Sources */,
-				B5BDEDB3CF2644A6F234305D01D9D718 /* Robin.swift in Sources */,
-				6E5B77A6CA607E9FE33DD921A4E0A1FC /* RobinAuthorizationOptions.swift in Sources */,
-				2889CCCDD1DD2E670E55B0BE4C82CB01 /* RobinNotification.swift in Sources */,
-				6594D836964E20E5411ABA4FB024E3AA /* Scheduler.swift in Sources */,
-				21B6709020E875D855902416C5F17A01 /* SystemNotification.swift in Sources */,
-				AD9A354B7610A1CF645224551079AE72 /* UILocalNotification+SystemNotification.swift in Sources */,
-				3B5155742555247B6E4E5DCFFD4989C5 /* UILocalNotificationScheduler.swift in Sources */,
-				E85CB4CEE0C74EEC879F3500A3CB5351 /* UNNotificationRequest+SystemNotification.swift in Sources */,
-				D2907C195BDD5A4222B07345C05889E9 /* UserNotificationsScheduler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,7 +650,7 @@
 		};
 		EF191E2FCEB2BC6C2B6539D04E14F4A7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C3A5098921E4731C39035DA46F6F427 /* Robin.xcconfig */;
+			baseConfigurationReference = 326FB24B6B6579F07301441E86188308 /* Robin.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -669,7 +685,7 @@
 		};
 		F9D05E94E42717050A2215B89E965FCB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C3A5098921E4731C39035DA46F6F427 /* Robin.xcconfig */;
+			baseConfigurationReference = 326FB24B6B6579F07301441E86188308 /* Robin.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
