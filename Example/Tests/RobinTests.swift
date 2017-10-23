@@ -155,14 +155,14 @@ class RobinTests: XCTestCase {
     
     /// Tests whether retrieving a scheduled system notification by identifier succeeds.
     func testNotificationWithIdentifier() {
-        let notification     = RobinNotification(body: "This is a test notification")
-        notification.title   = "This is a test title"
-        notification.badge   = 1
-        notification.repeats = .week
-        notification.sound   = "TestSound"
+        let notification          = RobinNotification(body: "This is a test notification")
+        notification.title        = "This is a test title"
+        notification.badge        = 1
+        notification.repeats      = .week
+        notification.sound        = RobinNotificationSound(named: "TestSound")
         notification.setUserInfo(value: "Value", forKey: "Key")
         
-        let _                = Robin.shared.schedule(notification: notification)
+        let _                     = Robin.shared.schedule(notification: notification)
         
         let retrievedNotification = Robin.shared.notification(withIdentifier: notification.identifier)
         
@@ -172,7 +172,7 @@ class RobinTests: XCTestCase {
         XCTAssertEqual(retrievedNotification?.date, notification.date.removeSeconds())
         XCTAssertEqual(retrievedNotification?.userInfo.count, notification.userInfo.count)
         XCTAssertEqual(retrievedNotification?.badge, notification.badge)
-        XCTAssertEqual(retrievedNotification?.sound, notification.sound)
+        XCTAssertTrue(notification.sound.isValid())
         XCTAssertEqual(retrievedNotification?.repeats, notification.repeats)
         XCTAssertEqual(retrievedNotification?.scheduled, notification.scheduled)
         XCTAssertTrue(retrievedNotification!.scheduled)
