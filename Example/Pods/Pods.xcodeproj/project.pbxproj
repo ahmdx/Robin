@@ -47,9 +47,9 @@
 		01E94A2A3C2791BCBCE74D2E3642B4A4 /* Pods-Robin_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Robin_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		0FD1DFC7820B683B9B646568AA5160F6 /* Robin-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Robin-prefix.pch"; sourceTree = "<group>"; };
 		10E84FEB5E15FA4643DE5CCFC723D400 /* Robin-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Robin-dummy.m"; sourceTree = "<group>"; };
-		11E5B19D7D2E4F60BAAA607656BEA45E /* Robin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Robin.framework; path = Robin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		11E5B19D7D2E4F60BAAA607656BEA45E /* Robin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Robin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		142F1E2152B6393A166F1A146F096D96 /* Pods-Robin_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Robin_Tests-frameworks.sh"; sourceTree = "<group>"; };
-		223F796B904335F4260C4A2E04213D67 /* Pods-Robin_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Robin_Example.modulemap"; sourceTree = "<group>"; };
+		223F796B904335F4260C4A2E04213D67 /* Pods-Robin_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Robin_Example.modulemap"; sourceTree = "<group>"; };
 		326FB24B6B6579F07301441E86188308 /* Robin.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Robin.xcconfig; sourceTree = "<group>"; };
 		3EF5191836597FF0190403536806981A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		47E60CB9C5441781CE20CEFC784EA5C4 /* Pods-Robin_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Robin_Tests-umbrella.h"; sourceTree = "<group>"; };
@@ -60,17 +60,17 @@
 		59522D40B55387ACEEF115E07982F526 /* Pods-Robin_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Robin_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		68BF5C8F04803D12C7B8F0A2898CD0B1 /* String+SystemNotificationSound.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+SystemNotificationSound.swift"; path = "Robin/Classes/String+SystemNotificationSound.swift"; sourceTree = "<group>"; };
-		6E859ACA1332246E9CC894FC92C62563 /* Robin.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Robin.modulemap; sourceTree = "<group>"; };
+		6E859ACA1332246E9CC894FC92C62563 /* Robin.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Robin.modulemap; sourceTree = "<group>"; };
 		743FCBD9F292609E08312C012792AF50 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75D1C2E1695654082A918D3116C06632 /* Pods-Robin_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Robin_Tests-resources.sh"; sourceTree = "<group>"; };
-		7705C2DCD81F46669ECA485BD3E2D722 /* Pods_Robin_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Robin_Example.framework; path = "Pods-Robin_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7705C2DCD81F46669ECA485BD3E2D722 /* Pods_Robin_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Robin_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7881E7DC5E0F7C0864AB25144E60C48F /* Pods-Robin_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Robin_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		7BE1D941349388AF96F2C46B4AEAC9ED /* Robin-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Robin-umbrella.h"; sourceTree = "<group>"; };
 		844DDFCE2D765501B20FD3185551BDF4 /* RobinNotificationSound.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RobinNotificationSound.swift; path = Robin/Classes/RobinNotificationSound.swift; sourceTree = "<group>"; };
 		87D32F3C2B9236F61CF989277538EA78 /* Pods-Robin_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Robin_Example-umbrella.h"; sourceTree = "<group>"; };
 		8D8DA9F06E15CEB973FDAEE6C4F435EA /* UNNotificationSound+SystemNotificationSound.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UNNotificationSound+SystemNotificationSound.swift"; path = "Robin/Classes/UNNotificationSound+SystemNotificationSound.swift"; sourceTree = "<group>"; };
 		92D6A097E785301415288E41DB78701A /* Pods-Robin_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Robin_Tests-dummy.m"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		99555E2FBFAAAE79E4FA2BC22696E85A /* Pods-Robin_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Robin_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		A224BE5146750F6B8FE2D1990DEEB0A9 /* Pods-Robin_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Robin_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		AEB32B28B5781E27BA7F6CC47E74B68B /* Pods-Robin_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Robin_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -78,10 +78,10 @@
 		C0A6ACE4F179B4B927152BB9C92C57D4 /* Pods-Robin_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Robin_Example-dummy.m"; sourceTree = "<group>"; };
 		C7A2CF370B6DB69A9E329DD660B581A2 /* Scheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Scheduler.swift; path = Robin/Classes/Scheduler.swift; sourceTree = "<group>"; };
 		CD26294812384AB334682F72AAF94F16 /* RobinAuthorizationOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RobinAuthorizationOptions.swift; path = Robin/Classes/RobinAuthorizationOptions.swift; sourceTree = "<group>"; };
-		CFB140E419F26182F51CCDA82AAF33B6 /* Pods_Robin_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Robin_Tests.framework; path = "Pods-Robin_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFB140E419F26182F51CCDA82AAF33B6 /* Pods_Robin_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Robin_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D433C80F6B2A14680E2F0D8EF52E6B78 /* SystemNotification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SystemNotification.swift; path = Robin/Classes/SystemNotification.swift; sourceTree = "<group>"; };
 		D9D1DBD82BA6BAED40265069BD6A62BB /* Date+Scheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Date+Scheduler.swift"; path = "Robin/Classes/Date+Scheduler.swift"; sourceTree = "<group>"; };
-		DC932B51195036CDA2028BB431E6CD45 /* Pods-Robin_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Robin_Tests.modulemap"; sourceTree = "<group>"; };
+		DC932B51195036CDA2028BB431E6CD45 /* Pods-Robin_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Robin_Tests.modulemap"; sourceTree = "<group>"; };
 		E3F197F6E477D10982F6E7FCFD119B09 /* Pods-Robin_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Robin_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		E9C6C79E128C27965D68062EDB4686FC /* UILocalNotificationScheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UILocalNotificationScheduler.swift; path = Robin/Classes/UILocalNotificationScheduler.swift; sourceTree = "<group>"; };
 		EBF1F93F95C94A5297CC291A9629DD65 /* Robin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Robin.swift; path = Robin/Classes/Robin.swift; sourceTree = "<group>"; };
@@ -334,7 +334,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 1010;
+				TargetAttributes = {
+					63F4CAA75A60516E06413D7CF0D4AA26 = {
+						LastSwiftMigration = 1010;
+					};
+				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -488,22 +493,32 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"POD_CONFIGURATION_RELEASE=1",
 					"$(inherited)",
@@ -517,6 +532,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SYMROOT = "${SRCROOT}/../build";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -609,23 +625,33 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"POD_CONFIGURATION_DEBUG=1",
@@ -676,7 +702,8 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -711,7 +738,8 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

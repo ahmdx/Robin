@@ -108,7 +108,7 @@ Robin.shared.cancel(notification: scheduledNotification)
 ```
 
 ```swift
-Robin.shared.cancel(notification: scheduledNotification.identifier)
+Robin.shared.cancel(withIdentifier: scheduledNotification.identifier)
 ```
 
 `Robin` allows you to cancel all scheduled notifications by calling `cancelAll()`
