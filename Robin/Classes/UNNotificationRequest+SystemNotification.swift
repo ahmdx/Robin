@@ -35,7 +35,7 @@ extension UNNotificationRequest: SystemNotification {
             notification.setUserInfo(value: value, forKey: key)
         }
         
-        if content.title.trimmingCharacters(in: .whitespaces).characters.count > 0 {
+        if content.title.trimmingCharacters(in: .whitespaces).count > 0 {
             notification.title     = content.title
         }
         
@@ -51,7 +51,7 @@ extension UNNotificationRequest: SystemNotification {
         notification.badge         = content.badge
 
         if let sound = content.sound {
-            if sound != UNNotificationSound.default() {
+            if sound != UNNotificationSound.default {
                 notification.sound = RobinNotificationSound(sound: sound)
             }
         }
