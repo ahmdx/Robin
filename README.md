@@ -2,7 +2,7 @@
 
 [![Platform](https://img.shields.io/cocoapods/p/Robin.svg?style=flat)](http://cocoapods.org/pods/Robin)
 [![Version](https://img.shields.io/cocoapods/v/Robin.svg?style=flat)](http://cocoapods.org/pods/Robin)
-[![Swift 3](https://img.shields.io/badge/Swift-3-orange.svg?style=flat)](https://swift.org)
+[![Swift 4.2](https://img.shields.io/badge/Swift-4-orange.svg?style=flat)](https://swift.org)
 [![CI Status](http://img.shields.io/travis/ahmedabadie/Robin.svg?style=flat)](https://travis-ci.org/ahmedabadie/Robin)
 [![License](https://img.shields.io/cocoapods/l/Robin.svg?style=flat)](http://cocoapods.org/pods/Robin)
 
@@ -10,9 +10,9 @@ Robin is a universal notification interface for iOS that handles both UILocalNot
 
 ## Requirements
 
-- iOS 8.0+
+- iOS 10.0+
 - Xcode 8.0+
-- Swift 3.0+
+- Swift 4.2+
 
 ## Communication
 
@@ -26,7 +26,13 @@ Robin is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile.
 
 ```ruby
-pod 'Robin', '~> 0.1'
+pod 'Robin', '~> 0.1.1'
+```
+
+For Swift 3, use:
+
+```ruby
+pod 'Robin', '0.1.0'
 ```
 
 ## Usage
@@ -108,7 +114,7 @@ Robin.shared.cancel(notification: scheduledNotification)
 ```
 
 ```swift
-Robin.shared.cancel(notification: scheduledNotification.identifier)
+Robin.shared.cancel(withIdentifier: scheduledNotification.identifier)
 ```
 
 `Robin` allows you to cancel all scheduled notifications by calling `cancelAll()`
