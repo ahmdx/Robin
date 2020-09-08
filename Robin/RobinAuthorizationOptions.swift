@@ -20,6 +20,9 @@
 // THE SOFTWARE.
 //
 
+import UIKit
+import Foundation
+
 public struct RobinAuthorizationOptions: OptionSet, RawRepresentable {
     public let rawValue: UInt
     

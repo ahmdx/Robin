@@ -20,6 +20,9 @@
 // THE SOFTWARE.
 //
 
+import UIKit
+import Foundation
+
 /// The maximum allowed notifications to be scheduled at a time by iOS.
 ///- Important: Do not change this value. Changing this value to be over
 /// 64 will cause some notifications to be discarded by iOS.

@@ -20,6 +20,9 @@
 // THE SOFTWARE.
 //
 
+import UIKit
+import Foundation
+
 public extension Date {
     
     /// Adds a number of minutes to a date.

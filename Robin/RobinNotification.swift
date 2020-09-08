@@ -20,6 +20,10 @@
 // THE SOFTWARE.
 //
 
+
+import UIKit
+import Foundation
+
 /// An enum that represents the repeat interval of the notification.
 ///
 /// - none: The notification should never repeat.
