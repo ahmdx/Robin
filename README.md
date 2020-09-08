@@ -2,8 +2,7 @@
 
 [![Platform](https://img.shields.io/cocoapods/p/Robin.svg?style=flat)](http://cocoapods.org/pods/Robin)
 [![Version](https://img.shields.io/cocoapods/v/Robin.svg?style=flat)](http://cocoapods.org/pods/Robin)
-[![Swift 4.2](https://img.shields.io/badge/Swift-4-orange.svg?style=flat)](https://swift.org)
-[![CI Status](http://img.shields.io/travis/ahmedabadie/Robin.svg?style=flat)](https://travis-ci.org/ahmedabadie/Robin)
+[![Swift 5](https://img.shields.io/badge/Swift-5-orange.svg?style=flat)](https://swift.org)
 [![License](https://img.shields.io/cocoapods/l/Robin.svg?style=flat)](http://cocoapods.org/pods/Robin)
 
 Robin is a universal notification interface for iOS that handles both UILocalNotification and UserNotifications behind the scenes.
@@ -22,18 +21,7 @@ Robin is a universal notification interface for iOS that handles both UILocalNot
 
 ## Installation
 
-Robin is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile.
-
-```ruby
-pod 'Robin', '~> 0.1.1'
-```
-
-For Swift 3, use:
-
-```ruby
-pod 'Robin', '0.1.0'
-```
+Robin is available through Swift Package Manager
 
 ## Usage
 
@@ -132,6 +120,7 @@ Robin.shared.cancelAll()
 ## Author
 
 Ahmed Abdelbadie, badie.ahmed@icloud.com
+Radu Ursache
 
 ## License
 
