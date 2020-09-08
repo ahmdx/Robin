@@ -101,8 +101,8 @@ public class RobinNotification: NSObject {
         self.body = body
         self.date = date
         self.userInfo = [
-            RobinNotification.identifierKey : self.identifier,
-            RobinNotification.dateKey : self.date
+			RobinNotification.identifierKey: identifier,
+            RobinNotification.dateKey: date
         ]
     }
     
