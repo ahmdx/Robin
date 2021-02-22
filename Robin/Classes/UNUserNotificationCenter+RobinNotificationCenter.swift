@@ -20,14 +20,5 @@
 // THE SOFTWARE.
 //
 
-public class Robin {
-    static var notificationsScheduler: Scheduler!
-    
-    public static var scheduler: Scheduler {
-        if notificationsScheduler == nil {
-            self.notificationsScheduler = UserNotificationsScheduler()
-        }
+extension UNUserNotificationCenter: RobinNotificationCenter {}
 
-        return self.notificationsScheduler
-    }
-}

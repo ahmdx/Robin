@@ -22,12 +22,17 @@
 
 import UserNotifications
 
-internal class UserNotificationsScheduler: Scheduler {    
-    func requestAuthorization(forOptions options: RobinAuthorizationOptions) {
-        let center: UNUserNotificationCenter             = UNUserNotificationCenter.current()
+internal class UserNotificationsScheduler: Scheduler {
+    fileprivate let center: RobinNotificationCenter
+    
+    init(center: RobinNotificationCenter = UNUserNotificationCenter.current()) {
+        self.center = center
+    }
+    
+    func requestAuthorization(forOptions options: RobinAuthorizationOptions, completionHandler: @escaping (Bool, Error?) -> Void) {
         let authorizationOptions: UNAuthorizationOptions = UNAuthorizationOptions(rawValue: options.rawValue)
         
-        center.requestAuthorization(options: authorizationOptions) { (granter, error) in }
+        center.requestAuthorization(options: authorizationOptions, completionHandler: completionHandler)
     }
     
     private func trigger(forDate date: Date, repeats: Repeats) -> UNCalendarNotificationTrigger {
@@ -90,8 +95,7 @@ internal class UserNotificationsScheduler: Scheduler {
         let trigger: UNCalendarNotificationTrigger = self.trigger(forDate: notification.date, repeats: notification.repeats)
         
         let request: UNNotificationRequest         = UNNotificationRequest(identifier: notification.identifier, content: content, trigger: trigger)
-        let center: UNUserNotificationCenter       = UNUserNotificationCenter.current()
-        center.add(request, withCompletionHandler: nil)
+        center.add(request)
         notification.scheduled                     = true
         
         return notification
@@ -108,27 +112,22 @@ internal class UserNotificationsScheduler: Scheduler {
             return
         }
         
-        let center: UNUserNotificationCenter = UNUserNotificationCenter.current()
         center.removePendingNotificationRequests(withIdentifiers: [notification.identifier])
         notification.scheduled = false
     }
     
     func cancel(withIdentifier identifier: String) {
-        let center: UNUserNotificationCenter = UNUserNotificationCenter.current()
         center.removePendingNotificationRequests(withIdentifiers: [identifier])
     }
     
     func cancelAll() {
-        let center = UNUserNotificationCenter.current()
         center.removeAllPendingNotificationRequests()
-        print("All scheduled system notifications have been canceled.")
     }
     
     func notification(withIdentifier identifier: String) -> RobinNotification? {
         let semaphore                         = DispatchSemaphore(value: 0)
         var notification: RobinNotification?  = nil
         
-        let center: UNUserNotificationCenter  = UNUserNotificationCenter.current()
         center.getPendingNotificationRequests { requests in
             for request in requests {
                 if request.identifier == identifier {
@@ -151,7 +150,6 @@ internal class UserNotificationsScheduler: Scheduler {
         let semaphore                        = DispatchSemaphore(value: 0)
         var count: Int                       = 0
         
-        let center: UNUserNotificationCenter = UNUserNotificationCenter.current()
         center.getPendingNotificationRequests { requests in
             count = requests.count
             semaphore.signal()
@@ -171,7 +169,6 @@ internal class UserNotificationsScheduler: Scheduler {
         }
         
         let semaphore                        = DispatchSemaphore(value: 0)
-        let center: UNUserNotificationCenter = UNUserNotificationCenter.current()
         center.getPendingNotificationRequests { requests in
             for request in requests {
                 let notification: RobinNotification = request.robinNotification()!
