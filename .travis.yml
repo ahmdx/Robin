@@ -4,5 +4,5 @@
 
 osx_image: xcode10
 language: objective-c
-xcode_scheme: Robin
-xcode_destination: platform=iOS Simulator,OS=10.0,name=iPhone X
+script:
+- set -o pipefail && xcodebuild test -scheme Robin -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone X' ONLY_ACTIVE_ARCH=NO | xcpretty
