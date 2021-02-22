@@ -30,4 +30,8 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '10.0'
 
   s.source_files = 'Robin/Classes/**/*'
+
+  s.test_spec 'Tests' do |test_spec|
+    test_spec.source_files = 'Robin/Tests/**/*'
+  end
 end

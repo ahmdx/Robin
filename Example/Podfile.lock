@@ -1,16 +1,18 @@
 PODS:
   - Robin (0.90.0)
+  - Robin/Tests (0.90.0)
 
 DEPENDENCIES:
   - Robin (from `../`)
+  - Robin/Tests (from `../`)
 
 EXTERNAL SOURCES:
   Robin:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Robin: 99ae037a4349eadeccea66c675cd4d7fd98aa135
+  Robin: 35843e6580cff929d5b9b30f1639e974f388d768
 
-PODFILE CHECKSUM: 2a607da781dcdff4e9b39824409dbcc08ddb50f0
+PODFILE CHECKSUM: 7a19c0977f6f07fc8e88ffe8f0830e66af29087f
 
 COCOAPODS: 1.10.1
