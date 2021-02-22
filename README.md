@@ -38,7 +38,9 @@ import Robin
 Before using `Robin`, you need to request permission to send notifications to users. The following requests `badge`, `sound`, and `alert` permissions.
 
 ```swift
-Robin.scheduler.requestAuthorization(forOptions: [.badge, .sound, .alert])
+Robin.scheduler.requestAuthorization(forOptions: [.badge, .sound, .alert]) { grant, error in
+  // Handle authorization or error
+}
 ```
 
 ### Notifications
