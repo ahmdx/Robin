@@ -21,9 +21,18 @@
 //
 
 import XCTest
-import Robin
+@testable import Robin
 
+@available(iOS 10.0, macOS 10.14, *)
 class RobinTests: XCTestCase {
+    override class func setUp() {
+        let scheduler = UserNotificationsScheduler(center: RobinNotificationCenterMock())
+        Robin.notificationsScheduler = scheduler
+    }
+    
+    override class func tearDown() {
+        Robin.notificationsScheduler = nil
+    }
     
     override func setUp() {
         super.setUp()
@@ -35,6 +44,19 @@ class RobinTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         Robin.scheduler.cancelAll()
         super.tearDown()
+    }
+    
+    /// Tests whether requesting authorization succeeds.
+    func testRequestAuthorization() {
+        let expectation = XCTestExpectation()
+        
+        Robin.scheduler.requestAuthorization(forOptions: [.alert]) { grant, error in
+            XCTAssertTrue(grant)
+            
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 5.0)
     }
     
     /// Tests whether scheduling a `RobinNotification` succeeds.

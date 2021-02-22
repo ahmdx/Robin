@@ -9,7 +9,8 @@
 Pod::Spec.new do |s|
   s.name             = 'Robin'
   s.version          = '0.90.0'
-  s.summary          = 'A notification scheduler written in Swift.'
+  s.summary          = 'A notifications scheduler written in Swift.'
+  s.swift_version    = '4.2'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,7 +19,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-  Robin is a notification scheduler that provides an interface to schedule notifications using the UserNotifications framework.
+  Robin is a notifications scheduler that provides an interface to schedule notifications using the UserNotifications framework.
                        DESC
 
   s.homepage         = 'https://github.com/ahmdx/Robin'
@@ -28,10 +29,11 @@ Pod::Spec.new do |s|
   
 
   s.ios.deployment_target = '10.0'
+  s.osx.deployment_target = '10.14'
 
-  s.source_files = 'Robin/Classes/**/*'
+  s.source_files = 'Sources/**/*'
 
   s.test_spec 'Tests' do |test_spec|
-    test_spec.source_files = 'Robin/Tests/**/*'
+    test_spec.source_files = 'Tests/**/*'
   end
 end

@@ -6,11 +6,12 @@
 [![CI Status](http://img.shields.io/travis/ahmdx/Robin.svg?style=flat)](https://travis-ci.org/ahmdx/Robin)
 [![License](https://img.shields.io/cocoapods/l/Robin.svg?style=flat)](http://cocoapods.org/pods/Robin)
 
-Robin is a notification interface for iOS that handles UserNotifications behind the scenes.
+Robin is a notification interface for iOS and macOS that handles UserNotifications behind the scenes.
 
 ## Requirements
 
 - iOS 10.0+
+- macOS 10.14+
 - Xcode 10.0+
 - Swift 4.2+
 
@@ -22,11 +23,24 @@ Robin is a notification interface for iOS that handles UserNotifications behind 
 
 ## Installation
 
-Robin is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile.
+Robin is available through both [Swift Package Manager](https://swift.org/package-manager/) and [CocoaPods](http://cocoapods.org).
+
+To install using SPM:
+
+```swift
+.package(url: "https://github.com/ahmdx/Robin", from: "0.90.0"),
+```
+
+CocoaPods:
 
 ```ruby
 pod 'Robin', '~> 0.90.0'
+```
+
+And if you want to include the test suite in your project:
+
+```ruby
+pod 'Robin', '~> 0.90.0', :testspecs => ['Tests']
 ```
 
 ## Usage
@@ -117,7 +131,7 @@ Robin.scheduler.cancelAll()
 
 `Robin` is preset to allow 60 notifications to be scheduled by iOS. The remaining four slots are kept for the app-defined notifications. These free slots are currently not handled by `Robin`; if you use `Robin` to utilize these slots, the notifications will be discarded. To change the maximum allowed, just update `Robin.maximumAllowedNotifications`.
 
-`Robin` can handle multiple notifications, having the same identifier, scheduled on iOS versions prior to iOS 10 only. Scheduling multiple notifications with the same identifier on iOS 10+ is not allowed.
+`Robin` currently can't handle multiple notifications with the same identifier. Support for grouping notifications under the same identifier is coming soon.
 
 ## Author
 
@@ -125,4 +139,4 @@ Ahmed Mohamed, dev@ahmd.pro
 
 ## License
 
-Robin is available under the MIT license. See the LICENSE file for more info.
+Robin is available under the MIT license. See the [LICENSE](https://github.com/ahmdx/Robin/blob/master/LICENSE) file for more info.

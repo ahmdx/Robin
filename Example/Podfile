@@ -1,9 +1,0 @@
-use_frameworks!
-
-target 'Robin_Example' do
-  pod 'Robin', :path => '../', :testspecs => ['Tests']
-
-  target 'Robin_Tests' do
-    inherit! :search_paths
-  end
-end

@@ -22,6 +22,7 @@
 
 import UserNotifications
 
+@available(iOS 10.0, macOS 10.14, *)
 extension UNNotificationRequest: SystemNotification {
     public func robinNotification() -> RobinNotification? {
         let content = self.content

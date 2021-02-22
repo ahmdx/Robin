@@ -18,6 +18,12 @@ profile
 DerivedData
 *.hmap
 *.ipa
+/*.xcodeproj
+
+# SPM
+/.build
+.swiftpm/
+/Packages
 
 # Bundler
 .bundle
