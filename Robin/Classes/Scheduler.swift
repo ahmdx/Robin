@@ -22,7 +22,7 @@
 
 import Foundation
 
-internal protocol Scheduler: class {
+public protocol Scheduler: class {
     
     /// Requests and registers your preferred options for notifying the user.
     /// The method requests (Badge, Sound, Alert) options by default.
@@ -32,7 +32,8 @@ internal protocol Scheduler: class {
     
     /// Schedules the passed notification if and only if there is an available notification slot and it is not already scheduled. The number of available slots is governed by `Robin.maximumAllowedNotifications` and `Robin.MAX_ALLOWED_NOTIFICATIONS`.
     ///
-    /// - Attention: iOS will discard notifications having the exact same attribute values (i.e if two notifications have the same attributes, iOS will only schedule one of them).
+    /// - attention:
+    /// iOS will discard notifications having the exact same attribute values (i.e if two notifications have the same attributes, iOS will only schedule one of them).
     ///
     /// - Parameter notification: The notification to schedule.
     /// - Returns: The scheduled `RobinNotification` if it was successfully scheduled, nil otherwise.
@@ -50,7 +51,8 @@ internal protocol Scheduler: class {
     func cancel(notification: RobinNotification)
     
     /// Cancels all scheduled notifications having the passed identifier.
-    /// - Attention: If you hold references to notifications having this same identifier, use `cancel(notification:)` instead.
+    /// - attention:
+    /// If you hold references to notifications having this same identifier, use `cancel(notification:)` instead.
     ///
     /// - Parameter identifier: The identifier to match against scheduled notifications to cancel.
     func cancel(withIdentifier identifier: String)
@@ -60,7 +62,8 @@ internal protocol Scheduler: class {
     
     /// Returns a `RobinNotification` instance from a scheduled system notification that has an identifier matching the passed identifier.
     ///
-    /// - Attention: Having a reference to a `RobinNotification` instance is the same as having multiple references to several `RobinNotification` instances with the same identifier. This is only the case when canceling notifications.
+    /// - attention:
+    /// Having a reference to a `RobinNotification` instance is the same as having multiple references to several `RobinNotification` instances with the same identifier. This is only the case when canceling notifications.
     ///
     /// - Parameter identifier: The identifier to match against a scheduled system notification.
     /// - Returns: The `RobinNotification` created from a system notification

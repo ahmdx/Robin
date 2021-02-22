@@ -38,13 +38,7 @@ import Robin
 Before using `Robin`, you need to request permission to send notifications to users. The following requests `badge`, `sound`, and `alert` permissions.
 
 ```swift
-Robin.shared.requestAuthorization(forOptions: [.badge, .sound, .alert])
-```
-
-#### This is equivalent to:
-
-```swift
-Robin.shared.requestAuthorization()
+Robin.scheduler.requestAuthorization(forOptions: [.badge, .sound, .alert])
 ```
 
 ### Notifications
@@ -86,7 +80,7 @@ The following table summarizes all `RobinNotification` properties.
 After creating a `RobinNotification` object, it can be scheduled using `schedule(notification:)`.
 
 ```swift
-let scheduledNotification = Robin.shared.schedule(notification: notification)
+let scheduledNotification = Robin.scheduler.schedule(notification: notification)
 ```
 
 Now `scheduledNotification` is a valid `RobinNotification` object if it is successfully scheduled or `nil` otherwise.
@@ -96,7 +90,7 @@ Now `scheduledNotification` is a valid `RobinNotification` object if it is succe
 Simply retrieve a scheduled notification by calling `notification(withIdentifier: String) -> RobinNotification?`.
 
 ```swift
-let scheduledNotification = Robin.shared.notification(withIdentifier: "identifier")
+let scheduledNotification = Robin.scheduler.notification(withIdentifier: "identifier")
 ```
 
 ### Cancel a notification
@@ -104,17 +98,17 @@ let scheduledNotification = Robin.shared.notification(withIdentifier: "identifie
 To cancel a notification, either call `cancel(notification: RobinNotification)` or `cancel(withIdentifier: String)`
 
 ```swift
-Robin.shared.cancel(notification: scheduledNotification)
+Robin.scheduler.cancel(notification: scheduledNotification)
 ```
 
 ```swift
-Robin.shared.cancel(withIdentifier: scheduledNotification.identifier)
+Robin.scheduler.cancel(withIdentifier: scheduledNotification.identifier)
 ```
 
 `Robin` allows you to cancel all scheduled notifications by calling `cancelAll()`
 
 ```swift
-Robin.shared.cancelAll()
+Robin.scheduler.cancelAll()
 ```
 
 ## Notes

@@ -22,7 +22,6 @@
 
 import UserNotifications
 
-@available(iOS 10.0, *)
 internal class UserNotificationsScheduler: Scheduler {    
     func requestAuthorization(forOptions options: RobinAuthorizationOptions) {
         let center: UNUserNotificationCenter             = UNUserNotificationCenter.current()
