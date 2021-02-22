@@ -46,7 +46,7 @@ public class RobinNotification: NSObject {
     /// The date in which the notification is set to fire on.
     public var date: Date! {
         didSet {
-            self.userInfo[RobinNotification.dateKey] = self.date
+            self.userInfo[Constants.NotificationKeys.date] = self.date
         }
     }
     
@@ -67,15 +67,6 @@ public class RobinNotification: NSObject {
     
     /// The status of the notification.
     internal(set) public var scheduled: Bool   = false
-    
-    /// A key that holds the identifier of the notification which; stored in the `userInfo` property.
-    public static let identifierKey: String    = "RobinNotificationIdentifierKey"
-    
-    /// A key that holds the date of the notification; stored in the `userInfo` property.
-    public static let dateKey: String          = "RobinNotificationDateKey"
-    
-    /// A key used to represent iOS default notification sound name.
-    public static let defaultSoundName: String = "RobinNotificationDefaultSound"
     
     public override var description: String {
         var result  = ""
@@ -101,8 +92,8 @@ public class RobinNotification: NSObject {
         self.body = body
         self.date = date
         self.userInfo = [
-            RobinNotification.identifierKey : self.identifier,
-            RobinNotification.dateKey : self.date
+            Constants.NotificationKeys.identifier : self.identifier,
+            Constants.NotificationKeys.date : self.date
         ]
     }
     
@@ -121,7 +112,7 @@ public class RobinNotification: NSObject {
     ///   - key: The key to set the value of.
     public func setUserInfo(value: Any, forKey key: AnyHashable) {
         if let keyString = key as? String {
-            if (keyString == RobinNotification.identifierKey || keyString == RobinNotification.dateKey) {
+            if (keyString == Constants.NotificationKeys.identifier || keyString == Constants.NotificationKeys.date) {
                 return
             }
         }
@@ -133,7 +124,7 @@ public class RobinNotification: NSObject {
     /// - Parameter key: The key to remove the value of.
     public func removeUserInfoValue(forKey key: AnyHashable) {
         if let keyString = key as? String {
-            if (keyString == RobinNotification.identifierKey || keyString == RobinNotification.dateKey) {
+            if (keyString == Constants.NotificationKeys.identifier || keyString == Constants.NotificationKeys.date) {
                 return
             }
         }

@@ -22,9 +22,7 @@
 
 import UserNotifications
 
-@available(iOS 10.0, *)
 extension UNNotificationRequest: SystemNotification {
-    
     public func robinNotification() -> RobinNotification? {
         let content = self.content
         
@@ -41,7 +39,7 @@ extension UNNotificationRequest: SystemNotification {
         
         if let trigger = self.trigger as? UNCalendarNotificationTrigger {
             var date: Date?
-            if let originalDate    = notification.userInfo[RobinNotification.dateKey] as? Date {
+            if let originalDate    = notification.userInfo[Constants.NotificationKeys.date] as? Date {
                 date               = originalDate
             }
             notification.repeats   = self.repeats(dateComponents: trigger.dateComponents)
@@ -63,7 +61,7 @@ extension UNNotificationRequest: SystemNotification {
     
     /// Since repeating a `UNCalendarNotificationTrigger` nullifies some of the
     /// date components, the original date needs to be stored. Robin stores this date
-    /// in the notification's `userInfo` property using `RobinNotification.dateKey`.
+    /// in the notification's `userInfo` property using `Constants.NotificationKeys.date`.
     /// This original date is used to fill those nullified components.
     ///
     /// - Parameters:

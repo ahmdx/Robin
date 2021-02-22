@@ -20,19 +20,18 @@
 // THE SOFTWARE.
 //
 
-public class RobinNotificationSound {
-    internal var name: String?
-    internal var sound: SystemNotificationSound?
-    
-    public init(named name: String = Constants.NotificationValues.defaultSoundName) {
-        self.name = name
+import Foundation
+
+public struct Constants {
+    public struct NotificationKeys {
+        /// Holds the identifier of the notification; stored in the `userInfo` property.
+        public static let identifier = "RobinNotificationIdentifierKey"
+        /// Holds the date of the notification; stored in the `userInfo` property.
+        public static let date = "RobinNotificationDateKey"
     }
     
-    internal init(sound: SystemNotificationSound) {
-        self.sound = sound
-    }
-    
-    public func isValid() -> Bool {
-        return self.name != nil || self.sound != nil
+    public struct NotificationValues {
+        /// Used to represent iOS default notification sound name.
+        public static let defaultSoundName = "RobinNotificationDefaultSound"
     }
 }
