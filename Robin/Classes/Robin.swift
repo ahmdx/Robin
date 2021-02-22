@@ -35,7 +35,7 @@ public class Robin {
     
     /// The maximum number of allowed notifications to be scheduled. Four slots
     /// are reserved if you would like to schedule notifications without them being dropped
-    /// due to unavialable notification slots.
+    /// due to unavailable notification slots.
     ///> Feel free to change this value.
     ///- Attention: iOS by default allows a maximum of 64 notifications to be scheduled
     /// at a time.
@@ -43,11 +43,7 @@ public class Robin {
     public static let maximumAllowedNotifications = 60
     
     private init () {
-        if #available(iOS 10, *) {
-            self.scheduler = UserNotificationsScheduler()
-        } else {
-            self.scheduler = UILocalNotificationScheduler()
-        }
+        self.scheduler = UserNotificationsScheduler()
     }
     
     /// Requests and registers your preferred options for notifying the user.
@@ -118,7 +114,7 @@ public class Robin {
     
     /// Use this method for development and testing.
     ///> Prints all scheduled system notifications.
-    ///> You can freely modifiy it without worrying about affecting any functionality.
+    ///> You can freely modify it without worrying about affecting any functionality.
     public func printScheduled() {
         self.scheduler.printScheduled()
     }

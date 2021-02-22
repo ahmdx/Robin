@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Robin'
-  s.version          = '0.1.1'
-  s.summary          = 'A backwards-compatible notification scheduler written in Swift.'
+  s.version          = '0.90.0'
+  s.summary          = 'A notification scheduler written in Swift.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-  Robin is a backwards-compatible notification scheduler that provides a universal interface to schedule notifications using both UILocalNotification and UserNotifications.
+  Robin is a notification scheduler that provides an interface to schedule notifications using the UserNotifications framework.
                        DESC
 
   s.homepage         = 'https://github.com/ahmdx/Robin'
@@ -27,7 +27,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/ahmdx/Robin.git', :tag => s.version.to_s }
   
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '10.0'
 
   s.source_files = 'Robin/Classes/**/*'
 end

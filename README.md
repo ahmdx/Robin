@@ -6,12 +6,12 @@
 [![CI Status](http://img.shields.io/travis/ahmdx/Robin.svg?style=flat)](https://travis-ci.org/ahmdx/Robin)
 [![License](https://img.shields.io/cocoapods/l/Robin.svg?style=flat)](http://cocoapods.org/pods/Robin)
 
-Robin is a universal notification interface for iOS that handles both UILocalNotification and UserNotifications behind the scenes.
+Robin is a notification interface for iOS that handles UserNotifications behind the scenes.
 
 ## Requirements
 
 - iOS 10.0+
-- Xcode 8.0+
+- Xcode 10.0+
 - Swift 4.2+
 
 ## Communication
@@ -26,13 +26,7 @@ Robin is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile.
 
 ```ruby
-pod 'Robin', '~> 0.1.1'
-```
-
-For Swift 3, use:
-
-```ruby
-pod 'Robin', '0.1.0'
+pod 'Robin', '~> 0.90.0'
 ```
 
 ## Usage

@@ -75,6 +75,6 @@ internal protocol Scheduler: class {
     
     /// Use this method for development and testing.
     ///> Prints all scheduled system notifications.
-    ///> You can freely modifiy it without worrying about affecting any functionality.
+    ///> You can freely modify it without worrying about affecting any functionality.
     func printScheduled()
 }
