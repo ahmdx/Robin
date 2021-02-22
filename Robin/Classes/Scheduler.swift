@@ -30,7 +30,7 @@ public protocol Scheduler: class {
     /// - Parameter options: The notification options that your app requires.
     func requestAuthorization(forOptions options: RobinAuthorizationOptions)
     
-    /// Schedules the passed notification if and only if there is an available notification slot and it is not already scheduled. The number of available slots is governed by `Robin.maximumAllowedNotifications` and `Robin.MAX_ALLOWED_NOTIFICATIONS`.
+    /// Schedules the passed notification if and only if there is an available notification slot and it is not already scheduled. The number of available slots is governed by `Robin.maximumAllowedNotifications` and `Constants.maximumAllowedSystemNotifications`.
     ///
     /// - attention:
     /// iOS will discard notifications having the exact same attribute values (i.e if two notifications have the same attributes, iOS will only schedule one of them).

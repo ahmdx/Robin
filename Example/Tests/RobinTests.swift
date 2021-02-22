@@ -63,7 +63,7 @@ class RobinTests: XCTestCase {
     
     /// Tests whether scheduling a `RobinNotification` beyond the allowed maximum succeeds.
     func testNotificationScheduleOverAllowed() {
-        let count: Int = Robin.maximumAllowedNotifications
+        let count: Int = Constants.maximumAllowedNotifications
         for i in 0 ..< count {
             let notification = RobinNotification(body: "This is test notification #\(i + 1)")
             

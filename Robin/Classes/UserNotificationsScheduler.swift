@@ -59,7 +59,7 @@ internal class UserNotificationsScheduler: Scheduler {
             return nil
         }
         
-        if (self.scheduledCount() >= Robin.maximumAllowedNotifications) {
+        if (self.scheduledCount() >= min(Constants.maximumAllowedNotifications, Constants.maximumAllowedSystemNotifications)) {
             return nil
         }
         

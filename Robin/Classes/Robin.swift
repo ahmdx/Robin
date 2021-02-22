@@ -20,21 +20,8 @@
 // THE SOFTWARE.
 //
 
-/// The maximum allowed notifications to be scheduled at a time by iOS.
-///- Important: Do not change this value. Changing this value to be over
-/// 64 will cause some notifications to be discarded by iOS.
-internal let MAX_ALLOWED_NOTIFICATIONS = 64
-
 public class Robin {
     private static var notificationsScheduler: Scheduler = UserNotificationsScheduler()
-    /// The maximum number of allowed notifications to be scheduled. Four slots
-    /// are reserved if you would like to schedule notifications without them being dropped
-    /// due to unavailable notification slots.
-    ///> Feel free to change this value.
-    ///- Attention: iOS by default allows a maximum of 64 notifications to be scheduled
-    /// at a time.
-    ///- seealso: `MAX_ALLOWED_NOTIFICATIONS`
-    public static let maximumAllowedNotifications = 60
     
     public static var scheduler: Scheduler {
         return self.notificationsScheduler

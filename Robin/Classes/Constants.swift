@@ -23,6 +23,21 @@
 import Foundation
 
 public struct Constants {
+    /// The maximum allowed notifications to be scheduled at a time by iOS.
+    ///- Important: Do not change this value. Changing this value to be over
+    /// 64 will cause some notifications to be discarded by iOS.
+    internal static let maximumAllowedSystemNotifications = 64
+    /// The maximum number of allowed notifications to be scheduled. Four slots
+    /// are reserved if you would like to schedule notifications without them being dropped
+    /// due to unavailable notification slots.
+    ///> Feel free to change this value.
+    ///
+    ///- attention:
+    /// iOS by default allows a maximum of 64 notifications to be scheduled at a time.
+    ///
+    ///- seealso: `Constants.maximumAllowedSystemNotifications`
+    public static var maximumAllowedNotifications = 60
+    
     public struct NotificationKeys {
         /// Holds the identifier of the notification; stored in the `userInfo` property.
         public static let identifier = "RobinNotificationIdentifierKey"
