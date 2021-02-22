@@ -21,30 +21,6 @@
 //
 
 import UserNotifications
-@testable import Robin
 
-class RobinNotificationCenterMock: RobinNotificationCenter {
-    fileprivate var requests: [String : UNNotificationRequest] = [:]
-    
-    func requestAuthorization(options: UNAuthorizationOptions, completionHandler: @escaping (Bool, Error?) -> Void) {
-        completionHandler(true, nil)
-    }
-    
-    func add(_ request: UNNotificationRequest, withCompletionHandler completionHandler: ((Error?) -> Void)?) {
-        requests[request.identifier] = request
-        completionHandler?(nil)
-    }
-    
-    func getPendingNotificationRequests(completionHandler: @escaping ([UNNotificationRequest]) -> Void) {
-        completionHandler(requests.values.map({ $0 }))
-    }
-    
-    func removePendingNotificationRequests(withIdentifiers identifiers: [String]) {
-        requests.removeValue(forKey: identifiers[0])
-    }
-    
-    func removeAllPendingNotificationRequests() {
-        requests = [:]
-    }
-    
-}
+@available(iOS 10.0, macOS 10.14, *)
+extension UNNotificationSound: SystemNotificationSound {}

@@ -20,14 +20,27 @@
 // THE SOFTWARE.
 //
 
-public class Robin {
-    static var notificationsScheduler: Scheduler!
-    
-    public static var scheduler: Scheduler {
-        if notificationsScheduler == nil {
-            self.notificationsScheduler = UserNotificationsScheduler()
-        }
+import UserNotifications
 
-        return self.notificationsScheduler
+@available(iOS 10.0, macOS 10.14, *)
+protocol RobinNotificationCenter {
+    func requestAuthorization(options: UNAuthorizationOptions, completionHandler: @escaping (Bool, Error?) -> Void)
+    
+    func add(_ request: UNNotificationRequest, withCompletionHandler completionHandler: ((Error?) -> Void)?)
+    
+    func getPendingNotificationRequests(completionHandler: @escaping ([UNNotificationRequest]) -> Void)
+    
+    func removePendingNotificationRequests(withIdentifiers identifiers: [String])
+    func removeAllPendingNotificationRequests()
+}
+
+@available(iOS 10.0, macOS 10.14, *)
+extension RobinNotificationCenter {
+    func requestAuthorization(options: UNAuthorizationOptions = [], completionHandler: @escaping (Bool, Error?) -> Void) {
+        requestAuthorization(options: options, completionHandler: completionHandler)
+    }
+    
+    func add(_ request: UNNotificationRequest, withCompletionHandler completionHandler: ((Error?) -> Void)? = nil) {
+        add(request, withCompletionHandler: completionHandler)
     }
 }
