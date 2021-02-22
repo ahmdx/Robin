@@ -2,7 +2,24 @@
 # * http://www.objc.io/issue-6/travis-ci.html
 # * https://github.com/supermarin/xcpretty#usage
 
-osx_image: xcode10
 language: objective-c
-script:
-- swift package generate-xcodeproj && xcodebuild test -project Robin.xcodeproj -scheme Robin-Package -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone X' ONLY_ACTIVE_ARCH=NO | xcpretty
+
+install: swift package generate-xcodeproj
+
+jobs:
+  include:
+    - osx_image: xcode10.2
+      xcode_project: Robin.xcodeproj
+      xcode_scheme: Robin-Package
+      xcode_destination: platform=macOS
+    - osx_image: xcode11
+      xcode_project: Robin.xcodeproj
+      xcode_scheme: Robin-Package
+      xcode_destination: platform=macOS
+    - osx_image: xcode12u
+      xcode_project: Robin.xcodeproj
+      xcode_scheme: Robin-Package
+      xcode_destination: platform=macOS
+
+# script:
+# - swift package generate-xcodeproj && xcodebuild test -project Robin.xcodeproj -scheme Robin-Package -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone X' ONLY_ACTIVE_ARCH=NO | xcpretty
