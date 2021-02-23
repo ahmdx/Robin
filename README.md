@@ -1,10 +1,11 @@
 # Robin
 
-[![Platform](https://img.shields.io/cocoapods/p/Robin.svg?style=flat)](http://cocoapods.org/pods/Robin)
-[![Version](https://img.shields.io/cocoapods/v/Robin.svg?style=flat)](http://cocoapods.org/pods/Robin)
-[![Swift 4.2](https://img.shields.io/badge/Swift-4-orange.svg?style=flat)](https://swift.org)
-[![CI Status](http://img.shields.io/travis/ahmdx/Robin.svg?style=flat)](https://travis-ci.org/ahmdx/Robin)
-[![License](https://img.shields.io/cocoapods/l/Robin.svg?style=flat)](http://cocoapods.org/pods/Robin)
+[![Platform](https://img.shields.io/cocoapods/p/Robin.svg)](http://cocoapods.org/pods/Robin)
+[![Version](https://img.shields.io/cocoapods/v/Robin.svg)](http://cocoapods.org/pods/Robin)
+[![Swift 4+](https://img.shields.io/badge/Swift-4.2%2B-orange.svg)](https://swift.org)
+[![CI Status](http://img.shields.io/travis/ahmdx/Robin.svg)](https://travis-ci.org/ahmdx/Robin)
+[![License](https://img.shields.io/github/license/ahmdx/Robin.svg)](http://cocoapods.org/pods/Robin)
+[![Release](https://img.shields.io/github/release/ahmdx/Robin.svg)](https://github.com/ahmdx/Robin/releases/)
 
 Robin is a notification interface for iOS and macOS that handles UserNotifications behind the scenes.
 
@@ -19,7 +20,8 @@ Robin is a notification interface for iOS and macOS that handles UserNotificatio
 
 - If you need help or have a question, use 'robin' tag on [Stack Overflow](http://stackoverflow.com/questions/tagged/robin).
 - If you found a bug or have a feature request, please open an issue.
-- If you want to contribute, please submit a pull request.
+
+Please do not open a pull request until a contribution guide is published.
 
 ## Installation
 
