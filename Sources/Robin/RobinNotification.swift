@@ -22,21 +22,7 @@
 
 import Foundation
 
-/// An enum that represents the repeat interval of the notification.
-///
-/// - none: The notification should never repeat.
-/// - hour: The notification should repeat every hour.
-/// - day: The notification should repeat every day.
-/// - week: The notification should repeat every week.
-/// - month: The notification should repeat every month.
-public enum Repeats: String {
-    case none  = "None"
-    case hour  = "Hour"
-    case day   = "Day"
-    case week  = "Week"
-    case month = "Month"
-}
-
+@available(iOS 10.0, macOS 10.14, *)
 public class RobinNotification: NSObject {
     
     /// A string assigned to the notification for later access.
@@ -135,12 +121,4 @@ public class RobinNotification: NSObject {
         }
         self.userInfo.removeValue(forKey: key)
     }
-}
-
-public func ==(lhs: RobinNotification, rhs: RobinNotification) -> Bool {
-    return lhs.identifier == rhs.identifier
-}
-
-public func <(lhs: RobinNotification, rhs: RobinNotification) -> Bool {
-    return lhs.date.compare(rhs.date) == ComparisonResult.orderedAscending
 }

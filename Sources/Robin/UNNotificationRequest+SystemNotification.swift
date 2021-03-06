@@ -43,8 +43,8 @@ extension UNNotificationRequest: SystemNotification {
             if let originalDate    = notification.userInfo[Constants.NotificationKeys.date] as? Date {
                 date               = originalDate
             }
-            notification.repeats   = self.repeats(dateComponents: trigger.dateComponents)
-            notification.date      = self.date(fromDateComponents: trigger.dateComponents, repeats: notification.repeats, originalDate: date)
+            notification.repeats   = Repeats.from(dateComponents: trigger.dateComponents)
+            notification.date(fromDateComponents: trigger.dateComponents, repeats: notification.repeats, originalDate: date)
         }
         
         notification.badge         = content.badge
@@ -58,96 +58,5 @@ extension UNNotificationRequest: SystemNotification {
         notification.scheduled     = true
         
         return notification
-    }
-    
-    /// Since repeating a `UNCalendarNotificationTrigger` nullifies some of the
-    /// date components, the original date needs to be stored. Robin stores this date
-    /// in the notification's `userInfo` property using `Constants.NotificationKeys.date`.
-    /// This original date is used to fill those nullified components.
-    ///
-    /// - Parameters:
-    ///   - dateComponents: The `UNCalendarNotificationTrigger` date components.
-    ///   - repeats: The repeat interval of the trigger.
-    ///   - originalDate: The original date stored to fill the nullified components. Uses current date if passed as `nil`.
-    /// - Returns: The filled date using the original date.
-    private func date(fromDateComponents dateComponents: DateComponents, repeats: Repeats, originalDate: Date?) -> Date {
-        let calendar: Calendar         = Calendar.current
-        var components: DateComponents = dateComponents
-        
-        var date: Date
-        if originalDate == nil {
-            date = Date()
-        } else {
-            date = originalDate!
-        }
-        
-        switch repeats {
-        case .none:
-            return calendar.date(from: components)!
-        case .month:
-            let comps        = calendar.dateComponents([.year, .month], from: date)
-            components.year  = comps.year
-            components.month = comps.month
-            
-            return calendar.date(from: components)!
-        case .week:
-            let comps        = calendar.dateComponents([.year, .month, .day], from: date)
-            components.year  = comps.year
-            components.month = comps.month
-            components.day   = comps.day
-            
-            return calendar.date(from: components)!
-        case .day:
-            let comps        = calendar.dateComponents([.year, .month, .day], from: date)
-            components.year  = comps.year
-            components.month = comps.month
-            components.day   = comps.day
-            
-            return calendar.date(from: components)!
-        case .hour:
-            let comps        = calendar.dateComponents([.year, .month, .day, .hour], from: date)
-            components.year  = comps.year
-            components.month = comps.month
-            components.day   = comps.day
-            components.hour  = comps.hour
-            
-            return calendar.date(from: components)!
-        }
-    }
-    
-    private func repeats(dateComponents components: DateComponents) -> Repeats {
-        if self.doesRepeatNone(dateComponents: components) {
-            return .none
-        } else if doesRepeatMonth(dateComponents: components) {
-            return .month
-        } else if doesRepeatWeek(dateComponents: components) {
-            return .week
-        } else if doesRepeatDay(dateComponents: components) {
-            return .day
-        } else if doesRepeatHour(dateComponents: components) {
-            return .hour
-        }
-        
-        return .none
-    }
-    
-    private func doesRepeatNone(dateComponents components: DateComponents) -> Bool {
-        return components.year != nil && components.month != nil && components.day != nil && components.hour != nil && components.minute != nil
-    }
-    
-    private func doesRepeatMonth(dateComponents components: DateComponents) -> Bool {
-        return components.day != nil && components.hour != nil && components.minute != nil
-    }
-    
-    private func doesRepeatWeek(dateComponents components: DateComponents) -> Bool {
-        return components.weekday != nil && components.hour != nil && components.minute != nil && components.second != nil
-    }
-    
-    private func doesRepeatDay(dateComponents components: DateComponents) -> Bool {
-        return components.hour != nil && components.minute != nil && components.second != nil
-    }
-    
-    private func doesRepeatHour(dateComponents components: DateComponents) -> Bool {
-        return components.minute != nil && components.second != nil
     }
 }
