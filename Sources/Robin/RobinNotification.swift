@@ -51,7 +51,7 @@ public class RobinNotification: NSObject {
     public var sound: RobinNotificationSound   = RobinNotificationSound()
     
     /// The repeat interval of the notification.
-    public var repeats: Repeats                = .none
+    public var repeats: RobinNotificationRepeats                = .none
     
     /// The status of the notification.
     internal(set) public var scheduled: Bool   = false

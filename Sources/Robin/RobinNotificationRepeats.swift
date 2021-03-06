@@ -30,7 +30,7 @@ import Foundation
 /// - week: The notification should repeat every week.
 /// - month: The notification should repeat every month.
 @available(iOS 10.0, macOS 10.14, *)
-public enum Repeats: String {
+public enum RobinNotificationRepeats: String {
     case none  = "None"
     case hour  = "Hour"
     case day   = "Day"

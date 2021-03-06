@@ -43,7 +43,7 @@ extension UNNotificationRequest: SystemNotification {
             if let originalDate    = notification.userInfo[Constants.NotificationKeys.date] as? Date {
                 date               = originalDate
             }
-            notification.repeats   = Repeats.from(dateComponents: trigger.dateComponents)
+            notification.repeats   = RobinNotificationRepeats.from(dateComponents: trigger.dateComponents)
             notification.date(fromDateComponents: trigger.dateComponents, repeats: notification.repeats, originalDate: date)
         }
         

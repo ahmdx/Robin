@@ -36,7 +36,7 @@ internal class UserNotificationsScheduler: Scheduler {
         center.requestAuthorization(options: authorizationOptions, completionHandler: completionHandler)
     }
     
-    private func trigger(forDate date: Date, repeats: Repeats) -> UNCalendarNotificationTrigger {
+    private func trigger(forDate date: Date, repeats: RobinNotificationRepeats) -> UNCalendarNotificationTrigger {
         var dateComponents: DateComponents = DateComponents()
         let shouldRepeat: Bool             = repeats != .none
         let calendar: Calendar             = Calendar.current

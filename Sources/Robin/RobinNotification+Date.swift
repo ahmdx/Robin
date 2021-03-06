@@ -34,7 +34,7 @@ extension RobinNotification {
     ///   - repeats: The repeat interval of the trigger.
     ///   - originalDate: The original date stored to fill the nullified components. Uses current date if passed as `nil`.
     /// - Returns: The filled date using the original date.
-    internal func date(fromDateComponents dateComponents: DateComponents, repeats: Repeats, originalDate: Date?) {
+    internal func date(fromDateComponents dateComponents: DateComponents, repeats: RobinNotificationRepeats, originalDate: Date?) {
         let calendar: Calendar = Calendar.current
         var components: DateComponents = dateComponents
         

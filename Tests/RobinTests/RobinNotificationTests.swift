@@ -52,8 +52,8 @@ class RobinNotificationTests: XCTestCase {
         XCTAssertEqual(date, notification.date)
         
         //        Tests repeats property
-        XCTAssertEqual(Repeats.none, notification.repeats)
-        let repeats: Repeats                = Repeats.month
+        XCTAssertEqual(RobinNotificationRepeats.none, notification.repeats)
+        let repeats: RobinNotificationRepeats                = RobinNotificationRepeats.month
         notification.repeats                = repeats
         XCTAssertEqual(repeats, notification.repeats)
         
