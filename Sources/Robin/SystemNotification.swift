@@ -20,12 +20,11 @@
 // THE SOFTWARE.
 //
 
+@available(iOS 10.0, macOS 10.14, *)
 public protocol SystemNotification {
-    
     /// Creates a `RobinNotification` from the passed `SystemNotification`. For the details of the creation process, have a look at the system notifications extensions that implement the `SystemNotification` protocol.
     ///
     /// - Parameter notification: The system notification to create the `RobinNotification` from.
     /// - Returns: The `RobinNotification` if the creation succeeded, nil otherwise.
     func robinNotification() -> RobinNotification?
-    
 }

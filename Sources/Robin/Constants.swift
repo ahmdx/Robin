@@ -22,6 +22,7 @@
 
 import Foundation
 
+@available(iOS 10.0, macOS 10.14, *)
 public struct Constants {
     /// The maximum allowed notifications to be scheduled at a time by iOS.
     ///- Important: Do not change this value. Changing this value to be over

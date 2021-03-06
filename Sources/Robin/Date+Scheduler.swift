@@ -22,8 +22,8 @@
 
 import Foundation
 
+@available(iOS 10.0, macOS 10.14, *)
 public extension Date {
-    
     /// Adds a number of minutes to a date.
     /// > This method can add and subtract minutes.
     ///
@@ -46,7 +46,7 @@ public extension Date {
     }
     
     /// Adds a number of days to a date.
-    /// >This method can add and subtract days.
+    /// > This method can add and subtract days.
     ///
     /// - Parameter days: The number of days to add/subtract.
     /// - Returns: The date after the days addition/subtraction.

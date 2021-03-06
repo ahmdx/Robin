@@ -20,6 +20,7 @@
 // THE SOFTWARE.
 //
 
+@available(iOS 10.0, macOS 10.14, *)
 public struct RobinAuthorizationOptions: OptionSet, RawRepresentable {
     public let rawValue: UInt
     
