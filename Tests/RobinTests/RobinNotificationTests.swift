@@ -39,7 +39,7 @@ class RobinNotificationTests: XCTestCase {
     
     /// Tests whether the initialization of `RobinNotification` succeeds.
     func testNotificationInitialization() {
-        let body: String                    = "This is a test notification"
+        let body: String = "This is a test notification"
         let notification: RobinNotification = RobinNotification(body: body)
         
         //        Tests body property
@@ -47,20 +47,20 @@ class RobinNotificationTests: XCTestCase {
         
         //        Tests date property
         XCTAssertEqual(Date().next(hours: 1).truncateSeconds(), notification.date.truncateSeconds())
-        let date: Date                      = Date()
-        notification.date                   = date
+        let date: Date = Date()
+        notification.date = date
         XCTAssertEqual(date, notification.date)
         
         //        Tests repeats property
         XCTAssertEqual(RobinNotificationRepeats.none, notification.repeats)
-        let repeats: RobinNotificationRepeats                = RobinNotificationRepeats.month
-        notification.repeats                = repeats
+        let repeats: RobinNotificationRepeats = RobinNotificationRepeats.month
+        notification.repeats = repeats
         XCTAssertEqual(repeats, notification.repeats)
         
         //        Tests title property
         XCTAssertNil(notification.title)
-        let title: String                   = "Title"
-        notification.title                  = title
+        let title: String = "Title"
+        notification.title = title
         XCTAssertEqual(title, notification.title)
         
         //        Tests identifier property
@@ -68,19 +68,19 @@ class RobinNotificationTests: XCTestCase {
         
         //        Tests badge property
         XCTAssertNil(notification.badge)
-        let badge: NSNumber                 = 5
-        notification.badge                  = badge
+        let badge: NSNumber = 5
+        notification.badge = badge
         XCTAssertEqual(badge, notification.badge)
         
         //        Tests userInfo property
-        let userInfo: [AnyHashable : Any]   = [Constants.NotificationKeys.identifier : notification.identifier, Constants.NotificationKeys.date : notification.date]
+        let userInfo: [AnyHashable : Any] = [Constants.NotificationKeys.identifier : notification.identifier, Constants.NotificationKeys.date : notification.date]
         XCTAssertEqual(userInfo[Constants.NotificationKeys.identifier] as! String, notification.userInfo![Constants.NotificationKeys.identifier] as! String)
         XCTAssertEqual(userInfo[Constants.NotificationKeys.date] as! Date, notification.userInfo![Constants.NotificationKeys.date] as! Date)
         
         //        Tests sound property
         XCTAssertTrue(notification.sound.isValid())
-        let sound: String                   = "SoundName"
-        notification.sound                  = RobinNotificationSound(named: sound)
+        let sound: String = "SoundName"
+        notification.sound = RobinNotificationSound(named: sound)
         XCTAssertTrue(notification.sound.isValid())
         
         //        Tests scheduled property
@@ -89,8 +89,8 @@ class RobinNotificationTests: XCTestCase {
     
     /// Tests whether the initialization of `RobinNotification` with a custom identifier succeeds.
     func testNotificationInitializationWithIdentifier() {
-        let body: String                    = "This is a test notification"
-        let identifier: String              = "Identifier"
+        let body: String = "This is a test notification"
+        let identifier: String = "Identifier"
         let notification: RobinNotification = RobinNotification(identifier: identifier, body: body)
         
         XCTAssertEqual(identifier, notification.identifier)
@@ -101,8 +101,8 @@ class RobinNotificationTests: XCTestCase {
     func testNotificationUserInfoSet() {
         let notification: RobinNotification = RobinNotification(body: "Notification")
         
-        let key: String                     = "Key"
-        let value: String                   = "Value"
+        let key: String = "Key"
+        let value: String = "Value"
         notification.setUserInfo(value: value, forKey: key)
         
         XCTAssertEqual(value, notification.userInfo[key] as! String)
@@ -116,8 +116,8 @@ class RobinNotificationTests: XCTestCase {
     func testNotificationUserInfoRemove() {
         let notification: RobinNotification = RobinNotification(body: "Notification")
         
-        let key: String                     = "Key"
-        let value: String                   = "Value"
+        let key: String = "Key"
+        let value: String = "Value"
         notification.setUserInfo(value: value, forKey: key)
         
         notification.removeUserInfoValue(forKey: key)
@@ -131,26 +131,26 @@ class RobinNotificationTests: XCTestCase {
     
     /// Tests whether initialized RobinNotifications have different identifiers.
     func testNotificationNonEquality() {
-        let firstNotification: RobinNotification  = RobinNotification(body: "First Notification")
+        let firstNotification: RobinNotification = RobinNotification(body: "First Notification")
         let secondNotification: RobinNotification = RobinNotification(body: "Second Notification")
         
-        let notEqual: Bool                        = firstNotification == secondNotification
+        let notEqual: Bool = firstNotification == secondNotification
         
         XCTAssertFalse(notEqual)
     }
     
     /// Tests whether testing for notification date precedence succeeds.
     func testNotificationDatePrecedence() {
-        let firstNotification: RobinNotification  = RobinNotification(body: "First Notification", date: Date().next(minutes: 10))
+        let firstNotification: RobinNotification = RobinNotification(body: "First Notification", date: Date().next(minutes: 10))
         let secondNotification: RobinNotification = RobinNotification(body: "Second Notification", date: Date().next(hours: 1))
         
-        let precedes: Bool                        = firstNotification < secondNotification
+        let precedes: Bool = firstNotification < secondNotification
         
         XCTAssertTrue(precedes)
         
-        firstNotification.date                    = Date().next(days: 1)
+        firstNotification.date = Date().next(days: 1)
         
-        let doesNotPrecede: Bool                  = firstNotification < secondNotification
+        let doesNotPrecede: Bool = firstNotification < secondNotification
         
         XCTAssertFalse(doesNotPrecede)
     }

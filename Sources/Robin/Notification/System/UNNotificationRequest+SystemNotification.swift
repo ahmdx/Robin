@@ -27,7 +27,7 @@ extension UNNotificationRequest: SystemNotification {
     public func robinNotification() -> RobinNotification? {
         let content = self.content
         
-        let notification           = RobinNotification(identifier: self.identifier, body: content.body, date: Date())
+        let notification = RobinNotification(identifier: self.identifier, body: content.body, date: Date())
         
         let userInfo = content.userInfo
         for (key, value) in userInfo {
@@ -35,19 +35,19 @@ extension UNNotificationRequest: SystemNotification {
         }
         
         if content.title.trimmingCharacters(in: .whitespaces).count > 0 {
-            notification.title     = content.title
+            notification.title = content.title
         }
         
         if let trigger = self.trigger as? UNCalendarNotificationTrigger {
             var date: Date?
-            if let originalDate    = notification.userInfo[Constants.NotificationKeys.date] as? Date {
-                date               = originalDate
+            if let originalDate = notification.userInfo[Constants.NotificationKeys.date] as? Date {
+                date = originalDate
             }
-            notification.repeats   = RobinNotificationRepeats.from(dateComponents: trigger.dateComponents)
+            notification.repeats = RobinNotificationRepeats.from(dateComponents: trigger.dateComponents)
             notification.date(fromDateComponents: trigger.dateComponents, repeats: notification.repeats, originalDate: date)
         }
         
-        notification.badge         = content.badge
+        notification.badge = content.badge
 
         if let sound = content.sound {
             if sound != UNNotificationSound.default {
@@ -55,7 +55,7 @@ extension UNNotificationRequest: SystemNotification {
             }
         }
         
-        notification.scheduled     = true
+        notification.scheduled = true
         
         return notification
     }

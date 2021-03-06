@@ -31,10 +31,10 @@ import Foundation
 /// - month: The notification should repeat every month.
 @available(iOS 10.0, macOS 10.14, *)
 public enum RobinNotificationRepeats: String {
-    case none  = "None"
-    case hour  = "Hour"
-    case day   = "Day"
-    case week  = "Week"
+    case none = "None"
+    case hour = "Hour"
+    case day = "Day"
+    case week = "Week"
     case month = "Month"
     
     internal static func from(dateComponents components: DateComponents) -> Self {

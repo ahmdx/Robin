@@ -38,23 +38,23 @@ internal class UserNotificationsScheduler: RobinScheduler {
     
     private func trigger(forDate date: Date, repeats: RobinNotificationRepeats) -> UNCalendarNotificationTrigger {
         var dateComponents: DateComponents = DateComponents()
-        let shouldRepeat: Bool             = repeats != .none
-        let calendar: Calendar             = Calendar.current
+        let shouldRepeat: Bool = repeats != .none
+        let calendar: Calendar = Calendar.current
         
         switch repeats {
         case .none:
-            dateComponents                 = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: date)
+            dateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: date)
         case .month:
-            dateComponents                 = calendar.dateComponents([.day, .hour, .minute], from: date)
+            dateComponents = calendar.dateComponents([.day, .hour, .minute], from: date)
         case .week:
-            dateComponents.weekday         = calendar.component(.weekday, from: date)
+            dateComponents.weekday = calendar.component(.weekday, from: date)
             fallthrough
         case .day:
-            dateComponents.hour            = calendar.component(.hour, from: date)
+            dateComponents.hour = calendar.component(.hour, from: date)
             fallthrough
         case .hour:
-            dateComponents.minute          = calendar.component(.minute, from: date)
-            dateComponents.second          = 0
+            dateComponents.minute = calendar.component(.minute, from: date)
+            dateComponents.second = 0
         }
         
         return UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: shouldRepeat)
@@ -69,35 +69,35 @@ internal class UserNotificationsScheduler: RobinScheduler {
             return nil
         }
         
-        let content                                = UNMutableNotificationContent()
+        let content = UNMutableNotificationContent()
         
-        if let title                               = notification.title {
-            content.title                          = title
+        if let title = notification.title {
+            content.title = title
         }
         
-        content.body                               = notification.body
+        content.body = notification.body
         
-        var sound: UNNotificationSound             = UNNotificationSound.default
+        var sound: UNNotificationSound = UNNotificationSound.default
         if let name = notification.sound.name {
             if name != Constants.NotificationValues.defaultSoundName {
-                sound                              = UNNotificationSound(named: UNNotificationSoundName(rawValue: name))
+                sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: name))
             }
         } else {
             if let notificationSound = notification.sound.sound as? UNNotificationSound {
-                sound                              = notificationSound
+                sound = notificationSound
             }
         }
-        content.sound                              = sound
+        content.sound = sound
         
-        content.userInfo                           = notification.userInfo
+        content.userInfo = notification.userInfo
         
-        content.badge                              = notification.badge
+        content.badge = notification.badge
         
         let trigger: UNCalendarNotificationTrigger = self.trigger(forDate: notification.date, repeats: notification.repeats)
         
-        let request: UNNotificationRequest         = UNNotificationRequest(identifier: notification.identifier, content: content, trigger: trigger)
+        let request: UNNotificationRequest = UNNotificationRequest(identifier: notification.identifier, content: content, trigger: trigger)
         center.add(request)
-        notification.scheduled                     = true
+        notification.scheduled = true
         
         return notification
     }
@@ -126,8 +126,8 @@ internal class UserNotificationsScheduler: RobinScheduler {
     }
     
     func notification(withIdentifier identifier: String) -> RobinNotification? {
-        let semaphore                         = DispatchSemaphore(value: 0)
-        var notification: RobinNotification?  = nil
+        let semaphore = DispatchSemaphore(value: 0)
+        var notification: RobinNotification? = nil
         
         center.getPendingNotificationRequests { requests in
             for request in requests {
@@ -148,8 +148,8 @@ internal class UserNotificationsScheduler: RobinScheduler {
     }
     
     func scheduledCount() -> Int {
-        let semaphore                        = DispatchSemaphore(value: 0)
-        var count: Int                       = 0
+        let semaphore = DispatchSemaphore(value: 0)
+        var count: Int = 0
         
         center.getPendingNotificationRequests { requests in
             count = requests.count
@@ -169,7 +169,7 @@ internal class UserNotificationsScheduler: RobinScheduler {
             return
         }
         
-        let semaphore                        = DispatchSemaphore(value: 0)
+        let semaphore = DispatchSemaphore(value: 0)
         center.getPendingNotificationRequests { requests in
             for request in requests {
                 let notification: RobinNotification = request.robinNotification()!

@@ -42,25 +42,25 @@ public class RobinNotification: NSObject {
     private(set) public var userInfo: [AnyHashable : Any]!
     
     /// The title string of the notification.
-    public var title: String?                  = nil
+    public var title: String? = nil
     
     /// The number the notification should display on the app icon.
-    public var badge: NSNumber?                = nil
+    public var badge: NSNumber? = nil
     
     /// The sound name of the notification.
-    public var sound: RobinNotificationSound   = RobinNotificationSound()
+    public var sound: RobinNotificationSound = RobinNotificationSound()
     
     /// The repeat interval of the notification.
-    public var repeats: RobinNotificationRepeats                = .none
+    public var repeats: RobinNotificationRepeats = .none
     
     /// The status of the notification.
-    internal(set) public var scheduled: Bool   = false
+    internal(set) public var scheduled: Bool = false
     
     /// The delivery status of the notification.
-    internal(set) public var delivered: Bool   = false
+    internal(set) public var delivered: Bool = false
     
     public override var description: String {
-        var result  = ""
+        var result = ""
         result += "RobinNotification: \(self.identifier!)\n"
         if let title = self.title {
             result += "\tTitle: \(title)\n"

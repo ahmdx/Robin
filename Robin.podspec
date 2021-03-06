@@ -7,10 +7,10 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = 'Robin'
-  s.version          = '0.90.0'
-  s.summary          = 'A notifications scheduler written in Swift.'
-  s.swift_version    = '4.2'
+  s.name = 'Robin'
+  s.version = '0.90.0'
+  s.summary = 'A notifications scheduler written in Swift.'
+  s.swift_version = '4.2'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,14 +18,14 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
-  s.description      = <<-DESC
+  s.description = <<-DESC
   Robin is a notifications scheduler that provides an interface to schedule notifications using the UserNotifications framework.
                        DESC
 
-  s.homepage         = 'https://github.com/ahmdx/Robin'
-  s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Ahmed Mohamed' => 'dev@ahmd.pro' }
-  s.source           = { :git => 'https://github.com/ahmdx/Robin.git', :tag => s.version.to_s }
+  s.homepage = 'https://github.com/ahmdx/Robin'
+  s.license = { :type => 'MIT', :file => 'LICENSE' }
+  s.author = { 'Ahmed Mohamed' => 'dev@ahmd.pro' }
+  s.source = { :git => 'https://github.com/ahmdx/Robin.git', :tag => s.version.to_s }
   
 
   s.ios.deployment_target = '10.0'
