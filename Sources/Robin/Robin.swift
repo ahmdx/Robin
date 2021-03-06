@@ -22,9 +22,9 @@
 
 @available(iOS 10.0, macOS 10.14, *)
 public class Robin {
-    static var notificationsScheduler: Scheduler!
+    static var notificationsScheduler: RobinScheduler!
     
-    public static var scheduler: Scheduler {
+    public static var scheduler: RobinScheduler {
         if notificationsScheduler == nil {
             self.notificationsScheduler = UserNotificationsScheduler()
         }
