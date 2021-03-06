@@ -30,19 +30,19 @@ Robin is available through both [Swift Package Manager](https://swift.org/packag
 To install using SPM:
 
 ```swift
-.package(url: "https://github.com/ahmdx/Robin", from: "0.90.0"),
+.package(url: "https://github.com/ahmdx/Robin", from: "0.91.0"),
 ```
 
 CocoaPods:
 
 ```ruby
-pod 'Robin', '~> 0.90.0'
+pod 'Robin', '~> 0.91.0'
 ```
 
 And if you want to include the test suite in your project:
 
 ```ruby
-pod 'Robin', '~> 0.90.0', :testspecs => ['Tests']
+pod 'Robin', '~> 0.91.0', :testspecs => ['Tests']
 ```
 
 ## Usage
@@ -85,6 +85,7 @@ The following table summarizes all `RobinNotification` properties.
 | identifier<sup>[1]</sup> | `String!` | A string assigned to the notification for later access. |
 | repeats | `Repeats` | The repeat interval of the notification. One of `none` (default), `hour`, `day`, `week`, or `month`.|
 | scheduled | `Bool` | The status of the notification. `read-only` |
+| delivered | `Bool` | The delivery status of the notification. `read-only` |
 | sound | `RobinNotificationSound` | The sound name of the notification. |
 | title | `String?` | The title string of the notification. |
 | userInfo<sup>[2]</sup> | `[AnyHashable : Any]!` | A dictionary that holds additional information. |
@@ -127,6 +128,34 @@ Robin.scheduler.cancel(withIdentifier: scheduledNotification.identifier)
 
 ```swift
 Robin.scheduler.cancelAll()
+```
+
+### Retrieve all delivered notifications
+
+To retrieve all delivered notifications that are displayed in the notification center, call `allDelivered(completionHandler: @escaping ([RobinNotification]) -> Void)`.
+
+```swift
+Robin.manager.allDelivered { deliveredNotifications in
+  // Access delivered notifications
+}
+```
+
+### Remove a delivered notification
+
+To remove a delivered notification from the notification center, either call `removeDelivered(notification: RobinNotification)` or `removeDelivered(withIdentifier identifier: String)`.
+
+```swift
+Robin.manager.removeDelivered(notification: deliveredNotification)
+```
+
+```swift
+Robin.manager.removeDelivered(withIdentifier: deliveredNotification.identifier)
+```
+
+`Robin` allows you to remove all delivered notifications by calling `removeAllDelivered()`
+
+```swift
+Robin.manager.removeAllDelivered()
 ```
 
 ## Notes

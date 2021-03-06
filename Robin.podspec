@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name = 'Robin'
-  s.version = '0.90.0'
+  s.version = '0.91.0'
   s.summary = 'A notifications scheduler written in Swift.'
   s.swift_version = '4.2'
 
@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
 
   s.description = <<-DESC
   Robin is a notifications scheduler that provides an interface to schedule notifications using the UserNotifications framework.
-                       DESC
+                  DESC
 
   s.homepage = 'https://github.com/ahmdx/Robin'
   s.license = { :type => 'MIT', :file => 'LICENSE' }
