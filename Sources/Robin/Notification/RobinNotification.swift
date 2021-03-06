@@ -73,7 +73,8 @@ public class RobinNotification: NSObject {
         }
         result += "\tSound name: \(self.sound)\n"
         result += "\tRepeats every: \(self.repeats.rawValue)\n"
-        result += "\tScheduled: \(self.scheduled)"
+        result += "\tScheduled: \(self.scheduled)\n"
+        result += "\tDelivered: \(self.delivered)"
         
         return result
     }
