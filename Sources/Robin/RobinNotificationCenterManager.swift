@@ -20,25 +20,25 @@
 // THE SOFTWARE.
 //
 
-@available(iOS 10.0, macOS 10.14, *)
-public class Robin {
-    static var notificationsScheduler: Scheduler!
-    
-    public static var scheduler: Scheduler {
-        if notificationsScheduler == nil {
-            self.notificationsScheduler = UserNotificationsScheduler()
-        }
+import UserNotifications
 
-        return self.notificationsScheduler
-    }
+@available(iOS 10.0, macOS 10.14, *)
+public protocol RobinNotificationCenterManager {
+    /// Returns the list of delivered notifications that are displayed in the notification center.
+    ///
+    /// - Parameter completionHandler: A block that executes with an array of the delivered notifications, if any. If no notifications are displayed, the array is empty.
+    func allDelivered(completionHandler: @escaping ([RobinNotification]) -> Void)
     
-    static var notificationCenterManager: RobinNotificationCenterManager!
+    /// Removes the passed notification from the notification center if it was delivered.
+    ///
+    /// - Parameter identifier: The notification to remove.
+    func removeDelivered(notification: RobinNotification)
     
-    public static var manager: RobinNotificationCenterManager {
-        if notificationCenterManager == nil {
-            self.notificationCenterManager = NotificationCenterManager()
-        }
-        
-        return self.notificationCenterManager
-    }
+    /// Removes the delivered notification from the notification center having the passed identifier.
+    ///
+    /// - Parameter identifier: The identifier of the notification to remove.
+    func removeDelivered(withIdentifier identifier: String)
+    
+    /// Removes all delivered notifications from the notification center.
+    func removeAllDelivered()
 }

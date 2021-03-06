@@ -20,25 +20,31 @@
 // THE SOFTWARE.
 //
 
-@available(iOS 10.0, macOS 10.14, *)
-public class Robin {
-    static var notificationsScheduler: Scheduler!
-    
-    public static var scheduler: Scheduler {
-        if notificationsScheduler == nil {
-            self.notificationsScheduler = UserNotificationsScheduler()
-        }
+import UserNotifications
 
-        return self.notificationsScheduler
+@available(iOS 10.0, macOS 10.14, *)
+internal class NotificationCenterManager: RobinNotificationCenterManager {
+    fileprivate let center: RobinNotificationCenter
+    
+    init(center: RobinNotificationCenter = UNUserNotificationCenter.current()) {
+        self.center = center
     }
     
-    static var notificationCenterManager: RobinNotificationCenterManager!
-    
-    public static var manager: RobinNotificationCenterManager {
-        if notificationCenterManager == nil {
-            self.notificationCenterManager = NotificationCenterManager()
+    func allDelivered(completionHandler: @escaping ([RobinNotification]) -> Void) {
+        center.getDelivered { systemNotifications in
+            completionHandler(systemNotifications.compactMap { $0.robinNotification() })
         }
-        
-        return self.notificationCenterManager
+    }
+    
+    func removeDelivered(notification: RobinNotification) {
+        center.removeDeliveredNotifications(withIdentifiers: [notification.identifier])
+    }
+    
+    func removeDelivered(withIdentifier identifier: String) {
+        center.removeDeliveredNotifications(withIdentifiers: [identifier])
+    }
+    
+    func removeAllDelivered() {
+        center.removeAllDeliveredNotifications()
     }
 }

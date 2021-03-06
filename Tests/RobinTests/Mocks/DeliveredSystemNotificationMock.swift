@@ -20,25 +20,25 @@
 // THE SOFTWARE.
 //
 
-@available(iOS 10.0, macOS 10.14, *)
-public class Robin {
-    static var notificationsScheduler: Scheduler!
-    
-    public static var scheduler: Scheduler {
-        if notificationsScheduler == nil {
-            self.notificationsScheduler = UserNotificationsScheduler()
-        }
+import Foundation
+import UserNotifications
+@testable import Robin
 
-        return self.notificationsScheduler
+@available(iOS 10.0, macOS 10.14, *)
+class DeliveredSystemNotificationMock: DeliveredSystemNotification {
+    let request: UNNotificationRequest
+    let date: Date
+    
+    init(request: UNNotificationRequest) {
+        self.request = request
+        self.date = Date()
     }
     
-    static var notificationCenterManager: RobinNotificationCenterManager!
-    
-    public static var manager: RobinNotificationCenterManager {
-        if notificationCenterManager == nil {
-            self.notificationCenterManager = NotificationCenterManager()
-        }
+    func robinNotification() -> RobinNotification? {
+        let notification = RobinNotification.notification(withSystemNotification: request)
+        notification?.date = self.date
+        notification?.delivered = true
         
-        return self.notificationCenterManager
+        return notification
     }
 }

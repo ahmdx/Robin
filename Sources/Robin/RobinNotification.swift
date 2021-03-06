@@ -70,6 +70,9 @@ public class RobinNotification: NSObject {
     /// The status of the notification.
     internal(set) public var scheduled: Bool   = false
     
+    /// The delivery status of the notification.
+    internal(set) public var delivered: Bool   = false
+    
     public override var description: String {
         var result  = ""
         result += "RobinNotification: \(self.identifier!)\n"

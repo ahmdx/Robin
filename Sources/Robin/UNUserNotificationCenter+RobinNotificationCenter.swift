@@ -23,5 +23,8 @@
 import UserNotifications
 
 @available(iOS 10.0, macOS 10.14, *)
-extension UNUserNotificationCenter: RobinNotificationCenter {}
-
+extension UNUserNotificationCenter: RobinNotificationCenter {    
+    func getDelivered(completionHandler: @escaping ([DeliveredSystemNotification]) -> Void) {
+        self.getDeliveredNotifications(completionHandler: completionHandler)
+    }
+}

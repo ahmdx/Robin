@@ -32,6 +32,17 @@ protocol RobinNotificationCenter {
     
     func removePendingNotificationRequests(withIdentifiers identifiers: [String])
     func removeAllPendingNotificationRequests()
+    
+    /// Returns a list of the delivered notifications that are displayed in the notification center.
+    ///
+    /// - note:
+    /// Normally, the block would take `UNNotification` as its parameter, however, since it cannot be instantiated for testing, `DeliveredSystemNotification`
+    /// was used for that purpose.
+    ///
+    /// - Parameter completionHandler: A block that executes with an array of the notifications. The array is empty if no notifications are currently displayed.
+    func getDelivered(completionHandler: @escaping ([DeliveredSystemNotification]) -> Void)
+    func removeDeliveredNotifications(withIdentifiers identifiers: [String])
+    func removeAllDeliveredNotifications()
 }
 
 @available(iOS 10.0, macOS 10.14, *)

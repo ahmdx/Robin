@@ -26,6 +26,7 @@ import UserNotifications
 @available(iOS 10.0, macOS 10.14, *)
 class RobinNotificationCenterMock: RobinNotificationCenter {
     fileprivate var requests: [String : UNNotificationRequest] = [:]
+    fileprivate var deliveredNotifications: [String : DeliveredSystemNotification] = [:]
     
     func requestAuthorization(options: UNAuthorizationOptions, completionHandler: @escaping (Bool, Error?) -> Void) {
         completionHandler(true, nil)
@@ -33,6 +34,8 @@ class RobinNotificationCenterMock: RobinNotificationCenter {
     
     func add(_ request: UNNotificationRequest, withCompletionHandler completionHandler: ((Error?) -> Void)?) {
         requests[request.identifier] = request
+        deliveredNotifications[request.identifier] = DeliveredSystemNotificationMock(request: request)
+        
         completionHandler?(nil)
     }
     
@@ -48,4 +51,15 @@ class RobinNotificationCenterMock: RobinNotificationCenter {
         requests = [:]
     }
     
+    func getDelivered(completionHandler: @escaping ([DeliveredSystemNotification]) -> Void) {
+        completionHandler(deliveredNotifications.values.map({ $0 }))
+    }
+    
+    func removeDeliveredNotifications(withIdentifiers identifiers: [String]) {
+        deliveredNotifications.removeValue(forKey: identifiers[0])
+    }
+    
+    func removeAllDeliveredNotifications() {
+        deliveredNotifications = [:]
+    }
 }

@@ -26,8 +26,12 @@ import XCTest
 @available(iOS 10.0, macOS 10.14, *)
 class RobinTests: XCTestCase {
     override class func setUp() {
-        let scheduler = UserNotificationsScheduler(center: RobinNotificationCenterMock())
+        let center = RobinNotificationCenterMock()
+        let scheduler = UserNotificationsScheduler(center: center)
+        let manager = NotificationCenterManager(center: center)
+        
         Robin.notificationsScheduler = scheduler
+        Robin.notificationCenterManager = manager
     }
     
     override class func tearDown() {
@@ -38,11 +42,13 @@ class RobinTests: XCTestCase {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         Robin.scheduler.cancelAll()
+        Robin.manager.removeAllDelivered()
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         Robin.scheduler.cancelAll()
+        Robin.manager.removeAllDelivered()
         super.tearDown()
     }
     
@@ -75,7 +81,7 @@ class RobinTests: XCTestCase {
     func testNotificationMultipleSchedule() {
         let count: Int = 15
         for i in 0 ..< count {
-            let notification = RobinNotification(body: "This is test notification #\(i + 1)")
+            let notification = RobinNotification(body: "This is a test notification #\(i + 1)")
             
             let _ = Robin.scheduler.schedule(notification: notification)
         }
@@ -87,7 +93,7 @@ class RobinTests: XCTestCase {
     func testNotificationScheduleOverAllowed() {
         let count: Int = Constants.maximumAllowedNotifications
         for i in 0 ..< count {
-            let notification = RobinNotification(body: "This is test notification #\(i + 1)")
+            let notification = RobinNotification(body: "This is a test notification #\(i + 1)")
             
             let _ = Robin.scheduler.schedule(notification: notification)
         }
@@ -151,7 +157,7 @@ class RobinTests: XCTestCase {
         let count: Int         = 15
         let identifier: String = "IDENTIFIER"
         for i in 0 ..< count {
-            let notification = RobinNotification(identifier: identifier, body: "This is test notification #\(i + 1)")
+            let notification = RobinNotification(identifier: identifier, body: "This is a test notification #\(i + 1)")
             
             let _ = Robin.scheduler.schedule(notification: notification)
         }
@@ -165,7 +171,7 @@ class RobinTests: XCTestCase {
     func testCancelAll() {
         let count: Int = 15
         for i in 0 ..< count {
-            let notification = RobinNotification(body: "This is test notification #\(i + 1)")
+            let notification = RobinNotification(body: "This is a test notification #\(i + 1)")
             
             let _ = Robin.scheduler.schedule(notification: notification)
         }
@@ -199,5 +205,110 @@ class RobinTests: XCTestCase {
         XCTAssertEqual(retrievedNotification?.scheduled, notification.scheduled)
         XCTAssertTrue(retrievedNotification!.scheduled)
         XCTAssertEqual(1, Robin.scheduler.scheduledCount())
+    }
+    
+    func testGetDeliveredNotification() {
+        let count: Int = 1
+        
+        let notification = RobinNotification(body: "This is a test notification")
+        notification.date = Date().next(days: 1)
+        
+        let _ = Robin.scheduler.schedule(notification: notification)
+        
+        let expectation = XCTestExpectation()
+        
+        Robin.manager.allDelivered { notifications in
+            XCTAssertEqual(count, notifications.count)
+            
+            let retrievedNotification = notifications[0]
+            
+            XCTAssertEqual(retrievedNotification.title, notification.title)
+            XCTAssertEqual(retrievedNotification.identifier, notification.identifier)
+            XCTAssertEqual(retrievedNotification.body, notification.body)
+            XCTAssertNotEqual(retrievedNotification.date, notification.date.removeSeconds())
+            XCTAssertEqual(retrievedNotification.userInfo.count, notification.userInfo.count)
+            XCTAssertEqual(retrievedNotification.badge, notification.badge)
+            XCTAssertTrue(notification.sound.isValid())
+            XCTAssertEqual(retrievedNotification.repeats, notification.repeats)
+            XCTAssertEqual(retrievedNotification.scheduled, notification.scheduled)
+            XCTAssertTrue(retrievedNotification.scheduled)
+            XCTAssertTrue(retrievedNotification.delivered)
+            
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 5.0)
+    }
+    
+    func testRemoveDeliveredNotification() {
+        let notification = RobinNotification(body: "This is a test notification")
+        let anotherNotification = RobinNotification(body: "This is another test notification")
+        
+        let _ = Robin.scheduler.schedule(notification: notification)
+        let _ = Robin.scheduler.schedule(notification: anotherNotification)
+        
+        let deliveryExpectation = XCTestExpectation()
+        Robin.manager.allDelivered { notifications in
+            XCTAssertEqual(2, notifications.count)
+            deliveryExpectation.fulfill()
+        }
+        
+        Robin.manager.removeDelivered(notification: notification)
+        
+        let removalExpectation = XCTestExpectation()
+        Robin.manager.allDelivered { notifications in
+            XCTAssertEqual(1, notifications.count)
+            removalExpectation.fulfill()
+        }
+        
+        wait(for: [deliveryExpectation, removalExpectation], timeout: 5.0)
+    }
+    
+    func testRemoveDeliveredNotificationByIdentifier() {
+        let notification = RobinNotification(body: "This is a test notification")
+        let anotherNotification = RobinNotification(body: "This is another test notification")
+        
+        let _ = Robin.scheduler.schedule(notification: notification)
+        let _ = Robin.scheduler.schedule(notification: anotherNotification)
+        
+        let deliveryExpectation = XCTestExpectation()
+        Robin.manager.allDelivered { notifications in
+            XCTAssertEqual(2, notifications.count)
+            deliveryExpectation.fulfill()
+        }
+        
+        Robin.manager.removeDelivered(withIdentifier: notification.identifier)
+        
+        let removalExpectation = XCTestExpectation()
+        Robin.manager.allDelivered { notifications in
+            XCTAssertEqual(1, notifications.count)
+            removalExpectation.fulfill()
+        }
+        
+        wait(for: [deliveryExpectation, removalExpectation], timeout: 5.0)
+    }
+    
+    func testRemoveAllDeliveredNotifications() {
+        let notification = RobinNotification(body: "This is a test notification")
+        let anotherNotification = RobinNotification(body: "This is another test notification")
+        
+        let _ = Robin.scheduler.schedule(notification: notification)
+        let _ = Robin.scheduler.schedule(notification: anotherNotification)
+        
+        let deliveryExpectation = XCTestExpectation()
+        Robin.manager.allDelivered { notifications in
+            XCTAssertEqual(2, notifications.count)
+            deliveryExpectation.fulfill()
+        }
+        
+        Robin.manager.removeAllDelivered()
+        
+        let removalExpectation = XCTestExpectation()
+        Robin.manager.allDelivered { notifications in
+            XCTAssertEqual(0, notifications.count)
+            removalExpectation.fulfill()
+        }
+        
+        wait(for: [deliveryExpectation, removalExpectation], timeout: 5.0)
     }
 }
