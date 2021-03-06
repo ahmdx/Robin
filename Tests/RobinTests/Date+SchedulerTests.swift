@@ -36,14 +36,29 @@ class Date_SchedulerTests: XCTestCase {
     }
     
     /// Tests whether `Date.next(minutes:)` succeeds.
-    func testDateNextMinutes() {
+    func testDateStaticNextMinutes() {
         let minutes: Int               = 12
-        let date: Date                 = Date().removeSeconds()
+        let date: Date                 = Date().truncateSeconds()
         
         let calendar: Calendar         = Calendar.current
         var components: DateComponents = DateComponents()
         components.minute              = minutes
-        let dateAfterMinutes: Date     = (calendar as NSCalendar).date(byAdding: components, to: date, options: NSCalendar.Options(rawValue: 0))!.removeSeconds()
+        let dateAfterMinutes: Date     = (calendar as NSCalendar).date(byAdding: components, to: date, options: NSCalendar.Options(rawValue: 0))!.truncateSeconds()
+        
+        let testDate: Date             = .next(minutes: minutes)
+        
+        XCTAssertEqual(dateAfterMinutes, testDate.truncateSeconds())
+    }
+    
+    /// Tests whether `Date().next(minutes:)` succeeds.
+    func testDateNextMinutes() {
+        let minutes: Int               = 12
+        let date: Date                 = Date().truncateSeconds()
+        
+        let calendar: Calendar         = Calendar.current
+        var components: DateComponents = DateComponents()
+        components.minute              = minutes
+        let dateAfterMinutes: Date     = (calendar as NSCalendar).date(byAdding: components, to: date, options: NSCalendar.Options(rawValue: 0))!.truncateSeconds()
         
         let testDate: Date             = date.next(minutes: minutes)
         
@@ -51,10 +66,20 @@ class Date_SchedulerTests: XCTestCase {
     }
     
     /// Tests whether `Date.next(hours:)` succeeds.
+    func testDateStaticNextHours() {
+        let hours: Int           = 12
+        let dateAfterHours: Date = Date().next(minutes: hours * 60).truncateSeconds()
+        
+        let testDate: Date       = .next(hours: hours)
+        
+        XCTAssertEqual(dateAfterHours, testDate.truncateSeconds())
+    }
+    
+    /// Tests whether `Date().next(hours:)` succeeds.
     func testDateNextHours() {
         let hours: Int           = 12
-        let date: Date           = Date().removeSeconds()
-        let dateAfterHours: Date = Date().next(minutes: hours * 60).removeSeconds()
+        let date: Date           = Date().truncateSeconds()
+        let dateAfterHours: Date = Date().next(minutes: hours * 60).truncateSeconds()
         
         let testDate: Date       = date.next(hours: hours)
         
@@ -62,30 +87,40 @@ class Date_SchedulerTests: XCTestCase {
     }
     
     /// Tests whether `Date.next(days:)` succeeds.
+    func testDateStaticNextDays() {
+        let days: Int           = 12
+        let dateAfterDays: Date = Date().next(minutes: days * 60 * 24).truncateSeconds()
+        
+        let testDate: Date      = .next(days: days)
+        
+        XCTAssertEqual(dateAfterDays, testDate.truncateSeconds())
+    }
+    
+    /// Tests whether `Date().next(days:)` succeeds.
     func testDateNextDays() {
         let days: Int           = 12
-        let date: Date          = Date().removeSeconds()
-        let dateAfterDays: Date = Date().next(minutes: days * 60 * 24).removeSeconds()
+        let date: Date          = Date().truncateSeconds()
+        let dateAfterDays: Date = Date().next(minutes: days * 60 * 24).truncateSeconds()
         
         let testDate: Date      = date.next(days: days)
         
         XCTAssertEqual(dateAfterDays, testDate)
     }
     
-    /// Tests whether `Date.removeSeconds()` succeeds.
-    func testDateRemoveSeconds() {
+    /// Tests whether `Date().truncateSeconds()` succeeds.
+    func testDateTruncateSeconds() {
         let date: Date               = Date()
         
         let calendar                 = Calendar.current
         let components               = (calendar as NSCalendar).components([.year, .month, .day, .hour, .minute], from: date)
         let dateWithoutSeconds: Date = calendar.date(from: components)!
         
-        let testDate: Date           = date.removeSeconds()
+        let testDate: Date           = date.truncateSeconds()
         
         XCTAssertEqual(dateWithoutSeconds, testDate)
     }
     
-    /// Tests whether `Date.dateWithTime()` succeeds.
+    /// Tests whether `Date().dateWithTime()` succeeds.
     func testDateWithTime() {
         let time: Int      = 0000
         let offset: Int    = 60

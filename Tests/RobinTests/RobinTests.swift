@@ -109,7 +109,7 @@ class RobinTests: XCTestCase {
     
     /// Tests whether rescheduling a `RobinNotification` beyond the allowed maximum succeeds.
     func testNotificationReschedule() {
-        let date: Date              = Date().next(days: 1).removeSeconds()
+        let date: Date              = Date().next(days: 1).truncateSeconds()
         let notification            = RobinNotification(body: "This is a test notification")
         
         let _                       = Robin.scheduler.schedule(notification: notification)
@@ -197,7 +197,7 @@ class RobinTests: XCTestCase {
         XCTAssertEqual(retrievedNotification?.title, notification.title)
         XCTAssertEqual(retrievedNotification?.identifier, notification.identifier)
         XCTAssertEqual(retrievedNotification?.body, notification.body)
-        XCTAssertEqual(retrievedNotification?.date, notification.date.removeSeconds())
+        XCTAssertEqual(retrievedNotification?.date, notification.date.truncateSeconds())
         XCTAssertEqual(retrievedNotification?.userInfo.count, notification.userInfo.count)
         XCTAssertEqual(retrievedNotification?.badge, notification.badge)
         XCTAssertTrue(notification.sound.isValid())
@@ -225,7 +225,7 @@ class RobinTests: XCTestCase {
             XCTAssertEqual(retrievedNotification.title, notification.title)
             XCTAssertEqual(retrievedNotification.identifier, notification.identifier)
             XCTAssertEqual(retrievedNotification.body, notification.body)
-            XCTAssertNotEqual(retrievedNotification.date, notification.date.removeSeconds())
+            XCTAssertNotEqual(retrievedNotification.date, notification.date.truncateSeconds())
             XCTAssertEqual(retrievedNotification.userInfo.count, notification.userInfo.count)
             XCTAssertEqual(retrievedNotification.badge, notification.badge)
             XCTAssertTrue(notification.sound.isValid())

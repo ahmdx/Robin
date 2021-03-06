@@ -24,8 +24,15 @@ import Foundation
 
 @available(iOS 10.0, macOS 10.14, *)
 public extension Date {
-    /// Adds a number of minutes to a date.
-    /// > This method can add and subtract minutes.
+    /// Adds or subtracts a number of minutes to the current data.
+    ///
+    /// - Parameter minutes: The number of minutes to add/subtract.
+    /// - Returns: The current date after the minutes addition/subtraction.
+    static func next(minutes: Int) -> Date {
+        return Date().next(minutes: minutes)
+    }
+    
+    /// Adds or subtracts a number of minutes to a date.
     ///
     /// - Parameter minutes: The number of minutes to add/subtract.
     /// - Returns: The date after the minutes addition/subtraction.
@@ -36,8 +43,15 @@ public extension Date {
         return (calendar as NSCalendar).date(byAdding: components, to: self, options: NSCalendar.Options(rawValue: 0))!
     }
     
-    /// Adds a number of hours to a date.
-    /// > This method can add and subtract hours.
+    /// Adds or subtracts a number of hours to the current date.
+    ///
+    /// - Parameter hours: The number of hours to add/subtract.
+    /// - Returns: The current date after the hours addition/subtraction.
+    static func next(hours: Int) -> Date {
+        return Date().next(hours: hours)
+    }
+    
+    /// Adds or subtracts a number of hours to a date.
     ///
     /// - Parameter hours: The number of hours to add/subtract.
     /// - Returns: The date after the hours addition/subtraction.
@@ -45,8 +59,15 @@ public extension Date {
         return self.next(minutes: hours * 60)
     }
     
-    /// Adds a number of days to a date.
-    /// > This method can add and subtract days.
+    /// Adds or subtracts a number of days to the current date.
+    ///
+    /// - Parameter days: The number of days to add/subtract.
+    /// - Returns: The current date after the days addition/subtraction.
+    static func next(days: Int) -> Date {
+        return Date().next(days: days)
+    }
+    
+    /// Adds or subtracts a number of days to a date.
     ///
     /// - Parameter days: The number of days to add/subtract.
     /// - Returns: The date after the days addition/subtraction.
@@ -57,7 +78,7 @@ public extension Date {
     /// Removes the seconds component from the date.
     ///
     /// - Returns: The date after removing the seconds component.
-    func removeSeconds() -> Date {
+    func truncateSeconds() -> Date {
         let calendar = Calendar.current
         let components = (calendar as NSCalendar).components([.year, .month, .day, .hour, .minute], from: self)
         return calendar.date(from: components)!

@@ -46,7 +46,7 @@ class RobinNotificationTests: XCTestCase {
         XCTAssertEqual(body, notification.body)
         
         //        Tests date property
-        XCTAssertEqual(Date().next(hours: 1).removeSeconds(), notification.date.removeSeconds())
+        XCTAssertEqual(Date().next(hours: 1).truncateSeconds(), notification.date.truncateSeconds())
         let date: Date                      = Date()
         notification.date                   = date
         XCTAssertEqual(date, notification.date)
