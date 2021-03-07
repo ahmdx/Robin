@@ -37,7 +37,7 @@ public enum RobinNotificationRepeats: String {
     case week = "Week"
     case month = "Month"
     
-    internal static func from(dateComponents components: DateComponents) -> Self {
+    internal static func from(dateComponents components: DateComponents) -> RobinNotificationRepeats {
         if self.doesRepeatNone(dateComponents: components) {
             return .none
         }
