@@ -62,7 +62,7 @@ internal class UserNotificationsScheduler: RobinScheduler {
     
     func schedule(notification: RobinNotification) -> RobinNotification? {
         if notification.scheduled == true {
-            return nil
+            return notification
         }
         
         if (self.scheduledCount() >= min(Constants.maximumAllowedNotifications, Constants.maximumAllowedSystemNotifications)) {
