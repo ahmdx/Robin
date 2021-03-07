@@ -20,7 +20,6 @@
 // THE SOFTWARE.
 //
 
-import Foundation
 import UserNotifications
 @testable import Robin
 

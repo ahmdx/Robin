@@ -20,8 +20,5 @@
 // THE SOFTWARE.
 //
 
-import Foundation
-import UserNotifications
-
 @available(iOS 10.0, macOS 10.14, *)
 protocol DeliveredSystemNotification: SystemNotification {}

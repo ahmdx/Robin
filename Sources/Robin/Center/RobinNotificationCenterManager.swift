@@ -20,8 +20,6 @@
 // THE SOFTWARE.
 //
 
-import UserNotifications
-
 @available(iOS 10.0, macOS 10.14, *)
 public protocol RobinNotificationCenterManager {
     /// Returns the list of delivered notifications that are displayed in the notification center.

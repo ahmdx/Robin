@@ -20,8 +20,6 @@
 // THE SOFTWARE.
 //
 
-import Foundation
-
 @available(iOS 10.0, macOS 10.14, *)
 public struct Constants {
     /// The maximum allowed notifications to be scheduled at a time by iOS.
