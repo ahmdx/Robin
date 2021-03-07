@@ -23,6 +23,7 @@
 import XCTest
 import Robin
 
+@available(iOS 10.0, macOS 10.14, *)
 class RobinNotificationTests: XCTestCase {
     
     override func setUp() {
@@ -34,8 +35,6 @@ class RobinNotificationTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
-    //    MARK:- RobinNotification
     
     /// Tests whether the initialization of `RobinNotification` succeeds.
     func testNotificationInitialization() {

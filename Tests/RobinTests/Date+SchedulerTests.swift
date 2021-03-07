@@ -23,6 +23,7 @@
 import XCTest
 @testable import Robin
 
+@available(iOS 10.0, macOS 10.14, *)
 class Date_SchedulerTests: XCTestCase {
     
     override func setUp() {
