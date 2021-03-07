@@ -36,30 +36,6 @@ internal class UserNotificationsScheduler: RobinScheduler {
         center.requestAuthorization(options: authorizationOptions, completionHandler: completionHandler)
     }
     
-    private func trigger(forDate date: Date, repeats: RobinNotificationRepeats) -> UNCalendarNotificationTrigger {
-        var dateComponents: DateComponents = DateComponents()
-        let shouldRepeat: Bool = repeats != .none
-        let calendar: Calendar = Calendar.current
-        
-        switch repeats {
-        case .none:
-            dateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: date)
-        case .month:
-            dateComponents = calendar.dateComponents([.day, .hour, .minute], from: date)
-        case .week:
-            dateComponents.weekday = calendar.component(.weekday, from: date)
-            fallthrough
-        case .day:
-            dateComponents.hour = calendar.component(.hour, from: date)
-            fallthrough
-        case .hour:
-            dateComponents.minute = calendar.component(.minute, from: date)
-            dateComponents.second = 0
-        }
-        
-        return UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: shouldRepeat)
-    }
-    
     func schedule(notification: RobinNotification) -> RobinNotification? {
         if notification.scheduled == true {
             return notification
@@ -93,7 +69,7 @@ internal class UserNotificationsScheduler: RobinScheduler {
         
         content.badge = notification.badge
         
-        let trigger: UNCalendarNotificationTrigger = self.trigger(forDate: notification.date, repeats: notification.repeats)
+        let trigger: UNCalendarNotificationTrigger = UNCalendarNotificationTrigger(date: notification.date, repeats: notification.repeats)
         
         let request: UNNotificationRequest = UNNotificationRequest(identifier: notification.identifier, content: content, trigger: trigger)
         center.add(request)
