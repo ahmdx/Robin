@@ -30,19 +30,19 @@ Robin is available through both [Swift Package Manager](https://swift.org/packag
 To install using SPM:
 
 ```swift
-.package(url: "https://github.com/ahmdx/Robin", from: "0.92.0"),
+.package(url: "https://github.com/ahmdx/Robin", from: "0.93.0"),
 ```
 
 CocoaPods:
 
 ```ruby
-pod 'Robin', '~> 0.92.0'
+pod 'Robin', '~> 0.93.0'
 ```
 
 And if you want to include the test suite in your project:
 
 ```ruby
-pod 'Robin', '~> 0.92.0', :testspecs => ['Tests']
+pod 'Robin', '~> 0.93.0', :testspecs => ['Tests']
 ```
 
 ## Usage
@@ -51,12 +51,40 @@ pod 'Robin', '~> 0.92.0', :testspecs => ['Tests']
 import Robin
 ```
 
-Before using `Robin`, you need to request permission to send notifications to users. The following requests `badge`, `sound`, and `alert` permissions.
+Before using `Robin`, you need to request permission to send notifications to users. The following requests `badge`, `sound`, and `alert` permissions. For all available options, refer to [UNAuthorizationOptions](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions).
 
 ```swift
-Robin.scheduler.requestAuthorization(forOptions: [.badge, .sound, .alert]) { grant, error in
+Robin.settings.requestAuthorization(forOptions: [.badge, .sound, .alert]) { grant, error in
   // Handle authorization or error
 }
+```
+
+### Settings
+
+To query for the app's notification settings, you can use `Robin.settings`:
+
+```swift
+let alertStyle = Robin.settings.alertStyle
+```
+
+```swift
+let authorizationStatus = Robin.settings.authorizationStatus
+```
+
+```swift
+let enabledSettings = Robin.settings.enabledSettings
+```
+
+> This returns an option set of all the enabled settings. If some settings are not included in the set, they may be disabled or not supported. If you would like to know if some specific setting is enabled, you can use `enabledSettings.contains(.sound)` for example. For more details, refer to `RobinSettingsOptions`.
+
+```swift
+let showPreviews = Robin.settings.showPreviews
+```
+
+Robin automatically updates information about the app's settings when the app goes into an inactive state and becomes active again to avoid unnecessary queries. If you would like to override this behavior and update the information manually, you can use `forceRefresh()`.
+
+```swift
+Robin.settings.forceRefresh()
 ```
 
 ### Notifications
