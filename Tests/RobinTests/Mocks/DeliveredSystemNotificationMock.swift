@@ -32,12 +32,4 @@ class DeliveredSystemNotificationMock: DeliveredSystemNotification {
         self.request = request
         self.date = Date()
     }
-    
-    func robinNotification() -> RobinNotification? {
-        let notification = RobinNotification.notification(withSystemNotification: request)
-        notification?.date = self.date
-        notification?.delivered = true
-        
-        return notification
-    }
 }

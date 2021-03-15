@@ -23,12 +23,4 @@
 import UserNotifications
 
 @available(iOS 10.0, macOS 10.14, *)
-extension UNNotification: DeliveredSystemNotification {
-    public func robinNotification() -> RobinNotification? {
-        let notification = self.request.robinNotification()
-        notification?.date = self.date
-        notification?.delivered = true
-        
-        return notification
-    }
-}
+extension UNNotification: DeliveredSystemNotification {}

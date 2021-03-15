@@ -20,11 +20,56 @@
 // THE SOFTWARE.
 //
 
+import UserNotifications
+
 @available(iOS 10.0, macOS 10.14, *)
 public protocol SystemNotification {
-    /// Creates a `RobinNotification` from the passed `SystemNotification`. For the details of the creation process, have a look at the system notifications extensions that implement the `SystemNotification` protocol.
+    var identifier: String { get }
+    var content: UNNotificationContent { get }
+    var trigger: UNNotificationTrigger? { get }
+    
+    /// Creates a `RobinNotification` from the passed `SystemNotification`.
     ///
     /// - Parameter notification: The system notification to create the `RobinNotification` from.
     /// - Returns: The `RobinNotification` if the creation succeeded, nil otherwise.
-    func robinNotification() -> RobinNotification?
+    func robinNotification() -> RobinNotification
+}
+
+@available(iOS 10.0, macOS 10.14, *)
+public extension SystemNotification {
+    func robinNotification() -> RobinNotification {
+        let content = self.content
+        
+        let notification = RobinNotification(identifier: self.identifier, body: content.body, date: Date())
+        
+        let userInfo = content.userInfo
+        for (key, value) in userInfo {
+            notification.setUserInfo(value: value, forKey: key)
+        }
+        
+        if content.title.trimmingCharacters(in: .whitespaces).count > 0 {
+            notification.title = content.title
+        }
+        
+        if let trigger = self.trigger as? UNCalendarNotificationTrigger {
+            var date: Date?
+            if let originalDate = notification.userInfo[Constants.NotificationKeys.date] as? Date {
+                date = originalDate
+            }
+            notification.repeats = RobinNotificationRepeats.from(dateComponents: trigger.dateComponents)
+            notification.date(fromDateComponents: trigger.dateComponents, repeats: notification.repeats, originalDate: date)
+        }
+        
+        notification.badge = content.badge
+
+        if let sound = content.sound {
+            if sound != UNNotificationSound.default {
+                notification.sound = RobinNotificationSound(sound: sound)
+            }
+        }
+        
+        notification.scheduled = true
+        
+        return notification
+    }
 }

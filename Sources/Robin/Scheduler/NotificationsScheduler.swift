@@ -142,7 +142,7 @@ internal class NotificationsScheduler: RobinScheduler {
         let semaphore = DispatchSemaphore(value: 0)
         center.getPendingNotificationRequests { requests in
             for request in requests {
-                let notification: RobinNotification = request.robinNotification()!
+                let notification: RobinNotification = request.robinNotification()
                 
                 print(notification)
             }

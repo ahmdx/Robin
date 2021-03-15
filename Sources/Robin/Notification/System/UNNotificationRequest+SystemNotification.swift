@@ -23,40 +23,4 @@
 import UserNotifications
 
 @available(iOS 10.0, macOS 10.14, *)
-extension UNNotificationRequest: SystemNotification {
-    public func robinNotification() -> RobinNotification? {
-        let content = self.content
-        
-        let notification = RobinNotification(identifier: self.identifier, body: content.body, date: Date())
-        
-        let userInfo = content.userInfo
-        for (key, value) in userInfo {
-            notification.setUserInfo(value: value, forKey: key)
-        }
-        
-        if content.title.trimmingCharacters(in: .whitespaces).count > 0 {
-            notification.title = content.title
-        }
-        
-        if let trigger = self.trigger as? UNCalendarNotificationTrigger {
-            var date: Date?
-            if let originalDate = notification.userInfo[Constants.NotificationKeys.date] as? Date {
-                date = originalDate
-            }
-            notification.repeats = RobinNotificationRepeats.from(dateComponents: trigger.dateComponents)
-            notification.date(fromDateComponents: trigger.dateComponents, repeats: notification.repeats, originalDate: date)
-        }
-        
-        notification.badge = content.badge
-
-        if let sound = content.sound {
-            if sound != UNNotificationSound.default {
-                notification.sound = RobinNotificationSound(sound: sound)
-            }
-        }
-        
-        notification.scheduled = true
-        
-        return notification
-    }
-}
+extension UNNotificationRequest: SystemNotification {}

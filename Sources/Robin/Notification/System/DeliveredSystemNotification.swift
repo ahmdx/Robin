@@ -20,5 +20,27 @@
 // THE SOFTWARE.
 //
 
+import UserNotifications
+
 @available(iOS 10.0, macOS 10.14, *)
-protocol DeliveredSystemNotification: SystemNotification {}
+internal protocol DeliveredSystemNotification {
+    var date: Date { get }
+    var request: UNNotificationRequest { get }
+    
+    /// Creates a `RobinNotification` from the passed `DeliveredSystemNotification`.
+    ///
+    /// - Parameter notification: The system notification to create the `RobinNotification` from.
+    /// - Returns: The `RobinNotification` if the creation succeeded, nil otherwise.
+    func robinNotification() -> RobinNotification
+}
+
+@available(iOS 10.0, macOS 10.14, *)
+internal extension DeliveredSystemNotification {
+    func robinNotification() -> RobinNotification {
+        let notification = self.request.robinNotification()
+        notification.date = self.date
+        notification.delivered = true
+        
+        return notification
+    }
+}
