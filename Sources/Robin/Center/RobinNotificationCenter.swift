@@ -25,6 +25,14 @@ import UserNotifications
 @available(iOS 10.0, macOS 10.14, *)
 protocol RobinNotificationCenter {
     func requestAuthorization(options: UNAuthorizationOptions, completionHandler: @escaping (Bool, Error?) -> Void)
+    /// Returns the app's notifications settings.
+    ///
+    /// - note:
+    /// Normally, the block would take `UNNotificationSettings` as its parameter, however, since it cannot be instantiated for testing, `SystemNotificationSettings`
+    /// was used for that purpose.
+    ///
+    /// - Parameter completionHandler: A block that executes with the app's notifications settings.
+    func getSettings(completionHandler: @escaping (SystemNotificationSettings) -> Void)
     
     func add(_ request: UNNotificationRequest, withCompletionHandler completionHandler: ((Error?) -> Void)?)
     

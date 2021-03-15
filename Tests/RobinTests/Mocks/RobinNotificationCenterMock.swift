@@ -27,9 +27,14 @@ import UserNotifications
 class RobinNotificationCenterMock: RobinNotificationCenter {
     fileprivate var requests: [String : UNNotificationRequest] = [:]
     fileprivate var deliveredNotifications: [String : DeliveredSystemNotification] = [:]
+    var settings = SystemNotificationSettingsMock()
     
     func requestAuthorization(options: UNAuthorizationOptions, completionHandler: @escaping (Bool, Error?) -> Void) {
         completionHandler(true, nil)
+    }
+    
+    func getSettings(completionHandler: @escaping (SystemNotificationSettings) -> Void) {
+        completionHandler(settings)
     }
     
     func add(_ request: UNNotificationRequest, withCompletionHandler completionHandler: ((Error?) -> Void)?) {

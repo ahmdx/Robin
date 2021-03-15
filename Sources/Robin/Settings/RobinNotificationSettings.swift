@@ -20,32 +20,32 @@
 // THE SOFTWARE.
 //
 
-@available(iOS 10.0, macOS 10.14, *)
-public class Robin {
-    static var notificationsScheduler: RobinScheduler!
-    public static var scheduler: RobinScheduler {
-        if notificationsScheduler == nil {
-            self.notificationsScheduler = UserNotificationsScheduler()
-        }
+import UserNotifications
 
-        return self.notificationsScheduler
+/// A struct that holds information about the app's notifications settings.
+@available(iOS 10.0, macOS 10.14, *)
+public struct RobinNotificationSettings {
+    public let alertStyle: UNAlertStyle
+    public let authorizationStatus: UNAuthorizationStatus
+    public let enabledSettings: RobinSettingsOptions
+    
+    internal var _showPreviews: Any? = nil {
+        // Makes sure the variable is set to a non-nil value exactly once.
+        didSet {
+            _showPreviews = oldValue ?? _showPreviews
+        }
     }
     
-    static var notificationCenterManager: RobinNotificationCenterManager!
-    public static var manager: RobinNotificationCenterManager {
-        if notificationCenterManager == nil {
-            self.notificationCenterManager = NotificationCenterManager()
-        }
-        
-        return self.notificationCenterManager
+    @available(iOS 11.0, *)
+    public var showPreviews: UNShowPreviewsSetting {
+        return _showPreviews as? UNShowPreviewsSetting ?? .never
     }
     
-    static var notificationsSettings: RobinSettingsManager!
-    public static var settings: RobinSettingsManager {
-        if notificationsSettings == nil {
-            self.notificationsSettings = NotificationSettings()
-        }
-        
-        return self.notificationsSettings
+    internal init(alertStyle: UNAlertStyle,
+                  authorizationStatus: UNAuthorizationStatus,
+                  enabledSettings: RobinSettingsOptions) {
+        self.alertStyle = alertStyle
+        self.authorizationStatus = authorizationStatus
+        self.enabledSettings = enabledSettings
     }
 }

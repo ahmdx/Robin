@@ -23,12 +23,25 @@
 import UserNotifications
 
 @available(iOS 10.0, macOS 10.14, *)
-extension UNUserNotificationCenter: RobinNotificationCenter {
-    func getSettings(completionHandler: @escaping (SystemNotificationSettings) -> Void) {
-        self.getNotificationSettings(completionHandler: completionHandler)
-    }
+public protocol RobinSettingsManager {
+    /// The alert style of the app's notifications.
+    var alertStyle: UNAlertStyle { get }
+    /// The authorization status of the app's notifications.
+    var authorizationStatus: UNAuthorizationStatus { get }
+    /// The enabled settings of the app's notifications.
+    var enabledSettings: RobinSettingsOptions { get }
     
-    func getDelivered(completionHandler: @escaping ([DeliveredSystemNotification]) -> Void) {
-        self.getDeliveredNotifications(completionHandler: completionHandler)
-    }
+    /// The show previews status of the app's notifications.
+    @available(iOS 11.0, *)
+    var showPreviews: UNShowPreviewsSetting { get }
+    
+    /// Requests and registers your preferred options for notifying the user.
+    ///
+    /// - Parameter options: The notification options that your app requires.
+    func requestAuthorization(forOptions options: UNAuthorizationOptions, completionHandler: (@escaping (Bool, Error?) -> Void))
+    
+    /// Robin automatically updates information about the app's settings when the app goes into an inactive state and
+    /// becomes active again. `forceRefresh()` will cause Robin to update its information immediately without waiting for
+    /// the app's state to change.
+    func forceRefresh()
 }

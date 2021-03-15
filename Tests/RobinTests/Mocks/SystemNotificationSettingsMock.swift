@@ -20,32 +20,34 @@
 // THE SOFTWARE.
 //
 
-@available(iOS 10.0, macOS 10.14, *)
-public class Robin {
-    static var notificationsScheduler: RobinScheduler!
-    public static var scheduler: RobinScheduler {
-        if notificationsScheduler == nil {
-            self.notificationsScheduler = UserNotificationsScheduler()
-        }
+@testable import Robin
+import UserNotifications
 
-        return self.notificationsScheduler
+@available(iOS 10.0, macOS 10.14, *)
+class SystemNotificationSettingsMock: SystemNotificationSettings {
+    var alertStyle: UNAlertStyle = .none
+    
+    var authorizationStatus: UNAuthorizationStatus = .notDetermined
+    
+    var badgeSetting: UNNotificationSetting = .disabled
+    
+    var _showPreviewsSetting: Any? = nil
+    @available(iOS 11.0, *)
+    var showPreviewsSetting: UNShowPreviewsSetting {
+        return _showPreviewsSetting as? UNShowPreviewsSetting ?? .never
     }
     
-    static var notificationCenterManager: RobinNotificationCenterManager!
-    public static var manager: RobinNotificationCenterManager {
-        if notificationCenterManager == nil {
-            self.notificationCenterManager = NotificationCenterManager()
-        }
-        
-        return self.notificationCenterManager
-    }
+    var soundSetting: UNNotificationSetting = .disabled
     
-    static var notificationsSettings: RobinSettingsManager!
-    public static var settings: RobinSettingsManager {
-        if notificationsSettings == nil {
-            self.notificationsSettings = NotificationSettings()
-        }
-        
-        return self.notificationsSettings
-    }
+    var alertSetting: UNNotificationSetting = .disabled
+    
+    var notificationCenterSetting: UNNotificationSetting = .disabled
+    
+    var lockScreenSetting: UNNotificationSetting = .disabled
+    
+    var criticalAlertSetting: UNNotificationSetting = .disabled
+    
+    var announcementSetting: UNNotificationSetting = .disabled
+    
+    var carPlaySetting: UNNotificationSetting = .disabled
 }

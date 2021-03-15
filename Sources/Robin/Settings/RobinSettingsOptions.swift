@@ -21,31 +21,26 @@
 //
 
 @available(iOS 10.0, macOS 10.14, *)
-public class Robin {
-    static var notificationsScheduler: RobinScheduler!
-    public static var scheduler: RobinScheduler {
-        if notificationsScheduler == nil {
-            self.notificationsScheduler = UserNotificationsScheduler()
-        }
-
-        return self.notificationsScheduler
+public struct RobinSettingsOptions: OptionSet, RawRepresentable {
+    public let rawValue: UInt
+    
+    public init(rawValue: UInt) {
+        self.rawValue = rawValue
     }
     
-    static var notificationCenterManager: RobinNotificationCenterManager!
-    public static var manager: RobinNotificationCenterManager {
-        if notificationCenterManager == nil {
-            self.notificationCenterManager = NotificationCenterManager()
-        }
-        
-        return self.notificationCenterManager
-    }
+    public static let badge = RobinSettingsOptions(rawValue: 1 << 0)
+    public static let sound = RobinSettingsOptions(rawValue: 1 << 1)
+    public static let alert = RobinSettingsOptions(rawValue: 1 << 2)
+    public static let notificationCenter = RobinSettingsOptions(rawValue: 1 << 3)
+    public static let lockScreen = RobinSettingsOptions(rawValue: 1 << 4)
     
-    static var notificationsSettings: RobinSettingsManager!
-    public static var settings: RobinSettingsManager {
-        if notificationsSettings == nil {
-            self.notificationsSettings = NotificationSettings()
-        }
-        
-        return self.notificationsSettings
-    }
+    @available(iOS 12.0, *)
+    public static let criticalAlert = RobinSettingsOptions(rawValue: 1 << 5)
+    
+    #if !os(macOS)
+    public static let carPlay = RobinSettingsOptions(rawValue: 1 << 6)
+    
+    @available(iOS 13.0, *)
+    public static let announcement = RobinSettingsOptions(rawValue: 1 << 7)
+    #endif
 }

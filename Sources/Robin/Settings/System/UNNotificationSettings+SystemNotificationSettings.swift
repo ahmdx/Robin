@@ -20,32 +20,7 @@
 // THE SOFTWARE.
 //
 
-@available(iOS 10.0, macOS 10.14, *)
-public class Robin {
-    static var notificationsScheduler: RobinScheduler!
-    public static var scheduler: RobinScheduler {
-        if notificationsScheduler == nil {
-            self.notificationsScheduler = UserNotificationsScheduler()
-        }
+import UserNotifications
 
-        return self.notificationsScheduler
-    }
-    
-    static var notificationCenterManager: RobinNotificationCenterManager!
-    public static var manager: RobinNotificationCenterManager {
-        if notificationCenterManager == nil {
-            self.notificationCenterManager = NotificationCenterManager()
-        }
-        
-        return self.notificationCenterManager
-    }
-    
-    static var notificationsSettings: RobinSettingsManager!
-    public static var settings: RobinSettingsManager {
-        if notificationsSettings == nil {
-            self.notificationsSettings = NotificationSettings()
-        }
-        
-        return self.notificationsSettings
-    }
-}
+@available(iOS 10.0, macOS 10.14, *)
+extension UNNotificationSettings: SystemNotificationSettings {}
