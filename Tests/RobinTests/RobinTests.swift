@@ -52,19 +52,6 @@ class RobinTests: XCTestCase {
         super.tearDown()
     }
     
-    /// Tests whether requesting authorization succeeds.
-    func testRequestAuthorization() {
-        let expectation = XCTestExpectation()
-        
-        Robin.scheduler.requestAuthorization(forOptions: [.alert]) { grant, error in
-            XCTAssertTrue(grant)
-            
-            expectation.fulfill()
-        }
-        
-        wait(for: [expectation], timeout: 5.0)
-    }
-    
     /// Tests whether scheduling a `RobinNotification` succeeds.
     func testNotificationSchedule() {
         let notification = RobinNotification(body: "This is a test notification")

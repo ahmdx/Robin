@@ -30,12 +30,6 @@ internal class UserNotificationsScheduler: RobinScheduler {
         self.center = center
     }
     
-    func requestAuthorization(forOptions options: RobinAuthorizationOptions, completionHandler: @escaping (Bool, Error?) -> Void) {
-        let authorizationOptions: UNAuthorizationOptions = UNAuthorizationOptions(rawValue: options.rawValue)
-        
-        center.requestAuthorization(options: authorizationOptions, completionHandler: completionHandler)
-    }
-    
     func schedule(notification: RobinNotification) -> RobinNotification? {
         if notification.scheduled == true {
             return notification

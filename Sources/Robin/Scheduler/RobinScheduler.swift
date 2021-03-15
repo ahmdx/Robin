@@ -22,13 +22,6 @@
 
 @available(iOS 10.0, macOS 10.14, *)
 public protocol RobinScheduler: class {
-    
-    /// Requests and registers your preferred options for notifying the user.
-    /// The method requests (Badge, Sound, Alert) options by default.
-    ///
-    /// - Parameter options: The notification options that your app requires.
-    func requestAuthorization(forOptions options: RobinAuthorizationOptions, completionHandler: (@escaping (Bool, Error?) -> Void))
-    
     /// Schedules the passed notification if and only if there is an available notification slot and it is not already scheduled. The number of available slots is governed by `Robin.maximumAllowedNotifications` and `Constants.maximumAllowedSystemNotifications`.
     ///
     /// - attention:
