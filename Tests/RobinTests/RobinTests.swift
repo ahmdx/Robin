@@ -27,7 +27,7 @@ import XCTest
 class RobinTests: XCTestCase {
     override class func setUp() {
         let center = RobinNotificationCenterMock()
-        let scheduler = UserNotificationsScheduler(center: center)
+        let scheduler = NotificationsScheduler(center: center)
         let manager = NotificationCenterManager(center: center)
         
         Robin.notificationsScheduler = scheduler

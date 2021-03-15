@@ -23,7 +23,7 @@
 import UserNotifications
 
 @available(iOS 10.0, macOS 10.14, *)
-internal class UserNotificationsScheduler: RobinScheduler {
+internal class NotificationsScheduler: RobinScheduler {
     fileprivate let center: RobinNotificationCenter
     
     init(center: RobinNotificationCenter = UNUserNotificationCenter.current()) {

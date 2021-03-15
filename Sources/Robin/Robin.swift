@@ -25,7 +25,7 @@ public class Robin {
     static var notificationsScheduler: RobinScheduler!
     public static var scheduler: RobinScheduler {
         if notificationsScheduler == nil {
-            self.notificationsScheduler = UserNotificationsScheduler()
+            self.notificationsScheduler = NotificationsScheduler()
         }
 
         return self.notificationsScheduler
