@@ -62,11 +62,11 @@ internal class NotificationSettings: RobinSettingsManager {
         
         #if !os(macOS)
         self.observer = NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: .main) { [unowned self] notification in
-            setSettings()
+            self.setSettings()
         }
         #else
         self.observer = NotificationCenter.default.addObserver(forName: NSApplication.willBecomeActiveNotification, object: nil, queue: .main) { [unowned self] notification in
-            setSettings()
+            self.setSettings()
         }
         #endif
         
