@@ -24,7 +24,7 @@ import XCTest
 @testable import Robin
 
 @available(iOS 10.0, macOS 10.14, *)
-class RobinTests: XCTestCase {
+class RobinManagerTests: XCTestCase {
     override class func setUp() {
         let center = RobinNotificationCenterMock()
         let scheduler = NotificationsScheduler(center: center)
@@ -32,10 +32,6 @@ class RobinTests: XCTestCase {
         
         Robin.notificationsScheduler = scheduler
         Robin.notificationCenterManager = manager
-    }
-    
-    override class func tearDown() {
-        Robin.notificationsScheduler = nil
     }
     
     override func setUp() {
@@ -50,148 +46,6 @@ class RobinTests: XCTestCase {
         Robin.scheduler.cancelAll()
         Robin.manager.removeAllDelivered()
         super.tearDown()
-    }
-    
-    /// Tests whether scheduling a `RobinNotification` succeeds.
-    func testNotificationSchedule() {
-        let notification = RobinNotification(body: "This is a test notification")
-        
-        let scheduledNotification = Robin.scheduler.schedule(notification: notification)
-        
-        XCTAssertNotNil(scheduledNotification)
-        XCTAssertTrue(notification.scheduled)
-        XCTAssertTrue(scheduledNotification!.scheduled)
-        XCTAssertEqual(1, Robin.scheduler.scheduledCount())
-    }
-    
-    /// Tests whether scheduling multiple `RobinNotification`s succeeds.
-    func testNotificationMultipleSchedule() {
-        let count: Int = 15
-        for i in 0 ..< count {
-            let notification = RobinNotification(body: "This is a test notification #\(i + 1)")
-            
-            let _ = Robin.scheduler.schedule(notification: notification)
-        }
-        
-        XCTAssertEqual(count, Robin.scheduler.scheduledCount())
-    }
-    
-    /// Tests whether scheduling a `RobinNotification` beyond the allowed maximum succeeds.
-    func testNotificationScheduleOverAllowed() {
-        let count: Int = Constants.maximumAllowedNotifications
-        for i in 0 ..< count {
-            let notification = RobinNotification(body: "This is a test notification #\(i + 1)")
-            
-            let _ = Robin.scheduler.schedule(notification: notification)
-        }
-        
-        let notification = RobinNotification(body: "This is an overflow notification")
-        
-        let overflowNotification = Robin.scheduler.schedule(notification: notification)
-        
-        XCTAssertNil(overflowNotification)
-        XCTAssertFalse(notification.scheduled)
-        XCTAssertEqual(count, Robin.scheduler.scheduledCount())
-    }
-    
-    /// Tests whether rescheduling a `RobinNotification` beyond the allowed maximum succeeds.
-    func testNotificationReschedule() {
-        let date: Date = Date().next(days: 1).truncateSeconds()
-        let notification = RobinNotification(body: "This is a test notification")
-        
-        let _ = Robin.scheduler.schedule(notification: notification)
-        
-        notification.date = date
-        
-        let _ = Robin.scheduler.reschedule(notification: notification)
-        
-        let rescheduledNotification = Robin.scheduler.notification(withIdentifier: notification.identifier)
-        
-        XCTAssertNotNil(rescheduledNotification)
-        XCTAssertTrue(rescheduledNotification!.scheduled)
-        XCTAssertEqual(rescheduledNotification!.date, notification.date)
-        XCTAssertEqual(1, Robin.scheduler.scheduledCount())
-    }
-    
-    /// Tests whether canceling a scheduled system notification succeeds.
-    func testNotificationCancel() {
-        let notification = RobinNotification(body: "This is a test notification")
-        
-        let scheduledNotification = Robin.scheduler.schedule(notification: notification)
-        
-        Robin.scheduler.cancel(notification: scheduledNotification!)
-        
-        XCTAssertNotNil(scheduledNotification)
-        XCTAssertFalse(notification.scheduled)
-        XCTAssertFalse(scheduledNotification!.scheduled)
-        XCTAssertEqual(0, Robin.scheduler.scheduledCount())
-    }
-    
-    /// Tests whether canceling a scheduled system notification by identifier succeeds.
-    func testNotificationIdentifierCancel() {
-        let notification = RobinNotification(body: "This is a test notification")
-        
-        let _ = Robin.scheduler.schedule(notification: notification)
-        
-        Robin.scheduler.cancel(withIdentifier: notification.identifier)
-        
-        XCTAssertTrue(notification.scheduled)
-        XCTAssertEqual(0, Robin.scheduler.scheduledCount())
-    }
-    
-    /// Tests whether canceling multiple scheduled system notifications by identifier succeeds.
-    func testNotificationMultipleCancel() {
-        let count: Int = 15
-        let identifier: String = "IDENTIFIER"
-        for i in 0 ..< count {
-            let notification = RobinNotification(identifier: identifier, body: "This is a test notification #\(i + 1)")
-            
-            let _ = Robin.scheduler.schedule(notification: notification)
-        }
-        
-        Robin.scheduler.cancel(withIdentifier: identifier)
-        
-        XCTAssertEqual(0, Robin.scheduler.scheduledCount())
-    }
-    
-    /// Tests whether canceling all scheduled system notifications succeeds.
-    func testCancelAll() {
-        let count: Int = 15
-        for i in 0 ..< count {
-            let notification = RobinNotification(body: "This is a test notification #\(i + 1)")
-            
-            let _ = Robin.scheduler.schedule(notification: notification)
-        }
-        
-        Robin.scheduler.cancelAll()
-        
-        XCTAssertEqual(0, Robin.scheduler.scheduledCount())
-    }
-    
-    /// Tests whether retrieving a scheduled system notification by identifier succeeds.
-    func testNotificationWithIdentifier() {
-        let notification = RobinNotification(body: "This is a test notification")
-        notification.title = "This is a test title"
-        notification.badge = 1
-        notification.repeats = .week
-        notification.sound = RobinNotificationSound(named: "TestSound")
-        notification.setUserInfo(value: "Value", forKey: "Key")
-        
-        let _ = Robin.scheduler.schedule(notification: notification)
-        
-        let retrievedNotification = Robin.scheduler.notification(withIdentifier: notification.identifier)
-        
-        XCTAssertEqual(retrievedNotification?.title, notification.title)
-        XCTAssertEqual(retrievedNotification?.identifier, notification.identifier)
-        XCTAssertEqual(retrievedNotification?.body, notification.body)
-        XCTAssertEqual(retrievedNotification?.date, notification.date.truncateSeconds())
-        XCTAssertEqual(retrievedNotification?.userInfo.count, notification.userInfo.count)
-        XCTAssertEqual(retrievedNotification?.badge, notification.badge)
-        XCTAssertTrue(notification.sound.isValid())
-        XCTAssertEqual(retrievedNotification?.repeats, notification.repeats)
-        XCTAssertEqual(retrievedNotification?.scheduled, notification.scheduled)
-        XCTAssertTrue(retrievedNotification!.scheduled)
-        XCTAssertEqual(1, Robin.scheduler.scheduledCount())
     }
     
     /// Tests whether retrieving all delivered system notifications succeeds.
