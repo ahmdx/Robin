@@ -13,7 +13,7 @@ Robin is a notification interface for iOS and macOS that handles UserNotificatio
 
 - iOS 10.0+
 - macOS 10.14+
-- Xcode 10.0+
+- Xcode 11.0+
 - Swift 4.2+
 
 ## Communication
@@ -30,19 +30,19 @@ Robin is available through both [Swift Package Manager](https://swift.org/packag
 To install using SPM:
 
 ```swift
-.package(url: "https://github.com/ahmdx/Robin", from: "0.93.0"),
+.package(url: "https://github.com/ahmdx/Robin", from: "0.93.1"),
 ```
 
 CocoaPods:
 
 ```ruby
-pod 'Robin', '~> 0.93.0'
+pod 'Robin', '~> 0.93.1'
 ```
 
 And if you want to include the test suite in your project:
 
 ```ruby
-pod 'Robin', '~> 0.93.0', :testspecs => ['Tests']
+pod 'Robin', '~> 0.93.1', :testspecs => ['Tests']
 ```
 
 ## Usage

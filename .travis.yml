@@ -2,35 +2,59 @@
 # * http://www.objc.io/issue-6/travis-ci.html
 # * https://github.com/supermarin/xcpretty#usage
 
-language: objective-c
+language: swift
 
-install: swift package generate-xcodeproj
+install: swift package generate-xcodeproj --xcconfig-overrides conf.xcconfig
 
 jobs:
   include:
     # macOS
-    - osx_image: xcode10.2
+    - name: macOS 10.14
+      osx_image: xcode10.2
       xcode_project: Robin.xcodeproj
       xcode_scheme: Robin-Package
       xcode_destination: platform=macOS
-    - osx_image: xcode11.4
+      before_install: echo "MACOSX_DEPLOYMENT_TARGET = 10.14" >> conf.xcconfig
+    - name: macOS 10.15
+      osx_image: xcode11.4
       xcode_project: Robin.xcodeproj
       xcode_scheme: Robin-Package
       xcode_destination: platform=macOS
-    - osx_image: xcode12.2
+      before_install: echo "MACOSX_DEPLOYMENT_TARGET = 10.14" >> conf.xcconfig
+    - name: macOS 11.0
+      osx_image: xcode12.2
       xcode_project: Robin.xcodeproj
       xcode_scheme: Robin-Package
       xcode_destination: platform=macOS
+      before_install: echo "MACOSX_DEPLOYMENT_TARGET = 10.14" >> conf.xcconfig
     # iOS
-    - osx_image: xcode10.3
+    - name: iOS 10.3.1
+      osx_image: xcode11.1
       xcode_project: Robin.xcodeproj
       xcode_scheme: Robin-Package
-      xcode_destination: platform=iOS Simulator,OS=12.4,name=iPhone 8
-    - osx_image: xcode11.6
+      xcode_destination: platform=iOS Simulator,OS=10.3.1,name=iPhone 7
+      before_install: echo "IPHONEOS_DEPLOYMENT_TARGET = 10.0" >> conf.xcconfig
+    - name: iOS 11.0.1
+      osx_image: xcode11.1
       xcode_project: Robin.xcodeproj
       xcode_scheme: Robin-Package
-      xcode_destination: platform=iOS Simulator,OS=13.6,name=iPhone 8
-    - osx_image: xcode12.2
+      xcode_destination: platform=iOS Simulator,OS=11.0.1,name=iPhone 8
+      before_install: echo "IPHONEOS_DEPLOYMENT_TARGET = 10.0" >> conf.xcconfig
+    - name: iOS 12.0
+      osx_image: xcode11.1
       xcode_project: Robin.xcodeproj
       xcode_scheme: Robin-Package
-      xcode_destination: platform=iOS Simulator,OS=14.2,name=iPhone 8
+      xcode_destination: platform=iOS Simulator,OS=12.0,name=iPhone 8
+      before_install: echo "IPHONEOS_DEPLOYMENT_TARGET = 10.0" >> conf.xcconfig
+    - name: iOS 13.1
+      osx_image: xcode11.1
+      xcode_project: Robin.xcodeproj
+      xcode_scheme: Robin-Package
+      xcode_destination: platform=iOS Simulator,OS=13.1,name=iPhone 8
+      before_install: echo "IPHONEOS_DEPLOYMENT_TARGET = 10.0" >> conf.xcconfig
+    - name: iOS 14.0.1
+      osx_image: xcode12.2
+      xcode_project: Robin.xcodeproj
+      xcode_scheme: Robin-Package
+      xcode_destination: platform=iOS Simulator,OS=14.0.1,name=iPhone 8
+      before_install: echo "IPHONEOS_DEPLOYMENT_TARGET = 10.0" >> conf.xcconfig

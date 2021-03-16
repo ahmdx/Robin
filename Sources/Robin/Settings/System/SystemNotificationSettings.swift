@@ -41,11 +41,10 @@ internal protocol SystemNotificationSettings {
     
     #if !os(macOS)
     var carPlaySetting: UNNotificationSetting { get }
-
+    
     @available(iOS 13.0, *)
     var announcementSetting: UNNotificationSetting { get }
     #endif
-    
     
     func getEnabledSettings() -> RobinSettingsOptions
     func robinNotificationSettings() -> RobinNotificationSettings
