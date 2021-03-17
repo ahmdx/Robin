@@ -22,7 +22,6 @@
 
 import Foundation
 
-@available(iOS 10.0, macOS 10.14, *)
 public extension Date {
     /// Adds or subtracts a number of minutes to the current data.
     ///
