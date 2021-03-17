@@ -31,19 +31,19 @@ Robin is available through both [Swift Package Manager](https://swift.org/packag
 To install using SPM:
 
 ```swift
-.package(url: "https://github.com/ahmdx/Robin", from: "0.94.0"),
+.package(url: "https://github.com/ahmdx/Robin", from: "0.94.1"),
 ```
 
 CocoaPods:
 
 ```ruby
-pod 'Robin', '~> 0.94.0'
+pod 'Robin', '~> 0.94.1'
 ```
 
 And if you want to include the test suite in your project:
 
 ```ruby
-pod 'Robin', '~> 0.94.0', :testspecs => ['Tests']
+pod 'Robin', '~> 0.94.1', :testspecs => ['Tests']
 ```
 
 ## Usage
