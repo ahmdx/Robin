@@ -20,6 +20,7 @@
 // THE SOFTWARE.
 //
 
+#if !os(watchOS)
 import XCTest
 @testable import Robin
 
@@ -138,5 +139,5 @@ class Date_SchedulerTests: XCTestCase {
         
         XCTAssertEqual(dateWithTime, testDate)
     }
-    
 }
+#endif

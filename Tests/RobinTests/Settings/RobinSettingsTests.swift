@@ -20,6 +20,7 @@
 // THE SOFTWARE.
 //
 
+#if !os(watchOS)
 import Foundation
 import XCTest
 @testable import Robin
@@ -197,3 +198,4 @@ class RobinSettingsTests: XCTestCase {
         #endif
     }
 }
+#endif

@@ -20,6 +20,7 @@
 // THE SOFTWARE.
 //
 
+#if !os(watchOS)
 import XCTest
 @testable import Robin
 
@@ -157,3 +158,4 @@ class RobinManagerTests: XCTestCase {
         wait(for: [deliveryExpectation, removalExpectation], timeout: 5.0)
     }
 }
+#endif

@@ -20,6 +20,7 @@
 // THE SOFTWARE.
 //
 
+#if !os(watchOS)
 @testable import Robin
 import UserNotifications
 
@@ -51,3 +52,4 @@ class SystemNotificationSettingsMock: SystemNotificationSettings {
     
     var carPlaySetting: UNNotificationSetting = .disabled
 }
+#endif

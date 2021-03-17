@@ -20,6 +20,7 @@
 // THE SOFTWARE.
 //
 
+#if !os(watchOS)
 import UserNotifications
 @testable import Robin
 
@@ -33,3 +34,4 @@ class DeliveredSystemNotificationMock: DeliveredSystemNotification {
         self.date = Date()
     }
 }
+#endif

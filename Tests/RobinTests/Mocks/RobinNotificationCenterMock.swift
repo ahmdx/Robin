@@ -20,6 +20,7 @@
 // THE SOFTWARE.
 //
 
+#if !os(watchOS)
 import UserNotifications
 @testable import Robin
 
@@ -68,3 +69,4 @@ class RobinNotificationCenterMock: RobinNotificationCenter {
         deliveredNotifications = [:]
     }
 }
+#endif

@@ -20,6 +20,7 @@
 // THE SOFTWARE.
 //
 
+#if !os(watchOS)
 import XCTest
 @testable import Robin
 
@@ -188,3 +189,4 @@ class RobinSchedulerTests: XCTestCase {
         XCTAssertEqual(1, Robin.scheduler.scheduledCount())
     }
 }
+#endif

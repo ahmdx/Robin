@@ -20,6 +20,7 @@
 // THE SOFTWARE.
 //
 
+#if !os(watchOS)
 import XCTest
 @testable import Robin
 import UserNotifications
@@ -59,3 +60,4 @@ class RobinNotificationSettingsTests: XCTestCase {
         }
     }
 }
+#endif

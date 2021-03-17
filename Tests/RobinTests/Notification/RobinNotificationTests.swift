@@ -20,8 +20,9 @@
 // THE SOFTWARE.
 //
 
+#if !os(watchOS)
 import XCTest
-import Robin
+@testable import Robin
 
 @available(iOS 10.0, macOS 10.14, *)
 class RobinNotificationTests: XCTestCase {
@@ -153,5 +154,5 @@ class RobinNotificationTests: XCTestCase {
         
         XCTAssertFalse(doesNotPrecede)
     }
-    
 }
+#endif
