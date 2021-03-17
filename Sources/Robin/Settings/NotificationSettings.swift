@@ -25,8 +25,6 @@ import UserNotifications
 import AppKit
 #elseif os(iOS)
 import UIKit
-#elseif os(watchOS)
-import WatchKit
 #endif
 
 @available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
@@ -78,10 +76,6 @@ internal class NotificationSettings: RobinSettingsManager {
         self.observer = notificationCenter.addObserver(forName: NSApplication.willBecomeActiveNotification, object: nil, queue: .main, using: completionHandler)
         #elseif os(iOS)
         self.observer = notificationCenter.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: .main, using: completionHandler)
-        #elseif os(watchOS)
-        if #available(watchOS 7.0, *) {
-            self.observer = notificationCenter.addObserver(forName: WKExtension.applicationWillEnterForegroundNotification, object: nil, queue: .main, using: completionHandler)
-        }
         #endif
         
         setSettings()

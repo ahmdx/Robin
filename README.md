@@ -92,7 +92,7 @@ Robin automatically updates information about the app's settings when the app go
 Robin.settings.forceRefresh()
 ```
 
-> watchOS versions prior to version 7.0 do not support automatic settings refresh.
+> Robin on watchOS does not support automatic settings refresh.
 
 ### Notifications
 
