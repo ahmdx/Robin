@@ -22,7 +22,7 @@
 
 import Foundation
 
-@available(iOS 10.0, macOS 10.14, *)
+@available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
 public class RobinNotification: NSObject {
     
     /// A string assigned to the notification for later access.
@@ -47,8 +47,10 @@ public class RobinNotification: NSObject {
     /// The number the notification should display on the app icon.
     public var badge: NSNumber? = nil
     
+    #if !os(watchOS)
     /// The sound name of the notification.
     public var sound: RobinNotificationSound = RobinNotificationSound()
+    #endif
     
     /// The repeat interval of the notification.
     public var repeats: RobinNotificationRepeats = .none
@@ -71,7 +73,9 @@ public class RobinNotification: NSObject {
         if let badge = self.badge {
             result += "\tBadge: \(badge)\n"
         }
+        #if !os(watchOS)
         result += "\tSound name: \(self.sound)\n"
+        #endif
         result += "\tRepeats every: \(self.repeats.rawValue)\n"
         result += "\tScheduled: \(self.scheduled)\n"
         result += "\tDelivered: \(self.delivered)"

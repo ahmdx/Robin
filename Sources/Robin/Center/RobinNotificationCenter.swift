@@ -22,7 +22,7 @@
 
 import UserNotifications
 
-@available(iOS 10.0, macOS 10.14, *)
+@available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
 protocol RobinNotificationCenter {
     func requestAuthorization(options: UNAuthorizationOptions, completionHandler: @escaping (Bool, Error?) -> Void)
     /// Returns the app's notifications settings.
@@ -53,7 +53,7 @@ protocol RobinNotificationCenter {
     func removeAllDeliveredNotifications()
 }
 
-@available(iOS 10.0, macOS 10.14, *)
+@available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
 extension RobinNotificationCenter {
     func requestAuthorization(options: UNAuthorizationOptions = [], completionHandler: @escaping (Bool, Error?) -> Void) {
         requestAuthorization(options: options, completionHandler: completionHandler)

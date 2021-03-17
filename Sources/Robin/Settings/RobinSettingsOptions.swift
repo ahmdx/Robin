@@ -20,7 +20,7 @@
 // THE SOFTWARE.
 //
 
-@available(iOS 10.0, macOS 10.14, *)
+@available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
 public struct RobinSettingsOptions: OptionSet, RawRepresentable {
     public let rawValue: UInt
     
@@ -28,17 +28,22 @@ public struct RobinSettingsOptions: OptionSet, RawRepresentable {
         self.rawValue = rawValue
     }
     
+    #if !os(watchOS)
     public static let badge = RobinSettingsOptions(rawValue: 1 << 0)
+    public static let lockScreen = RobinSettingsOptions(rawValue: 1 << 4)
+    #endif
+    
     public static let sound = RobinSettingsOptions(rawValue: 1 << 1)
     public static let alert = RobinSettingsOptions(rawValue: 1 << 2)
     public static let notificationCenter = RobinSettingsOptions(rawValue: 1 << 3)
-    public static let lockScreen = RobinSettingsOptions(rawValue: 1 << 4)
     
     @available(iOS 12.0, *)
     public static let criticalAlert = RobinSettingsOptions(rawValue: 1 << 5)
     
     #if !os(macOS)
+    #if !os(watchOS)
     public static let carPlay = RobinSettingsOptions(rawValue: 1 << 6)
+    #endif
     
     @available(iOS 13.0, *)
     public static let announcement = RobinSettingsOptions(rawValue: 1 << 7)

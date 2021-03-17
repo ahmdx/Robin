@@ -21,13 +21,15 @@
 //
 
 import UserNotifications
-#if !os(macOS)
-import UIKit
-#else
+#if os(macOS)
 import AppKit
+#elseif os(iOS)
+import UIKit
+#elseif os(watchOS)
+import WatchKit
 #endif
 
-@available(iOS 10.0, macOS 10.14, *)
+@available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
 internal class NotificationSettings: RobinSettingsManager {
     fileprivate let center: RobinNotificationCenter
     fileprivate var observer: NSObjectProtocol? = nil
@@ -41,14 +43,17 @@ internal class NotificationSettings: RobinSettingsManager {
         return self.settings.authorizationStatus
     }
     
+    #if !os(watchOS)
     var alertStyle: UNAlertStyle {
         return self.settings.alertStyle
     }
+    
     
     @available(iOS 11.0, *)
     var showPreviews: UNShowPreviewsSetting {
         return self.settings.showPreviews
     }
+    #endif
     
     deinit {
         if let observer = observer {
@@ -58,15 +63,24 @@ internal class NotificationSettings: RobinSettingsManager {
     
     init(center: RobinNotificationCenter = UNUserNotificationCenter.current()) {
         self.center = center
+        #if os(watchOS)
+        self.settings = RobinNotificationSettings(authorizationStatus: .notDetermined, enabledSettings: [])
+        #else
         self.settings = RobinNotificationSettings(alertStyle: .none, authorizationStatus: .notDetermined, enabledSettings: [])
+        #endif
         
-        #if !os(macOS)
-        self.observer = NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: .main) { [unowned self] notification in
+        let notificationCenter = NotificationCenter.default
+        let completionHandler: ((Notification) -> Void) = { [unowned self] notification in
             self.setSettings()
         }
-        #else
-        self.observer = NotificationCenter.default.addObserver(forName: NSApplication.willBecomeActiveNotification, object: nil, queue: .main) { [unowned self] notification in
-            self.setSettings()
+        
+        #if os(macOS)
+        self.observer = notificationCenter.addObserver(forName: NSApplication.willBecomeActiveNotification, object: nil, queue: .main, using: completionHandler)
+        #elseif os(iOS)
+        self.observer = notificationCenter.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: .main, using: completionHandler)
+        #elseif os(watchOS)
+        if #available(watchOS 7.0, *) {
+            self.observer = notificationCenter.addObserver(forName: WKExtension.applicationWillEnterForegroundNotification, object: nil, queue: .main, using: completionHandler)
         }
         #endif
         

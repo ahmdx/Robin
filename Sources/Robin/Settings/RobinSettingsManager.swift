@@ -22,18 +22,21 @@
 
 import UserNotifications
 
-@available(iOS 10.0, macOS 10.14, *)
+@available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
 public protocol RobinSettingsManager {
-    /// The alert style of the app's notifications.
-    var alertStyle: UNAlertStyle { get }
     /// The authorization status of the app's notifications.
     var authorizationStatus: UNAuthorizationStatus { get }
     /// The enabled settings of the app's notifications.
     var enabledSettings: RobinSettingsOptions { get }
     
+    #if !os(watchOS)
+    /// The alert style of the app's notifications.
+    var alertStyle: UNAlertStyle { get }
+    
     /// The show previews status of the app's notifications.
     @available(iOS 11.0, *)
     var showPreviews: UNShowPreviewsSetting { get }
+    #endif
     
     /// Requests and registers your preferred options for notifying the user.
     ///

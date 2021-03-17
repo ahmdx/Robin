@@ -22,7 +22,7 @@
 
 import UserNotifications
 
-@available(iOS 10.0, macOS 10.14, *)
+@available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
 extension UNUserNotificationCenter: RobinNotificationCenter {
     func getSettings(completionHandler: @escaping (SystemNotificationSettings) -> Void) {
         self.getNotificationSettings(completionHandler: completionHandler)

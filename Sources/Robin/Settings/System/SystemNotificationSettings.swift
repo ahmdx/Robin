@@ -22,27 +22,33 @@
 
 import UserNotifications
 
-@available(iOS 10.0, macOS 10.14, *)
+@available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
 internal protocol SystemNotificationSettings {
-    var alertStyle: UNAlertStyle { get }
     var authorizationStatus: UNAuthorizationStatus { get }
+    
+    #if !os(watchOS)
+    var alertStyle: UNAlertStyle { get }
     
     @available(iOS 11.0, *)
     var showPreviewsSetting: UNShowPreviewsSetting { get }
     
     var badgeSetting: UNNotificationSetting { get }
+    var lockScreenSetting: UNNotificationSetting { get }
+    #endif
+    
     var soundSetting: UNNotificationSetting { get }
     var alertSetting: UNNotificationSetting { get }
     var notificationCenterSetting: UNNotificationSetting { get }
-    var lockScreenSetting: UNNotificationSetting { get }
     
-    @available(iOS 12.0, *)
+    @available(iOS 12.0, watchOS 5.0, *)
     var criticalAlertSetting: UNNotificationSetting { get }
     
     #if !os(macOS)
+    #if !os(watchOS)
     var carPlaySetting: UNNotificationSetting { get }
+    #endif
     
-    @available(iOS 13.0, *)
+    @available(iOS 13.0, watchOS 6.0, *)
     var announcementSetting: UNNotificationSetting { get }
     #endif
     
@@ -50,14 +56,20 @@ internal protocol SystemNotificationSettings {
     func robinNotificationSettings() -> RobinNotificationSettings
 }
 
-@available(iOS 10.0, macOS 10.14, *)
+@available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
 internal extension SystemNotificationSettings {
     func getEnabledSettings() -> RobinSettingsOptions {
         var enabledSettings: RobinSettingsOptions = []
         
+        #if !os(watchOS)
         if self.badgeSetting == .enabled {
             enabledSettings.insert(.badge)
         }
+        
+        if self.lockScreenSetting == .enabled {
+            enabledSettings.insert(.lockScreen)
+        }
+        #endif
         
         if self.soundSetting == .enabled {
             enabledSettings.insert(.sound)
@@ -71,22 +83,20 @@ internal extension SystemNotificationSettings {
             enabledSettings.insert(.notificationCenter)
         }
         
-        if self.lockScreenSetting == .enabled {
-            enabledSettings.insert(.lockScreen)
-        }
-        
-        if #available(iOS 12.0, *) {
+        if #available(iOS 12.0, watchOS 5.0, *) {
             if self.criticalAlertSetting == .enabled {
                 enabledSettings.insert(.criticalAlert)
             }
         }
         
         #if !os(macOS)
+        #if !os(watchOS)
         if self.carPlaySetting == .enabled {
             enabledSettings.insert(.carPlay)
         }
+        #endif
         
-        if #available(iOS 13.0, *) {
+        if #available(iOS 13.0, watchOS 6.0, *) {
             if self.announcementSetting == .enabled {
                 enabledSettings.insert(.announcement)
             }
@@ -97,14 +107,18 @@ internal extension SystemNotificationSettings {
     }
     
     func robinNotificationSettings() -> RobinNotificationSettings {
+        #if os(watchOS)
+        return RobinNotificationSettings(authorizationStatus: self.authorizationStatus,
+                                         enabledSettings: self.getEnabledSettings())
+        #else
         var settings = RobinNotificationSettings(alertStyle: self.alertStyle,
                                                  authorizationStatus: self.authorizationStatus,
                                                  enabledSettings: self.getEnabledSettings())
-        
         if #available(iOS 11.0, *) {
             settings._showPreviews = self.showPreviewsSetting
         }
         
         return settings
+        #endif
     }
 }

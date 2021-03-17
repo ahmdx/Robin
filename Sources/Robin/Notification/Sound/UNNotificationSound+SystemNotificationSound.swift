@@ -20,7 +20,9 @@
 // THE SOFTWARE.
 //
 
+#if !os(watchOS)
 import UserNotifications
 
 @available(iOS 10.0, macOS 10.14, *)
 extension UNNotificationSound: SystemNotificationSound {}
+#endif

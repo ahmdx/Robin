@@ -22,7 +22,7 @@
 
 import UserNotifications
 
-@available(iOS 10.0, macOS 10.14, *)
+@available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
 internal class NotificationsScheduler: RobinScheduler {
     fileprivate let center: RobinNotificationCenter
     
@@ -48,6 +48,7 @@ internal class NotificationsScheduler: RobinScheduler {
         content.body = notification.body
         
         var sound: UNNotificationSound = UNNotificationSound.default
+        #if !os(watchOS)
         if let name = notification.sound.name {
             if name != Constants.NotificationValues.defaultSoundName {
                 sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: name))
@@ -57,6 +58,7 @@ internal class NotificationsScheduler: RobinScheduler {
                 sound = notificationSound
             }
         }
+        #endif
         content.sound = sound
         
         content.userInfo = notification.userInfo

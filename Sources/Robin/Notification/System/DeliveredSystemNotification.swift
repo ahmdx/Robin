@@ -22,7 +22,7 @@
 
 import UserNotifications
 
-@available(iOS 10.0, macOS 10.14, *)
+@available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
 internal protocol DeliveredSystemNotification {
     var date: Date { get }
     var request: UNNotificationRequest { get }
@@ -34,7 +34,7 @@ internal protocol DeliveredSystemNotification {
     func robinNotification() -> RobinNotification
 }
 
-@available(iOS 10.0, macOS 10.14, *)
+@available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
 internal extension DeliveredSystemNotification {
     func robinNotification() -> RobinNotification {
         let notification = self.request.robinNotification()

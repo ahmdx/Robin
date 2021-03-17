@@ -22,7 +22,7 @@
 
 import UserNotifications
 
-@available(iOS 10.0, macOS 10.14, *)
+@available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
 public protocol SystemNotification {
     var identifier: String { get }
     var content: UNNotificationContent { get }
@@ -35,7 +35,7 @@ public protocol SystemNotification {
     func robinNotification() -> RobinNotification
 }
 
-@available(iOS 10.0, macOS 10.14, *)
+@available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
 public extension SystemNotification {
     func robinNotification() -> RobinNotification {
         let content = self.content
@@ -62,11 +62,13 @@ public extension SystemNotification {
         
         notification.badge = content.badge
 
+        #if !os(watchOS)
         if let sound = content.sound {
             if sound != UNNotificationSound.default {
                 notification.sound = RobinNotificationSound(sound: sound)
             }
         }
+        #endif
         
         notification.scheduled = true
         

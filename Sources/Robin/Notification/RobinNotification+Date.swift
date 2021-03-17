@@ -22,7 +22,7 @@
 
 import Foundation
 
-@available(iOS 10.0, macOS 10.14, *)
+@available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
 extension RobinNotification {
     /// Since repeating a `UNCalendarNotificationTrigger` nullifies some of the
     /// date components, the original date needs to be stored. Robin stores this date

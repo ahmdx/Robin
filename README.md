@@ -12,8 +12,9 @@ Robin is a notification interface for iOS and macOS that handles UserNotificatio
 ## Requirements
 
 - iOS 10.0+
+- watchOS 3.0+
 - macOS 10.14+
-- Xcode 11.0+
+- Xcode 11.1+
 - Swift 4.2+
 
 ## Communication
@@ -30,19 +31,19 @@ Robin is available through both [Swift Package Manager](https://swift.org/packag
 To install using SPM:
 
 ```swift
-.package(url: "https://github.com/ahmdx/Robin", from: "0.93.1"),
+.package(url: "https://github.com/ahmdx/Robin", from: "0.94.0"),
 ```
 
 CocoaPods:
 
 ```ruby
-pod 'Robin', '~> 0.93.1'
+pod 'Robin', '~> 0.94.0'
 ```
 
 And if you want to include the test suite in your project:
 
 ```ruby
-pod 'Robin', '~> 0.93.1', :testspecs => ['Tests']
+pod 'Robin', '~> 0.94.0', :testspecs => ['Tests']
 ```
 
 ## Usage
@@ -67,6 +68,8 @@ To query for the app's notification settings, you can use `Robin.settings`:
 let alertStyle = Robin.settings.alertStyle
 ```
 
+> `alertStyle` is not available on watchOS.
+
 ```swift
 let authorizationStatus = Robin.settings.authorizationStatus
 ```
@@ -81,11 +84,15 @@ let enabledSettings = Robin.settings.enabledSettings
 let showPreviews = Robin.settings.showPreviews
 ```
 
+> `showPreviews` is not available on watchOS.
+
 Robin automatically updates information about the app's settings when the app goes into an inactive state and becomes active again to avoid unnecessary queries. If you would like to override this behavior and update the information manually, you can use `forceRefresh()`.
 
 ```swift
 Robin.settings.forceRefresh()
 ```
+
+> watchOS versions prior to version 7.0 do not support automatic settings refresh.
 
 ### Notifications
 
@@ -110,11 +117,11 @@ The following table summarizes all `RobinNotification` properties.
 | badge | `NSNumber?` | The number the notification should display on the app icon. |
 | body | `String!` | The body string of the notification. |
 | date | `Date!` | The date in which the notification is set to fire on. |
+| delivered | `Bool` | The delivery status of the notification. `read-only` |
 | identifier<sup>[1]</sup> | `String!` | A string assigned to the notification for later access. |
 | repeats | `Repeats` | The repeat interval of the notification. One of `none` (default), `hour`, `day`, `week`, or `month`.|
 | scheduled | `Bool` | The status of the notification. `read-only` |
-| delivered | `Bool` | The delivery status of the notification. `read-only` |
-| sound | `RobinNotificationSound` | The sound name of the notification. |
+| sound | `RobinNotificationSound` | The sound name of the notification. `not available on watchOS`|
 | title | `String?` | The title string of the notification. |
 | userInfo<sup>[2]</sup> | `[AnyHashable : Any]!` | A dictionary that holds additional information. |
 

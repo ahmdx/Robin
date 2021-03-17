@@ -23,9 +23,8 @@
 import UserNotifications
 
 /// A struct that holds information about the app's notifications settings.
-@available(iOS 10.0, macOS 10.14, *)
+@available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
 public struct RobinNotificationSettings {
-    public let alertStyle: UNAlertStyle
     public let authorizationStatus: UNAuthorizationStatus
     public let enabledSettings: RobinSettingsOptions
     
@@ -36,11 +35,22 @@ public struct RobinNotificationSettings {
         }
     }
     
+    #if !os(watchOS)
+    public let alertStyle: UNAlertStyle
+    
     @available(iOS 11.0, *)
     public var showPreviews: UNShowPreviewsSetting {
         return _showPreviews as? UNShowPreviewsSetting ?? .never
     }
+    #endif
     
+    #if os(watchOS)
+    internal init(authorizationStatus: UNAuthorizationStatus,
+                  enabledSettings: RobinSettingsOptions) {
+        self.authorizationStatus = authorizationStatus
+        self.enabledSettings = enabledSettings
+    }
+    #else
     internal init(alertStyle: UNAlertStyle,
                   authorizationStatus: UNAuthorizationStatus,
                   enabledSettings: RobinSettingsOptions) {
@@ -48,4 +58,5 @@ public struct RobinNotificationSettings {
         self.authorizationStatus = authorizationStatus
         self.enabledSettings = enabledSettings
     }
+    #endif
 }

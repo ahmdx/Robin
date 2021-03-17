@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name = 'Robin'
-  s.version = '0.93.1'
+  s.version = '0.94.0'
   s.summary = 'A notifications scheduler written in Swift.'
   s.swift_version = '4.2'
 
@@ -27,8 +27,8 @@ Pod::Spec.new do |s|
   s.author = { 'Ahmed Mohamed' => 'dev@ahmd.pro' }
   s.source = { :git => 'https://github.com/ahmdx/Robin.git', :tag => s.version.to_s }
   
-
   s.ios.deployment_target = '10.0'
+  s.watchos.deployment_target = '3.0'
   s.osx.deployment_target = '10.14'
 
   s.source_files = 'Sources/**/*'
