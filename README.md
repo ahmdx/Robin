@@ -48,19 +48,19 @@ Robin is available through both [Swift Package Manager](https://swift.org/packag
 To install using SPM:
 
 ```swift
-.package(url: "https://github.com/ahmdx/Robin", from: "0.95.0"),
+.package(url: "https://github.com/ahmdx/Robin", from: "0.96.0"),
 ```
 
 CocoaPods:
 
 ```ruby
-pod 'Robin', '~> 0.95.0'
+pod 'Robin', '~> 0.96.0'
 ```
 
 And if you want to include the test suite in your project:
 
 ```ruby
-pod 'Robin', '~> 0.95.0', :testspecs => ['Tests']
+pod 'Robin', '~> 0.96.0', :testspecs => ['Tests']
 ```
 
 ## Usage
@@ -85,7 +85,7 @@ To query for the app's notification settings, you can use `Robin.settings`:
 let alertStyle = Robin.settings.alertStyle
 ```
 
-> `alertStyle` is not available on watchOS.
+> Note: `alertStyle` is not available on watchOS.
 
 ```swift
 let authorizationStatus = Robin.settings.authorizationStatus
@@ -95,13 +95,13 @@ let authorizationStatus = Robin.settings.authorizationStatus
 let enabledSettings = Robin.settings.enabledSettings
 ```
 
-> This returns an option set of all the enabled settings. If some settings are not included in the set, they may be disabled or not supported. If you would like to know if some specific setting is enabled, you can use `enabledSettings.contains(.sound)` for example. For more details, refer to `RobinSettingsOptions`.
+> Note: This returns an option set of all the enabled settings. If some settings are not included in the set, they may be disabled or not supported. If you would like to know if some specific setting is enabled, you can use `enabledSettings.contains(.sound)` for example. For more details, refer to `RobinSettingsOptions`.
 
 ```swift
 let showPreviews = Robin.settings.showPreviews
 ```
 
-> `showPreviews` is not available on watchOS.
+> Note: `showPreviews` is not available on watchOS.
 
 Robin automatically updates information about the app's settings when the app goes into an inactive state and becomes active again to avoid unnecessary queries. If you would like to override this behavior and update the information manually, you can use `forceRefresh()`.
 
@@ -109,23 +109,37 @@ Robin automatically updates information about the app's settings when the app go
 Robin.settings.forceRefresh()
 ```
 
-> Robin on watchOS does not support automatic settings refresh.
+> Note: Robin on watchOS does not support automatic settings refresh.
 
 ### Notifications
 
-Scheduling iOS notifications via `Robin` is carried over by manipulating `RobinNotification` objects. To create a `RobinNotification` object, simply call its initializer.
+Scheduling notifications via `Robin` is carried over by manipulating `RobinNotification` objects. To create a `RobinNotification` object, simply call its initializer.
 
 ```swift
-init(identifier: String = default, body: String, date: Date = default)
+init(identifier: String = default, body: String, trigger: RobinNotificationTrigger = default)
 ```
 
 Example notification, with a unique identifier, to be fired an hour from now.
 
 ```swift
-let notification = RobinNotification(body: "A notification", date: Date.next(hours: 1))
+let notification = RobinNotification(body: "A notification", trigger: .date(.next(hours: 1)))
 ```
 
-> `next(minutes:)`, `next(hours:)`, and `next(days:)` are part of a `Date` extension.
+> Note: `next(minutes:)`, `next(hours:)`, and `next(days:)` are part of a `Date` extension.
+
+Example notification, with a unique identifier, to be fired when entering a region.
+
+```swift
+/// https://developer.apple.com/documentation/usernotifications/unlocationnotificationtrigger
+let center = CLLocationCoordinate2D(latitude: 37.335400, longitude: -122.009201)
+let region = CLCircularRegion(center: center, radius: 2000.0, identifier: "Headquarters")
+region.notifyOnEntry = true
+region.notifyOnExit = false
+
+let notification = RobinNotification(body: "A notification", trigger: .location(region))
+```
+
+> Note: For the system to deliver location notifications, the app should be authorized to use location services, see [here](https://developer.apple.com/documentation/usernotifications/unlocationnotificationtrigger). *Robin does not check whether the required permissions are granted before scheduling a location notification.*
 
 The following table summarizes all `RobinNotification` properties.
 
@@ -133,14 +147,13 @@ The following table summarizes all `RobinNotification` properties.
 | --- | --- | --- |
 | badge | `NSNumber?` | The number the notification should display on the app icon. |
 | body | `String!` | The body string of the notification. |
-| date | `Date!` | The date in which the notification is set to fire on. |
 | delivered | `Bool` | The delivery status of the notification. `read-only` |
 | identifier<sup>[1]</sup> | `String!` | A string assigned to the notification for later access. |
-| repeats | `Repeats` | The repeat interval of the notification. One of `none` (default), `hour`, `day`, `week`, or `month`.|
 | scheduled | `Bool` | The status of the notification. `read-only` |
 | sound | `RobinNotificationSound` | The sound name of the notification. `not available on watchOS`|
 | threadIdentifier | `String?` | The identifier used to visually group notifications together. |
 | title | `String?` | The title string of the notification. |
+| trigger | `Enum` | The trigger that causes the notification to fire. One of `date` or `location`. |
 | userInfo<sup>[2]</sup> | `[AnyHashable : Any]!` | A dictionary that holds additional information. |
 
 [1] `identifier` is read-only after `RobinNotification` is initialized.
