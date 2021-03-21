@@ -23,6 +23,9 @@
 #if !os(watchOS)
 import XCTest
 @testable import Robin
+#if !os(macOS)
+import CoreLocation
+#endif
 
 @available(iOS 10.0, macOS 10.14, *)
 class RobinSchedulerTests: XCTestCase {
@@ -47,8 +50,8 @@ class RobinSchedulerTests: XCTestCase {
         super.tearDown()
     }
     
-    /// Tests whether scheduling a `RobinNotification` succeeds.
-    func testNotificationSchedule() {
+    /// Tests whether scheduling a date `RobinNotification` succeeds.
+    func testDateNotificationSchedule() {
         let notification = RobinNotification(body: "This is a test notification")
         
         let scheduledNotification = Robin.scheduler.schedule(notification: notification)
@@ -91,12 +94,12 @@ class RobinSchedulerTests: XCTestCase {
     
     /// Tests whether rescheduling a `RobinNotification` beyond the allowed maximum succeeds.
     func testNotificationReschedule() {
-        let date: Date = Date().next(days: 1).truncateSeconds()
+        let date: Date = Date.next(days: 1).truncateSeconds()
         let notification = RobinNotification(body: "This is a test notification")
         
         _ = Robin.scheduler.schedule(notification: notification)
         
-        notification.date = date
+        notification.trigger = .date(date)
         
         _ = Robin.scheduler.reschedule(notification: notification)
         
@@ -104,7 +107,7 @@ class RobinSchedulerTests: XCTestCase {
         
         XCTAssertNotNil(rescheduledNotification)
         XCTAssertTrue(rescheduledNotification!.scheduled)
-        XCTAssertEqual(rescheduledNotification!.date, notification.date)
+        XCTAssertEqual(rescheduledNotification!.trigger, .date(date, repeats: .none))
         XCTAssertEqual(1, Robin.scheduler.scheduledCount())
     }
     
@@ -163,12 +166,11 @@ class RobinSchedulerTests: XCTestCase {
         XCTAssertEqual(0, Robin.scheduler.scheduledCount())
     }
     
-    /// Tests whether retrieving a scheduled system notification by identifier succeeds.
-    func testNotificationWithIdentifier() {
-        let notification = RobinNotification(body: "This is a test notification")
+    /// Tests whether retrieving a scheduled system date notification by identifier succeeds.
+    func testDateNotificationWithIdentifier() {
+        let notification = RobinNotification(body: "This is a test notification", trigger: .date(Date.next(hours: 1).truncateSeconds(), repeats: .week))
         notification.title = "This is a test title"
         notification.badge = 1
-        notification.repeats = .week
         notification.sound = RobinNotificationSound(named: "TestSound")
         notification.setUserInfo(value: "Value", forKey: "Key")
         notification.threadIdentifier = "thread"
@@ -180,16 +182,67 @@ class RobinSchedulerTests: XCTestCase {
         XCTAssertEqual(retrievedNotification?.title, notification.title)
         XCTAssertEqual(retrievedNotification?.identifier, notification.identifier)
         XCTAssertEqual(retrievedNotification?.body, notification.body)
-        XCTAssertEqual(retrievedNotification?.date, notification.date.truncateSeconds())
+        XCTAssertEqual(retrievedNotification?.trigger, .date(Date.next(hours: 1).truncateSeconds(), repeats: .week))
         XCTAssertEqual(retrievedNotification?.userInfo.count, notification.userInfo.count)
         XCTAssertEqual(retrievedNotification?.badge, notification.badge)
         XCTAssertTrue(notification.sound.isValid())
-        XCTAssertEqual(retrievedNotification?.repeats, notification.repeats)
         XCTAssertEqual(retrievedNotification?.scheduled, notification.scheduled)
         XCTAssertTrue(retrievedNotification!.scheduled)
         XCTAssertEqual(retrievedNotification?.threadIdentifier, notification.threadIdentifier)
         XCTAssertEqual(1, Robin.scheduler.scheduledCount())
     }
+    
+    #if !os(macOS)
+    /// Tests whether scheduling a location `RobinNotification` succeeds.
+    func testLocationNotificationSchedule() {
+        let body: String = "This is a test notification"
+        
+        /// https://developer.apple.com/documentation/usernotifications/unlocationnotificationtrigger
+        let center = CLLocationCoordinate2D(latitude: 37.335400, longitude: -122.009201)
+        let region = CLCircularRegion(center: center, radius: 2000.0, identifier: "Headquarters")
+        region.notifyOnEntry = true
+        
+        let notification: RobinNotification = RobinNotification(body: body, trigger: .location(region))
+        
+        let scheduledNotification = Robin.scheduler.schedule(notification: notification)
+        
+        XCTAssertNotNil(scheduledNotification)
+        XCTAssertTrue(notification.scheduled)
+        XCTAssertTrue(scheduledNotification!.scheduled)
+        XCTAssertEqual(1, Robin.scheduler.scheduledCount())
+    }
+    
+    /// Tests whether retrieving a scheduled system location notification by identifier succeeds.
+    func testLocationNotificationWithIdentifier() {
+        /// https://developer.apple.com/documentation/usernotifications/unlocationnotificationtrigger
+        let center = CLLocationCoordinate2D(latitude: 37.335400, longitude: -122.009201)
+        let region = CLCircularRegion(center: center, radius: 2000.0, identifier: "Headquarters")
+        region.notifyOnEntry = true
+        
+        let notification = RobinNotification(body: "This is a test notification", trigger: .location(region, repeats: true))
+        notification.title = "This is a test title"
+        notification.badge = 1
+        notification.sound = RobinNotificationSound(named: "TestSound")
+        notification.setUserInfo(value: "Value", forKey: "Key")
+        notification.threadIdentifier = "thread"
+        
+        _ = Robin.scheduler.schedule(notification: notification)
+        
+        let retrievedNotification = Robin.scheduler.notification(withIdentifier: notification.identifier)
+        
+        XCTAssertEqual(retrievedNotification?.title, notification.title)
+        XCTAssertEqual(retrievedNotification?.identifier, notification.identifier)
+        XCTAssertEqual(retrievedNotification?.body, notification.body)
+        XCTAssertEqual(retrievedNotification?.trigger, .location(region, repeats: true))
+        XCTAssertEqual(retrievedNotification?.userInfo.count, notification.userInfo.count)
+        XCTAssertEqual(retrievedNotification?.badge, notification.badge)
+        XCTAssertTrue(notification.sound.isValid())
+        XCTAssertEqual(retrievedNotification?.scheduled, notification.scheduled)
+        XCTAssertTrue(retrievedNotification!.scheduled)
+        XCTAssertEqual(retrievedNotification?.threadIdentifier, notification.threadIdentifier)
+        XCTAssertEqual(1, Robin.scheduler.scheduledCount())
+    }
+    #endif
     
     // MARK:- Notification Group
     

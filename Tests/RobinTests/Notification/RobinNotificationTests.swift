@@ -23,6 +23,9 @@
 #if !os(watchOS)
 import XCTest
 @testable import Robin
+#if !os(macOS)
+import CoreLocation
+#endif
 
 @available(iOS 10.0, macOS 10.14, *)
 class RobinNotificationTests: XCTestCase {
@@ -37,55 +40,99 @@ class RobinNotificationTests: XCTestCase {
         super.tearDown()
     }
     
-    /// Tests whether the initialization of `RobinNotification` succeeds.
-    func testNotificationInitialization() {
+    /// Tests whether the initialization of a date `RobinNotification` succeeds.
+    func testDateNotificationInitialization() {
         let body: String = "This is a test notification"
         let notification: RobinNotification = RobinNotification(body: body)
         
-        //        Tests body property
+        // Tests body property
         XCTAssertEqual(body, notification.body)
         
-        //        Tests date property
-        XCTAssertEqual(Date().next(hours: 1).truncateSeconds(), notification.date.truncateSeconds())
+        // Tests trigger property
+        XCTAssertEqual(notification.trigger, .date(Date.next(hours: 1).truncateSeconds(), repeats: .none))
         let date: Date = Date()
-        notification.date = date
-        XCTAssertEqual(date, notification.date)
+        notification.trigger = .date(date, repeats: .month)
+        XCTAssertEqual(notification.trigger, .date(date.truncateSeconds(), repeats: .month))
         
-        //        Tests repeats property
-        XCTAssertEqual(RobinNotificationRepeats.none, notification.repeats)
-        let repeats: RobinNotificationRepeats = RobinNotificationRepeats.month
-        notification.repeats = repeats
-        XCTAssertEqual(repeats, notification.repeats)
-        
-        //        Tests title property
+        // Tests title property
         XCTAssertNil(notification.title)
         let title: String = "Title"
         notification.title = title
         XCTAssertEqual(title, notification.title)
         
-        //        Tests identifier property
+        // Tests identifier property
         XCTAssertNotNil(notification.identifier)
         
-        //        Tests badge property
+        // Tests badge property
         XCTAssertNil(notification.badge)
         let badge: NSNumber = 5
         notification.badge = badge
         XCTAssertEqual(badge, notification.badge)
         
-        //        Tests userInfo property
-        let userInfo: [AnyHashable : Any] = [Constants.NotificationKeys.identifier : notification.identifier, Constants.NotificationKeys.date : notification.date]
-        XCTAssertEqual(userInfo[Constants.NotificationKeys.identifier] as! String, notification.userInfo![Constants.NotificationKeys.identifier] as! String)
-        XCTAssertEqual(userInfo[Constants.NotificationKeys.date] as! Date, notification.userInfo![Constants.NotificationKeys.date] as! Date)
+        // Tests userInfo property
+        let userInfo: [AnyHashable : Any] = [Constants.NotificationKeys.identifier : notification.identifier, Constants.NotificationKeys.date : date]
+        XCTAssertEqual(userInfo[Constants.NotificationKeys.identifier] as! String, notification.userInfo[Constants.NotificationKeys.identifier] as! String)
+        XCTAssertEqual(userInfo[Constants.NotificationKeys.date] as! Date, notification.userInfo[Constants.NotificationKeys.date] as! Date)
         
-        //        Tests sound property
+        // Tests sound property
         XCTAssertTrue(notification.sound.isValid())
         let sound: String = "SoundName"
         notification.sound = RobinNotificationSound(named: sound)
         XCTAssertTrue(notification.sound.isValid())
         
-        //        Tests scheduled property
+        // Tests scheduled property
         XCTAssertFalse(notification.scheduled)
     }
+    
+    #if !os(macOS)
+    /// Tests whether the initialization of a location `RobinNotification` succeeds.
+    func testLocationNotificationInitialization() {
+        let body: String = "This is a test notification"
+        
+        /// https://developer.apple.com/documentation/usernotifications/unlocationnotificationtrigger
+        let center = CLLocationCoordinate2D(latitude: 37.335400, longitude: -122.009201)
+        let region = CLCircularRegion(center: center, radius: 2000.0, identifier: "Headquarters")
+        region.notifyOnEntry = true
+        
+        let notification: RobinNotification = RobinNotification(body: body, trigger: .location(region))
+        
+        // Tests body property
+        XCTAssertEqual(body, notification.body)
+        
+        // Tests trigger property
+        XCTAssertEqual(notification.trigger, .location(region, repeats: false))
+        notification.trigger = .location(region, repeats: true)
+        XCTAssertEqual(notification.trigger, .location(region, repeats: true))
+        
+        // Tests title property
+        XCTAssertNil(notification.title)
+        let title: String = "Title"
+        notification.title = title
+        XCTAssertEqual(title, notification.title)
+        
+        // Tests identifier property
+        XCTAssertNotNil(notification.identifier)
+        
+        // Tests badge property
+        XCTAssertNil(notification.badge)
+        let badge: NSNumber = 5
+        notification.badge = badge
+        XCTAssertEqual(badge, notification.badge)
+        
+        // Tests userInfo property
+        let userInfo: [AnyHashable : Any] = [Constants.NotificationKeys.identifier : notification.identifier]
+        XCTAssertEqual(userInfo[Constants.NotificationKeys.identifier] as! String, notification.userInfo[Constants.NotificationKeys.identifier] as! String)
+        
+        // Tests sound property
+        XCTAssertTrue(notification.sound.isValid())
+        let sound: String = "SoundName"
+        notification.sound = RobinNotificationSound(named: sound)
+        XCTAssertTrue(notification.sound.isValid())
+        
+        // Tests scheduled property
+        XCTAssertFalse(notification.scheduled)
+    }
+    #endif
     
     /// Tests whether the initialization of `RobinNotification` with a custom identifier succeeds.
     func testNotificationInitializationWithIdentifier() {
@@ -141,14 +188,14 @@ class RobinNotificationTests: XCTestCase {
     
     /// Tests whether testing for notification date precedence succeeds.
     func testNotificationDatePrecedence() {
-        let firstNotification: RobinNotification = RobinNotification(body: "First Notification", date: Date().next(minutes: 10))
-        let secondNotification: RobinNotification = RobinNotification(body: "Second Notification", date: Date().next(hours: 1))
+        let firstNotification: RobinNotification = RobinNotification(body: "First Notification", trigger: .date(.next(minutes: 10)))
+        let secondNotification: RobinNotification = RobinNotification(body: "Second Notification", trigger: .date(.next(hours: 1)))
         
         let precedes: Bool = firstNotification < secondNotification
         
         XCTAssertTrue(precedes)
         
-        firstNotification.date = Date().next(days: 1)
+        firstNotification.trigger = .date(.next(days: 1))
         
         let doesNotPrecede: Bool = firstNotification < secondNotification
         

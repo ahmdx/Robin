@@ -53,8 +53,8 @@ class RobinManagerTests: XCTestCase {
     func testGetDeliveredNotification() {
         let count: Int = 1
         
-        let notification = RobinNotification(body: "This is a test notification")
-        notification.date = Date().next(days: 1)
+        let trigger: RobinNotificationTrigger = .date(Date.next(days: 1).truncateSeconds())
+        let notification = RobinNotification(body: "This is a test notification", trigger: trigger)
         
         _ = Robin.scheduler.schedule(notification: notification)
         
@@ -68,11 +68,12 @@ class RobinManagerTests: XCTestCase {
             XCTAssertEqual(retrievedNotification.title, notification.title)
             XCTAssertEqual(retrievedNotification.identifier, notification.identifier)
             XCTAssertEqual(retrievedNotification.body, notification.body)
-            XCTAssertNotEqual(retrievedNotification.date, notification.date.truncateSeconds())
+            XCTAssertNotNil(retrievedNotification.deliveryDate)
+            XCTAssertEqual(retrievedNotification.trigger, notification.trigger)
+            
             XCTAssertEqual(retrievedNotification.userInfo.count, notification.userInfo.count)
             XCTAssertEqual(retrievedNotification.badge, notification.badge)
             XCTAssertTrue(notification.sound.isValid())
-            XCTAssertEqual(retrievedNotification.repeats, notification.repeats)
             XCTAssertEqual(retrievedNotification.scheduled, notification.scheduled)
             XCTAssertTrue(retrievedNotification.scheduled)
             XCTAssertTrue(retrievedNotification.delivered)

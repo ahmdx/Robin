@@ -21,19 +21,34 @@
 //
 
 import Foundation
+#if !os(macOS)
+import CoreLocation
+#endif
 
 @available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
-extension RobinNotification {
-    public static func ==(lhs: RobinNotification, rhs: RobinNotification) -> Bool {
-        return lhs.identifier == rhs.identifier
-    }
+public enum RobinNotificationTrigger {
+    case date(_ date: Date, repeats: RobinNotificationRepeats = .none)
+    
+    #if !os(macOS)
+    case location(_ region: CLRegion, repeats: Bool = false)
+    #endif
+}
 
-    public static func <(lhs: RobinNotification, rhs: RobinNotification) -> Bool {
-        guard case .date(let lhsDate, _) = lhs.trigger,
-              case .date(let rhsDate, _) = rhs.trigger else {
-            return lhs.identifier < rhs.identifier
+@available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
+extension RobinNotificationTrigger: Equatable {
+    public static func ==(lhs: RobinNotificationTrigger, rhs: RobinNotificationTrigger) -> Bool {
+        if case .date(let lhsDate, let lhsRepeats) = lhs,
+           case .date(let rhsDate, let rhsRepeats) = rhs {
+            return lhsDate == rhsDate && lhsRepeats == rhsRepeats
         }
-
-        return lhsDate.compare(rhsDate) == ComparisonResult.orderedAscending
+        
+        #if !os(macOS)
+        if case .location(let lhsRegion, let lhsRepeats) = lhs,
+           case .location(let rhsRegion, let rhsRepeats) = rhs {
+            return lhsRegion == rhsRegion && lhsRepeats == rhsRepeats
+        }
+        #endif
+        
+        return false
     }
 }

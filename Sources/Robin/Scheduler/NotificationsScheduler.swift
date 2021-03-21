@@ -39,40 +39,10 @@ internal class NotificationsScheduler: RobinScheduler {
             return nil
         }
         
-        let content = UNMutableNotificationContent()
+        let request = notification.notificationRequest()
         
-        if let title = notification.title {
-            content.title = title
-        }
-        
-        content.body = notification.body
-        
-        var sound: UNNotificationSound = UNNotificationSound.default
-        #if !os(watchOS)
-        if let name = notification.sound.name {
-            if name != Constants.NotificationValues.defaultSoundName {
-                sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: name))
-            }
-        } else {
-            if let notificationSound = notification.sound.sound as? UNNotificationSound {
-                sound = notificationSound
-            }
-        }
-        #endif
-        content.sound = sound
-        
-        content.userInfo = notification.userInfo
-        
-        content.badge = notification.badge
-        
-        if let threadIdentifier = notification.threadIdentifier {
-            content.threadIdentifier = threadIdentifier
-        }
-        
-        let trigger: UNCalendarNotificationTrigger = UNCalendarNotificationTrigger(date: notification.date, repeats: notification.repeats)
-        
-        let request: UNNotificationRequest = UNNotificationRequest(identifier: notification.identifier, content: content, trigger: trigger)
         center.add(request)
+        
         notification.scheduled = true
         
         return notification

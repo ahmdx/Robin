@@ -34,40 +34,35 @@ extension RobinNotification {
     ///   - repeats: The repeat interval of the trigger.
     ///   - originalDate: The original date stored to fill the nullified components. Uses current date if passed as `nil`.
     /// - Returns: The filled date using the original date.
-    internal func date(fromDateComponents dateComponents: DateComponents, repeats: RobinNotificationRepeats, originalDate: Date?) {
+    internal static func date(fromDateComponents dateComponents: DateComponents, repeats: RobinNotificationRepeats, originalDate: Date?) -> Date {
         let calendar: Calendar = Calendar.current
         var components: DateComponents = dateComponents
         
-        var date: Date
-        if originalDate == nil {
-            date = Date()
-        } else {
-            date = originalDate!
-        }
+        let date = originalDate ?? Date()
         
         switch repeats {
         case .none:
-            self.date = calendar.date(from: components)!
+            return calendar.date(from: components)!
         case .month:
             let comps = calendar.dateComponents([.year, .month], from: date)
             components.year = comps.year
             components.month = comps.month
             
-            self.date = calendar.date(from: components)!
+            return calendar.date(from: components)!
         case .week:
             let comps = calendar.dateComponents([.year, .month, .day], from: date)
             components.year = comps.year
             components.month = comps.month
             components.day = comps.day
             
-            self.date = calendar.date(from: components)!
+            return calendar.date(from: components)!
         case .day:
             let comps = calendar.dateComponents([.year, .month, .day], from: date)
             components.year = comps.year
             components.month = comps.month
             components.day = comps.day
             
-            self.date = calendar.date(from: components)!
+            return calendar.date(from: components)!
         case .hour:
             let comps = calendar.dateComponents([.year, .month, .day, .hour], from: date)
             components.year = comps.year
@@ -75,7 +70,7 @@ extension RobinNotification {
             components.day = comps.day
             components.hour = comps.hour
             
-            self.date = calendar.date(from: components)!
+            return calendar.date(from: components)!
         }
     }
 }

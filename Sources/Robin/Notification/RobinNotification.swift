@@ -31,15 +31,20 @@ public class RobinNotification: NSObject {
     /// The body string of the notification.
     public var body: String!
     
-    /// The date in which the notification is set to fire on.
-    public var date: Date! {
+    /// The trigger that causes the notification to fire.
+    public var trigger: RobinNotificationTrigger! {
         didSet {
-            self.userInfo[Constants.NotificationKeys.date] = self.date
+            if case .date(let date, let repeats) = trigger {
+                let truncatedDate = date.truncateSeconds()
+
+                self.trigger = .date(truncatedDate, repeats: repeats)
+                self.userInfo[Constants.NotificationKeys.date] = truncatedDate
+            }
         }
     }
     
     /// A dictionary that holds additional information.
-    private(set) public var userInfo: [AnyHashable : Any]!
+    private(set) public var userInfo: [AnyHashable : Any] = [:]
     
     /// The title string of the notification.
     public var title: String? = nil
@@ -52,14 +57,14 @@ public class RobinNotification: NSObject {
     public var sound: RobinNotificationSound = RobinNotificationSound()
     #endif
     
-    /// The repeat interval of the notification.
-    public var repeats: RobinNotificationRepeats = .none
-    
     /// The status of the notification.
     internal(set) public var scheduled: Bool = false
     
     /// The delivery status of the notification.
     internal(set) public var delivered: Bool = false
+    
+    /// The delivery date of the notification.
+    internal(set) public var deliveryDate: Date?
     
     /// The identifier used to visually group notifications together.
     public var threadIdentifier: String?
@@ -74,29 +79,54 @@ public class RobinNotification: NSObject {
             result += "\tThread identifier: \(threadIdentifier)\n"
         }
         result += "\tBody: \(self.body!)\n"
-        result += "\tFires at: \(self.date!)\n"
-        result += "\tUser info: \(self.userInfo!)\n"
+        if case .date(let date, let repeats) = self.trigger {
+            result += "\tFires at: \(date)\n"
+            result += "\tRepeats every: \(repeats.rawValue)\n"
+        }
+        
+        #if !os(macOS)
+        if case .location(let region, let repeats) = self.trigger {
+            result += "\tFires around: \(region)\n"
+            result += "\tRepeating: \(repeats)\n"
+        }
+        #endif
+        
+        result += "\tUser info: \(self.userInfo)\n"
         if let badge = self.badge {
             result += "\tBadge: \(badge)\n"
         }
         #if !os(watchOS)
         result += "\tSound name: \(self.sound)\n"
         #endif
-        result += "\tRepeats every: \(self.repeats.rawValue)\n"
         result += "\tScheduled: \(self.scheduled)\n"
         result += "\tDelivered: \(self.delivered)"
+        if let deliveryDate = deliveryDate {
+            result += "\n\tDelivered on: \(deliveryDate)"
+        }
         
         return result
     }
     
-    public init(identifier: String = UUID().uuidString, body: String, date: Date = Date().next(hours: 1)) {
+    public convenience init(identifier: String = UUID().uuidString,
+                            body: String,
+                            trigger: RobinNotificationTrigger = .date(.next(hours: 1))) {
+        self.init(identifier: identifier, body: body)
+        
+        if case .date(let date, let repeats) = trigger {
+            let truncatedDate = date.truncateSeconds()
+
+            self.trigger = .date(truncatedDate, repeats: repeats)
+            self.userInfo[Constants.NotificationKeys.date] = truncatedDate
+        } else {
+            self.trigger = trigger
+        }
+    }
+    
+    internal init(identifier: String, body: String) {
         self.identifier = identifier
         self.body = body
-        self.date = date
-        self.userInfo = [
-            Constants.NotificationKeys.identifier : self.identifier,
-            Constants.NotificationKeys.date : self.date
-        ]
+        
+        self.userInfo[Constants.NotificationKeys.identifier] = identifier
     }
     
     /// Creates a `RobinNotification` from the passed `SystemNotification`. For the details of the creation process, have a look at the system notifications extensions that implement the `SystemNotification` protocol.

@@ -40,7 +40,7 @@ public extension SystemNotification {
     func robinNotification() -> RobinNotification {
         let content = self.content
         
-        let notification = RobinNotification(identifier: self.identifier, body: content.body, date: Date())
+        let notification = RobinNotification(identifier: self.identifier, body: content.body)
         
         let userInfo = content.userInfo
         for (key, value) in userInfo {
@@ -56,9 +56,17 @@ public extension SystemNotification {
             if let originalDate = notification.userInfo[Constants.NotificationKeys.date] as? Date {
                 date = originalDate
             }
-            notification.repeats = RobinNotificationRepeats.from(dateComponents: trigger.dateComponents)
-            notification.date(fromDateComponents: trigger.dateComponents, repeats: notification.repeats, originalDate: date)
+            let repeats = RobinNotificationRepeats.from(dateComponents: trigger.dateComponents)
+            let notificationDate = RobinNotification.date(fromDateComponents: trigger.dateComponents, repeats: repeats, originalDate: date)
+            
+            notification.trigger = .date(notificationDate, repeats: repeats)
         }
+        
+        #if !os(macOS)
+        if let trigger = self.trigger as? UNLocationNotificationTrigger {
+            notification.trigger = .location(trigger.region, repeats: trigger.repeats)
+        }
+        #endif
         
         notification.badge = content.badge
         notification.threadIdentifier = content.threadIdentifier

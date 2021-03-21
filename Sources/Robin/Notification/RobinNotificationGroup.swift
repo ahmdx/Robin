@@ -22,7 +22,7 @@
 
 import Foundation
 
-@available(iOS 10.0, macOS 10.14, *)
+@available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
 public class RobinNotificationGroup {
     public let notifications: [RobinNotification]
     public let identifier: String

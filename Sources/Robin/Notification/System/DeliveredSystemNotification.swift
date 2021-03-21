@@ -38,7 +38,7 @@ internal protocol DeliveredSystemNotification {
 internal extension DeliveredSystemNotification {
     func robinNotification() -> RobinNotification {
         let notification = self.request.robinNotification()
-        notification.date = self.date
+        notification.deliveryDate = self.date
         notification.delivered = true
         
         return notification
