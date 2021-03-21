@@ -65,7 +65,7 @@ class RobinSchedulerTests: XCTestCase {
         for i in 0 ..< count {
             let notification = RobinNotification(body: "This is a test notification #\(i + 1)")
             
-            let _ = Robin.scheduler.schedule(notification: notification)
+            _ = Robin.scheduler.schedule(notification: notification)
         }
         
         XCTAssertEqual(count, Robin.scheduler.scheduledCount())
@@ -77,7 +77,7 @@ class RobinSchedulerTests: XCTestCase {
         for i in 0 ..< count {
             let notification = RobinNotification(body: "This is a test notification #\(i + 1)")
             
-            let _ = Robin.scheduler.schedule(notification: notification)
+            _ = Robin.scheduler.schedule(notification: notification)
         }
         
         let notification = RobinNotification(body: "This is an overflow notification")
@@ -94,11 +94,11 @@ class RobinSchedulerTests: XCTestCase {
         let date: Date = Date().next(days: 1).truncateSeconds()
         let notification = RobinNotification(body: "This is a test notification")
         
-        let _ = Robin.scheduler.schedule(notification: notification)
+        _ = Robin.scheduler.schedule(notification: notification)
         
         notification.date = date
         
-        let _ = Robin.scheduler.reschedule(notification: notification)
+        _ = Robin.scheduler.reschedule(notification: notification)
         
         let rescheduledNotification = Robin.scheduler.notification(withIdentifier: notification.identifier)
         
@@ -126,7 +126,7 @@ class RobinSchedulerTests: XCTestCase {
     func testNotificationIdentifierCancel() {
         let notification = RobinNotification(body: "This is a test notification")
         
-        let _ = Robin.scheduler.schedule(notification: notification)
+        _ = Robin.scheduler.schedule(notification: notification)
         
         Robin.scheduler.cancel(withIdentifier: notification.identifier)
         
@@ -141,7 +141,7 @@ class RobinSchedulerTests: XCTestCase {
         for i in 0 ..< count {
             let notification = RobinNotification(identifier: identifier, body: "This is a test notification #\(i + 1)")
             
-            let _ = Robin.scheduler.schedule(notification: notification)
+            _ = Robin.scheduler.schedule(notification: notification)
         }
         
         Robin.scheduler.cancel(withIdentifier: identifier)
@@ -155,7 +155,7 @@ class RobinSchedulerTests: XCTestCase {
         for i in 0 ..< count {
             let notification = RobinNotification(body: "This is a test notification #\(i + 1)")
             
-            let _ = Robin.scheduler.schedule(notification: notification)
+            _ = Robin.scheduler.schedule(notification: notification)
         }
         
         Robin.scheduler.cancelAll()
@@ -173,7 +173,7 @@ class RobinSchedulerTests: XCTestCase {
         notification.setUserInfo(value: "Value", forKey: "Key")
         notification.threadIdentifier = "thread"
         
-        let _ = Robin.scheduler.schedule(notification: notification)
+        _ = Robin.scheduler.schedule(notification: notification)
         
         let retrievedNotification = Robin.scheduler.notification(withIdentifier: notification.identifier)
         
@@ -209,7 +209,7 @@ class RobinSchedulerTests: XCTestCase {
         for i in 0 ..< count {
             let notification = RobinNotification(body: "This is a test notification #\(i + 1)")
             
-            let _ = Robin.scheduler.schedule(notification: notification)
+            _ = Robin.scheduler.schedule(notification: notification)
         }
         
         let group = RobinNotificationGroup(notifications: [RobinNotification(body: "#1"), RobinNotification(body: "#2"), RobinNotification(body: "#3"), RobinNotification(body: "#4")])

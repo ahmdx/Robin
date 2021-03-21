@@ -56,7 +56,7 @@ class RobinManagerTests: XCTestCase {
         let notification = RobinNotification(body: "This is a test notification")
         notification.date = Date().next(days: 1)
         
-        let _ = Robin.scheduler.schedule(notification: notification)
+        _ = Robin.scheduler.schedule(notification: notification)
         
         let expectation = XCTestExpectation()
         
@@ -88,8 +88,8 @@ class RobinManagerTests: XCTestCase {
         let notification = RobinNotification(body: "This is a test notification")
         let anotherNotification = RobinNotification(body: "This is another test notification")
         
-        let _ = Robin.scheduler.schedule(notification: notification)
-        let _ = Robin.scheduler.schedule(notification: anotherNotification)
+        _ = Robin.scheduler.schedule(notification: notification)
+        _ = Robin.scheduler.schedule(notification: anotherNotification)
         
         let deliveryExpectation = XCTestExpectation()
         Robin.manager.allDelivered { notifications in
@@ -113,8 +113,8 @@ class RobinManagerTests: XCTestCase {
         let notification = RobinNotification(body: "This is a test notification")
         let anotherNotification = RobinNotification(body: "This is another test notification")
         
-        let _ = Robin.scheduler.schedule(notification: notification)
-        let _ = Robin.scheduler.schedule(notification: anotherNotification)
+        _ = Robin.scheduler.schedule(notification: notification)
+        _ = Robin.scheduler.schedule(notification: anotherNotification)
         
         let deliveryExpectation = XCTestExpectation()
         Robin.manager.allDelivered { notifications in
@@ -138,8 +138,8 @@ class RobinManagerTests: XCTestCase {
         let notification = RobinNotification(body: "This is a test notification")
         let anotherNotification = RobinNotification(body: "This is another test notification")
         
-        let _ = Robin.scheduler.schedule(notification: notification)
-        let _ = Robin.scheduler.schedule(notification: anotherNotification)
+        _ = Robin.scheduler.schedule(notification: notification)
+        _ = Robin.scheduler.schedule(notification: anotherNotification)
         
         let deliveryExpectation = XCTestExpectation()
         Robin.manager.allDelivered { notifications in
