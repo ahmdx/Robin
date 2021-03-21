@@ -139,7 +139,7 @@ region.notifyOnExit = false
 let notification = RobinNotification(body: "A notification", trigger: .location(region))
 ```
 
-> Note: For the system to deliver location notifications, the app should be authorized to use location services, see [here](https://developer.apple.com/documentation/usernotifications/unlocationnotificationtrigger). *Robin does not check whether the required permissions are granted before scheduling a location notification.*
+> Note: For the system to deliver location notifications, the app should be authorized to use location services, see [here](https://developer.apple.com/documentation/usernotifications/unlocationnotificationtrigger). *Robin does not check whether the required permissions are granted before scheduling a location notification. Location notifications are not available on either macOS or watchOS.*
 
 The following table summarizes all `RobinNotification` properties.
 

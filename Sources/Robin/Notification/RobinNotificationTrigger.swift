@@ -29,7 +29,7 @@ import CoreLocation
 public enum RobinNotificationTrigger {
     case date(_ date: Date, repeats: RobinNotificationRepeats = .none)
     
-    #if !os(macOS)
+    #if !os(macOS) && !os(watchOS)
     case location(_ region: CLRegion, repeats: Bool = false)
     #endif
 }
@@ -42,7 +42,7 @@ extension RobinNotificationTrigger: Equatable {
             return lhsDate == rhsDate && lhsRepeats == rhsRepeats
         }
         
-        #if !os(macOS)
+        #if !os(macOS) && !os(watchOS)
         if case .location(let lhsRegion, let lhsRepeats) = lhs,
            case .location(let rhsRegion, let rhsRepeats) = rhs {
             return lhsRegion == rhsRegion && lhsRepeats == rhsRepeats

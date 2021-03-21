@@ -50,7 +50,7 @@ class RobinNotificationTests: XCTestCase {
         
         // Tests trigger property
         XCTAssertEqual(notification.trigger, .date(Date.next(hours: 1).truncateSeconds(), repeats: .none))
-        let date: Date = Date()
+        let date: Date = Date().truncateSeconds()
         notification.trigger = .date(date, repeats: .month)
         XCTAssertEqual(notification.trigger, .date(date.truncateSeconds(), repeats: .month))
         

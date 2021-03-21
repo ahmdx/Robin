@@ -84,7 +84,7 @@ public class RobinNotification: NSObject {
             result += "\tRepeats every: \(repeats.rawValue)\n"
         }
         
-        #if !os(macOS)
+        #if !os(macOS) && !os(watchOS)
         if case .location(let region, let repeats) = self.trigger {
             result += "\tFires around: \(region)\n"
             result += "\tRepeating: \(repeats)\n"

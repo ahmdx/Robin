@@ -62,7 +62,7 @@ public extension SystemNotification {
             notification.trigger = .date(notificationDate, repeats: repeats)
         }
         
-        #if !os(macOS)
+        #if !os(macOS) && !os(watchOS)
         if let trigger = self.trigger as? UNLocationNotificationTrigger {
             notification.trigger = .location(trigger.region, repeats: trigger.repeats)
         }
