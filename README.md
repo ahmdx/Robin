@@ -1,4 +1,3 @@
-# Robin
 
 [![Platform](https://img.shields.io/cocoapods/p/Robin.svg)](http://cocoapods.org/pods/Robin)
 [![Version](https://img.shields.io/cocoapods/v/Robin.svg)](http://cocoapods.org/pods/Robin)
@@ -7,7 +6,25 @@
 [![License](https://img.shields.io/github/license/ahmdx/Robin.svg)](http://cocoapods.org/pods/Robin)
 [![Release](https://img.shields.io/github/release/ahmdx/Robin.svg)](https://github.com/ahmdx/Robin/releases/)
 
-Robin is a notification interface for iOS and macOS that handles UserNotifications behind the scenes.
+Robin is a multi-platform notification interface for iOS, watchOS, and macOS that handles UserNotifications behind the scenes.
+
+- [Requirements](#requirements)
+- [Communication](#communication)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Settings](#settings)
+  - [Notifications](#notifications)
+  - [Schedule a notification](#schedule-a-notification)
+  - [Retrieve a notification](#retrieve-a-notification)
+  - [Cancel a notification](#cancel-a-notification)
+  - [Schedule a notification group](#schedule-a-notification-group)
+  - [Retrieve a notification group](#retrieve-a-notification-group)
+  - [Cancel a notification group](#cancel-a-notification-group)
+  - [Retrieve all delivered notifications](#retrieve-all-delivered-notifications)
+  - [Remove a delivered notification](#remove-a-delivered-notification)
+- [Notes](#notes)
+- [Author](#author)
+- [License](#license)
 
 ## Requirements
 
@@ -31,19 +48,19 @@ Robin is available through both [Swift Package Manager](https://swift.org/packag
 To install using SPM:
 
 ```swift
-.package(url: "https://github.com/ahmdx/Robin", from: "0.94.1"),
+.package(url: "https://github.com/ahmdx/Robin", from: "0.95.0"),
 ```
 
 CocoaPods:
 
 ```ruby
-pod 'Robin', '~> 0.94.1'
+pod 'Robin', '~> 0.95.0'
 ```
 
 And if you want to include the test suite in your project:
 
 ```ruby
-pod 'Robin', '~> 0.94.1', :testspecs => ['Tests']
+pod 'Robin', '~> 0.95.0', :testspecs => ['Tests']
 ```
 
 ## Usage
@@ -105,7 +122,7 @@ init(identifier: String = default, body: String, date: Date = default)
 Example notification, with a unique identifier, to be fired an hour from now.
 
 ```swift
-let notification = RobinNotification(body: "A notification", date: Date().next(hours: 1))
+let notification = RobinNotification(body: "A notification", date: Date.next(hours: 1))
 ```
 
 > `next(minutes:)`, `next(hours:)`, and `next(days:)` are part of a `Date` extension.
@@ -122,6 +139,7 @@ The following table summarizes all `RobinNotification` properties.
 | repeats | `Repeats` | The repeat interval of the notification. One of `none` (default), `hour`, `day`, `week`, or `month`.|
 | scheduled | `Bool` | The status of the notification. `read-only` |
 | sound | `RobinNotificationSound` | The sound name of the notification. `not available on watchOS`|
+| threadIdentifier | `String?` | The identifier used to visually group notifications together. |
 | title | `String?` | The title string of the notification. |
 | userInfo<sup>[2]</sup> | `[AnyHashable : Any]!` | A dictionary that holds additional information. |
 
@@ -131,7 +149,7 @@ The following table summarizes all `RobinNotification` properties.
 
 ### Schedule a notification
 
-After creating a `RobinNotification` object, it can be scheduled using `schedule(notification:)`.
+After creating a `RobinNotification` object, it can be scheduled using `schedule(notification: RobinNotification)`.
 
 ```swift
 let scheduledNotification = Robin.scheduler.schedule(notification: notification)
@@ -165,6 +183,43 @@ Robin.scheduler.cancel(withIdentifier: scheduledNotification.identifier)
 Robin.scheduler.cancelAll()
 ```
 
+### Schedule a notification group
+
+Robin utilizes the `threadIdentifier` property to manage multiple notifications as a group under the same identifier. To group multiple notifications under the same identifier, you can either set `threadIdentifier` of the notification to the same string or schedule a notification group by calling `schedule(group: RobinNotificationGroup)`:
+
+```swift
+let notifications = ... // an array of `RobinNotification`
+let group = RobinNotificationGroup(notifications: notifications)
+// or
+let group = RobinNotificationGroup(notifications: notifications, identifier: "group_identifier")
+
+let scheduledGroup = Robin.scheduler.schedule(group: group)
+```
+
+Robin will automatically set `threadIdentifier` of each `RobinNotification` in the array to the group's identifier. *If you omit `identifier` when initializing the group, Robin will create a unique identifier.*
+
+### Retrieve a notification group
+
+Simply retrieve a scheduled notification group by calling `group(withIdentifier: String) -> RobinNotificationGroup?`.
+
+```swift
+let scheduledGroup = Robin.scheduler.group(withIdentifier: "group_identifier")
+```
+
+*Robin will return a group if there exists at least one notification with `threadIdentifier` the same as the group's identifier. The returned group might contain less notifications than initially scheduled since some of them might have already been delivered by the system.*
+
+### Cancel a notification group
+
+To cancel a notification group, either call `cancel(group: RobinNotificationGroup)` or `cancel(groupWithIdentifier: String)`
+
+```swift
+Robin.scheduler.cancel(group: group)
+```
+
+```swift
+Robin.scheduler.cancel(groupWithIdentifer: group.identifer)
+```
+
 ### Retrieve all delivered notifications
 
 To retrieve all delivered notifications that are displayed in the notification center, call `allDelivered(completionHandler: @escaping ([RobinNotification]) -> Void)`.
@@ -195,9 +250,7 @@ Robin.manager.removeAllDelivered()
 
 ## Notes
 
-`Robin` is preset to allow 60 notifications to be scheduled by iOS. The remaining four slots are kept for the app-defined notifications. These free slots are currently not handled by `Robin`; if you use `Robin` to utilize these slots, the notifications will be discarded. To change the maximum allowed, just update `Robin.maximumAllowedNotifications`.
-
-`Robin` currently can't handle multiple notifications with the same identifier. Support for grouping notifications under the same identifier is coming soon.
+`Robin` is preset to allow 60 notifications to be scheduled by the system. The remaining four slots are kept for the app-defined notifications. These free slots are currently not handled by `Robin`; if you use `Robin` to utilize these slots, the notifications will be discarded. To change the maximum allowed, just update `Robin.maximumAllowedNotifications`.
 
 ## Author
 

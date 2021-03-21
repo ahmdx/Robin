@@ -61,11 +61,17 @@ public class RobinNotification: NSObject {
     /// The delivery status of the notification.
     internal(set) public var delivered: Bool = false
     
+    /// The identifier used to visually group notifications together.
+    public var threadIdentifier: String?
+    
     public override var description: String {
         var result = ""
         result += "RobinNotification: \(self.identifier!)\n"
         if let title = self.title {
             result += "\tTitle: \(title)\n"
+        }
+        if let threadIdentifier = threadIdentifier {
+            result += "\tThread identifier: \(threadIdentifier)\n"
         }
         result += "\tBody: \(self.body!)\n"
         result += "\tFires at: \(self.date!)\n"

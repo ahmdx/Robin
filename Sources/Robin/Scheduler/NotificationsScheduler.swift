@@ -35,7 +35,7 @@ internal class NotificationsScheduler: RobinScheduler {
             return notification
         }
         
-        if (self.scheduledCount() >= min(Constants.maximumAllowedNotifications, Constants.maximumAllowedSystemNotifications)) {
+        if (!containsFreeSlots()) {
             return nil
         }
         
@@ -65,6 +65,10 @@ internal class NotificationsScheduler: RobinScheduler {
         
         content.badge = notification.badge
         
+        if let threadIdentifier = notification.threadIdentifier {
+            content.threadIdentifier = threadIdentifier
+        }
+        
         let trigger: UNCalendarNotificationTrigger = UNCalendarNotificationTrigger(date: notification.date, repeats: notification.repeats)
         
         let request: UNNotificationRequest = UNNotificationRequest(identifier: notification.identifier, content: content, trigger: trigger)
@@ -72,6 +76,18 @@ internal class NotificationsScheduler: RobinScheduler {
         notification.scheduled = true
         
         return notification
+    }
+    
+    func schedule(group: RobinNotificationGroup) -> RobinNotificationGroup? {
+        let notifications = group.notifications
+        
+        if (self.freeSlotsCount() < notifications.count) {
+            return nil
+        }
+        
+        notifications.forEach { _ = schedule(notification: $0) }
+        
+        return group
     }
     
     func reschedule(notification: RobinNotification) -> RobinNotification? {
@@ -89,8 +105,19 @@ internal class NotificationsScheduler: RobinScheduler {
         notification.scheduled = false
     }
     
+    func cancel(group: RobinNotificationGroup) {
+        cancel(groupWithIdentifier: group.identifier)
+    }
+    
     func cancel(withIdentifier identifier: String) {
         center.removePendingNotificationRequests(withIdentifiers: [identifier])
+    }
+    
+    func cancel(groupWithIdentifier identifier: String) {
+        let notifications = self.scheduled()
+        
+        let group = notifications.filter { $0.threadIdentifier == identifier }
+        group.forEach { self.cancel(notification: $0) }
     }
     
     func cancelAll() {
@@ -98,59 +125,58 @@ internal class NotificationsScheduler: RobinScheduler {
     }
     
     func notification(withIdentifier identifier: String) -> RobinNotification? {
+        let notifications = self.scheduled()
+        
+        return notifications.first { $0.identifier == identifier }
+    }
+    
+    func group(withIdentifier identifier: String) -> RobinNotificationGroup? {
+        let notifications = self.scheduled()
+            .filter { $0.threadIdentifier == identifier }
+        
+        guard notifications.count > 0 else {
+            return nil
+        }
+        
+        return RobinNotificationGroup(notifications: notifications, identifier: identifier)
+    }
+    
+    func scheduled() -> [RobinNotification] {
         let semaphore = DispatchSemaphore(value: 0)
-        var notification: RobinNotification? = nil
+        var notifications: [RobinNotification] = []
         
         center.getPendingNotificationRequests { requests in
-            for request in requests {
-                if request.identifier == identifier {
-                    notification = RobinNotification.notification(withSystemNotification: request)
-                    
-                    semaphore.signal()
-                    
-                    break
-                }
-            }
+            notifications = requests.map { $0.robinNotification() }
             semaphore.signal()
         }
         
-        let _ = semaphore.wait(timeout: DispatchTime.distantFuture)
+        _ = semaphore.wait(timeout: DispatchTime.distantFuture)
         
-        return notification
+        return notifications
     }
     
     func scheduledCount() -> Int {
-        let semaphore = DispatchSemaphore(value: 0)
-        var count: Int = 0
-        
-        center.getPendingNotificationRequests { requests in
-            count = requests.count
-            semaphore.signal()
-        }
-        
-        let _ = semaphore.wait(timeout: DispatchTime.distantFuture)
-        
-        return count
+        return self.scheduled().count
     }
     
     //    MARK:- Testing
     
     func printScheduled() {
-        if (self.scheduledCount() == 0) {
+        let notifications = self.scheduled()
+        
+        guard notifications.count > 0 else {
             print("There are no scheduled system notifications.")
             return
         }
         
-        let semaphore = DispatchSemaphore(value: 0)
-        center.getPendingNotificationRequests { requests in
-            for request in requests {
-                let notification: RobinNotification = request.robinNotification()
-                
-                print(notification)
-            }
-            semaphore.signal()
-        }
-        
-        let _ = semaphore.wait(timeout: DispatchTime.distantFuture)
+        notifications.forEach { print($0) }
+    }
+    
+    fileprivate func freeSlotsCount() -> Int {
+        return min(Constants.maximumAllowedNotifications, Constants.maximumAllowedSystemNotifications) - self.scheduledCount()
+    }
+    
+    fileprivate func containsFreeSlots() -> Bool {
+        return freeSlotsCount() > 0
     }
 }

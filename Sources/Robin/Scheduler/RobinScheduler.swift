@@ -25,11 +25,18 @@ public protocol RobinScheduler: class {
     /// Schedules the passed notification if and only if there is an available notification slot and it is not already scheduled. The number of available slots is governed by `Robin.maximumAllowedNotifications` and `Constants.maximumAllowedSystemNotifications`.
     ///
     /// - attention:
-    /// iOS will discard notifications having the exact same attribute values (i.e if two notifications have the same attributes, iOS will only schedule one of them).
+    /// The system will discard notifications having the exact same attribute values (i.e if two notifications have the same attributes, it will only schedule one of them).
+    /// If you want to schedule multiple notifications under the same identifier, see `schedule(group: RobinNotificationGroup) -> RobinNotificationGroup?`.
     ///
     /// - Parameter notification: The notification to schedule.
     /// - Returns: The scheduled `RobinNotification` if it was successfully scheduled, nil otherwise.
     func schedule(notification: RobinNotification) -> RobinNotification?
+    
+    /// Schedules the passed notification group if and only if there are available notification slots and the notifications are not already scheduled. The number of available slots is governed by `Robin.maximumAllowedNotifications` and `Constants.maximumAllowedSystemNotifications`.
+    ///
+    /// - Parameter group: The notification group to schedule.
+    /// - Returns: The scheduled `RobinNotificationGroup` if it was successfully scheduled, nil otherwise.
+    func schedule(group: RobinNotificationGroup) -> RobinNotificationGroup?
     
     /// Reschedules the passed `RobinNotification` whether it is already scheduled or not. This simply cancels the `RobinNotification` and schedules it again.
     ///
@@ -37,33 +44,55 @@ public protocol RobinScheduler: class {
     /// - Returns: The rescheduled `RobinNotification` if it was successfully rescheduled, nil otherwise.
     func reschedule(notification: RobinNotification) -> RobinNotification?
     
-    /// Cancels the passed notification if it is scheduled. If multiple notifications have identical identifiers, they will be cancelled as well.
+    /// Cancels the passed notification if it is scheduled.
     ///
     /// - Parameter notification: The notification to cancel.
     func cancel(notification: RobinNotification)
     
-    /// Cancels all scheduled notifications having the passed identifier.
+    /// Cancels the passed notification group if it is scheduled.
+    ///
+    /// - Parameter group: The notification group to cancel.
+    func cancel(group: RobinNotificationGroup)
+    
+    /// Cancels the scheduled notification having the passed identifier.
+    ///
     /// - attention:
-    /// If you hold references to notifications having this same identifier, use `cancel(notification:)` instead.
+    /// If you hold a reference to the notification having this same identifier, use `cancel(notification: RobinNotification)` instead.
     ///
     /// - Parameter identifier: The identifier to match against scheduled notifications to cancel.
     func cancel(withIdentifier identifier: String)
+    
+    /// Cancels the notification group having the passed identifier.
+    ///
+    /// - attention:
+    /// If you hold a reference to the notification group having this same identifier, use `cancel(group: RobinNotificationGroup)` instead.
+    ///
+    /// - Parameter identifier: The identifier to match against scheduled notifications to cancel.
+    func cancel(groupWithIdentifier identifier: String)
     
     /// Cancels all scheduled system notifications.
     func cancelAll()
     
     /// Returns a `RobinNotification` instance from a scheduled system notification that has an identifier matching the passed identifier.
     ///
-    /// - attention:
-    /// Having a reference to a `RobinNotification` instance is the same as having multiple references to several `RobinNotification` instances with the same identifier. This is only the case when canceling notifications.
-    ///
     /// - Parameter identifier: The identifier to match against a scheduled system notification.
-    /// - Returns: The `RobinNotification` created from a system notification
+    /// - Returns: The `RobinNotification` created from a system notification if it exists.
     func notification(withIdentifier identifier: String) -> RobinNotification?
     
-    /// Returns the count of the scheduled notifications by iOS.
+    /// Returns a `RobinNotificationGroup` instance from the scheduled system notifications that have an `threadIdentifier` matching the passed identifier.
     ///
-    /// - Returns: The count of the scheduled notifications by iOS.
+    /// - Parameter identifier: The identifier to match against the scheduled system notifications.
+    /// - Returns: The `RobinNotificationGroup` created with the system notifications, if any exists.
+    func group(withIdentifier identifier: String) -> RobinNotificationGroup?
+    
+    /// Returns a list of all scheduled notifications.
+    ///
+    /// - Returns: The list of the scheduled notifications.
+    func scheduled() -> [RobinNotification]
+    
+    /// Returns the count of the scheduled notifications.
+    ///
+    /// - Returns: The count of the scheduled notifications.
     func scheduledCount() -> Int
     
 //    MARK:- Testing

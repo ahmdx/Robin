@@ -171,6 +171,7 @@ class RobinSchedulerTests: XCTestCase {
         notification.repeats = .week
         notification.sound = RobinNotificationSound(named: "TestSound")
         notification.setUserInfo(value: "Value", forKey: "Key")
+        notification.threadIdentifier = "thread"
         
         let _ = Robin.scheduler.schedule(notification: notification)
         
@@ -186,7 +187,98 @@ class RobinSchedulerTests: XCTestCase {
         XCTAssertEqual(retrievedNotification?.repeats, notification.repeats)
         XCTAssertEqual(retrievedNotification?.scheduled, notification.scheduled)
         XCTAssertTrue(retrievedNotification!.scheduled)
+        XCTAssertEqual(retrievedNotification?.threadIdentifier, notification.threadIdentifier)
         XCTAssertEqual(1, Robin.scheduler.scheduledCount())
+    }
+    
+    // MARK:- Notification Group
+    
+    /// Tests whether scheduling a notification group succeeds.
+    func testNotificationGroupSchedule() {
+        let group = RobinNotificationGroup(notifications: [RobinNotification(body: "#1"), RobinNotification(body: "#2"), RobinNotification(body: "#3"), RobinNotification(body: "#4")])
+        
+        let scheduledGroup = Robin.scheduler.schedule(group: group)
+        
+        XCTAssertNotNil(scheduledGroup)
+        XCTAssertEqual(Robin.scheduler.scheduledCount(), 4)
+    }
+    
+    /// Tests whether scheduling a `RobinNotificationGroup` beyond the allowed maximum succeeds.
+    func testNotificationGroupScheduleOverAllowed() {
+        let count: Int = Constants.maximumAllowedNotifications
+        for i in 0 ..< count {
+            let notification = RobinNotification(body: "This is a test notification #\(i + 1)")
+            
+            let _ = Robin.scheduler.schedule(notification: notification)
+        }
+        
+        let group = RobinNotificationGroup(notifications: [RobinNotification(body: "#1"), RobinNotification(body: "#2"), RobinNotification(body: "#3"), RobinNotification(body: "#4")])
+        
+        let scheduledGroup = Robin.scheduler.schedule(group: group)
+        
+        XCTAssertNil(scheduledGroup)
+        XCTAssertEqual(Robin.scheduler.scheduledCount(), Constants.maximumAllowedNotifications)
+    }
+    
+    /// Tests whether canceling a notification group succeeds.
+    func testNotificationGroupCancel() {
+        let group = RobinNotificationGroup(notifications: [RobinNotification(body: "#1"), RobinNotification(body: "#2"), RobinNotification(body: "#3"), RobinNotification(body: "#4")])
+        
+        let scheduledGroup = Robin.scheduler.schedule(group: group)
+        
+        XCTAssertEqual(Robin.scheduler.scheduledCount(), 4)
+        
+        if let scheduledGroup = scheduledGroup {
+            Robin.scheduler.cancel(group: scheduledGroup)
+        }
+        
+        XCTAssertEqual(Robin.scheduler.scheduledCount(), 0)
+    }
+    
+    /// Tests whether canceling a notification group by identifier succeeds.
+    func testNotificationGroupCancelWithIdentifier() {
+        let identifier = "Group"
+        
+        let group = RobinNotificationGroup(notifications: [RobinNotification(body: "#1"), RobinNotification(body: "#2"), RobinNotification(body: "#3"), RobinNotification(body: "#4")], identifier: identifier)
+        
+        _ = Robin.scheduler.schedule(group: group)
+        
+        XCTAssertEqual(Robin.scheduler.scheduledCount(), 4)
+        
+        Robin.scheduler.cancel(groupWithIdentifier: identifier)
+        
+        XCTAssertEqual(Robin.scheduler.scheduledCount(), 0)
+    }
+    
+    /// Tests whether retrieving a notification group by identifier succeeds.
+    func testNotificationGroupWithIdentifier() {
+        let identifier = "Group"
+        
+        let group = RobinNotificationGroup(notifications: [RobinNotification(body: "#1"), RobinNotification(body: "#2"), RobinNotification(body: "#3"), RobinNotification(body: "#4")], identifier: identifier)
+        
+        _ = Robin.scheduler.schedule(group: group)
+        
+        XCTAssertEqual(Robin.scheduler.scheduledCount(), 4)
+        
+        let scheduledGroup = Robin.scheduler.group(withIdentifier: identifier)
+        
+        XCTAssertEqual(scheduledGroup?.identifier, identifier)
+        XCTAssertEqual(scheduledGroup?.notifications.count, 4)
+    }
+    
+    /// Tests whether retrieving a notification group by identifier succeeds.
+    func testNotificationGroupWithIdentifierNonExistent() {
+        let identifier = "Group"
+        
+        let group = RobinNotificationGroup(notifications: [RobinNotification(body: "#1"), RobinNotification(body: "#2"), RobinNotification(body: "#3"), RobinNotification(body: "#4")], identifier: identifier)
+        
+        _ = Robin.scheduler.schedule(group: group)
+        
+        XCTAssertEqual(Robin.scheduler.scheduledCount(), 4)
+        
+        let scheduledGroup = Robin.scheduler.group(withIdentifier: "Another group")
+        
+        XCTAssertNil(scheduledGroup)
     }
 }
 #endif

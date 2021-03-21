@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name = 'Robin'
-  s.version = '0.94.1'
+  s.version = '0.95.0'
   s.summary = 'A notifications scheduler written in Swift.'
   s.swift_version = '4.2'
 
@@ -34,8 +34,8 @@ Pod::Spec.new do |s|
   s.source_files = 'Sources/**/*'
 
   s.test_spec 'Tests' do |test_spec|
-    test_spec.platform = :osx
-    test_spec.platform = :ios
+    test_spec.ios.deployment_target = '10.0'
+    test_spec.osx.deployment_target = '10.14'
 
     test_spec.source_files = 'Tests/**/*'
   end
