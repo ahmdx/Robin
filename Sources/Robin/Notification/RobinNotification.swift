@@ -22,9 +22,9 @@
 
 import Foundation
 
+/// An object that represents system notifications.
 @available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
-public class RobinNotification: NSObject {
-    
+public class RobinNotification {
     /// A string assigned to the notification for later access.
     fileprivate(set) public var identifier: String!
     
@@ -68,44 +68,6 @@ public class RobinNotification: NSObject {
     
     /// The identifier used to visually group notifications together.
     public var threadIdentifier: String?
-    
-    public override var description: String {
-        var result = ""
-        result += "RobinNotification: \(self.identifier!)\n"
-        if let title = self.title {
-            result += "\tTitle: \(title)\n"
-        }
-        if let threadIdentifier = threadIdentifier {
-            result += "\tThread identifier: \(threadIdentifier)\n"
-        }
-        result += "\tBody: \(self.body!)\n"
-        if case .date(let date, let repeats) = self.trigger {
-            result += "\tFires at: \(date)\n"
-            result += "\tRepeats every: \(repeats.rawValue)\n"
-        }
-        
-        #if !os(macOS) && !os(watchOS)
-        if case .location(let region, let repeats) = self.trigger {
-            result += "\tFires around: \(region)\n"
-            result += "\tRepeating: \(repeats)\n"
-        }
-        #endif
-        
-        result += "\tUser info: \(self.userInfo)\n"
-        if let badge = self.badge {
-            result += "\tBadge: \(badge)\n"
-        }
-        #if !os(watchOS)
-        result += "\tSound name: \(self.sound)\n"
-        #endif
-        result += "\tScheduled: \(self.scheduled)\n"
-        result += "\tDelivered: \(self.delivered)"
-        if let deliveryDate = deliveryDate {
-            result += "\n\tDelivered on: \(deliveryDate)"
-        }
-        
-        return result
-    }
     
     public convenience init(identifier: String = UUID().uuidString,
                             body: String,

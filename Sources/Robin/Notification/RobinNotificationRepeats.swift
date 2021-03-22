@@ -24,11 +24,11 @@ import Foundation
 
 /// An enum that represents the repeat interval of the notification.
 ///
-/// - none: The notification should never repeat.
-/// - hour: The notification should repeat every hour.
-/// - day: The notification should repeat every day.
-/// - week: The notification should repeat every week.
-/// - month: The notification should repeat every month.
+/// - .none: The notification should never repeat.
+/// - .hour: The notification should repeat every hour.
+/// - .day: The notification should repeat every day.
+/// - .week: The notification should repeat every week.
+/// - .month: The notification should repeat every month.
 @available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
 public enum RobinNotificationRepeats: String {
     case none = "None"

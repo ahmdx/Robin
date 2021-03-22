@@ -21,38 +21,44 @@
 //
 
 import Foundation
-#if !os(macOS)
-import CoreLocation
-#endif
-
-/// An enum that represents the type of trigger that causes a notification to fire.
-///
-/// * .date: The notification should be fired on a specified time with an option to repeat.
-/// * .location: The notification should be fired when entering or leaving a specified region with an option to repeat. (Not available on macOS or watchOS).
-@available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
-public enum RobinNotificationTrigger {
-    case date(_ date: Date, repeats: RobinNotificationRepeats)
-    
-    #if !os(macOS) && !os(watchOS)
-    case location(_ region: CLRegion, repeats: Bool)
-    #endif
-}
 
 @available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
-extension RobinNotificationTrigger: Equatable {
-    public static func ==(lhs: RobinNotificationTrigger, rhs: RobinNotificationTrigger) -> Bool {
-        if case .date(let lhsDate, let lhsRepeats) = lhs,
-           case .date(let rhsDate, let rhsRepeats) = rhs {
-            return lhsDate == rhsDate && lhsRepeats == rhsRepeats
+extension RobinNotification: CustomStringConvertible {
+    public var description: String {
+        var result = ""
+        result += "RobinNotification: \(self.identifier!)\n"
+        if let title = self.title {
+            result += "\tTitle: \(title)\n"
+        }
+        if let threadIdentifier = threadIdentifier {
+            result += "\tThread identifier: \(threadIdentifier)\n"
+        }
+        result += "\tBody: \(self.body!)\n"
+        if case .date(let date, let repeats) = self.trigger {
+            result += "\tFires at: \(date)\n"
+            result += "\tRepeats every: \(repeats.rawValue)\n"
         }
         
         #if !os(macOS) && !os(watchOS)
-        if case .location(let lhsRegion, let lhsRepeats) = lhs,
-           case .location(let rhsRegion, let rhsRepeats) = rhs {
-            return lhsRegion == rhsRegion && lhsRepeats == rhsRepeats
+        if case .location(let region, let repeats) = self.trigger {
+            result += "\tFires around: \(region)\n"
+            result += "\tRepeating: \(repeats)\n"
         }
         #endif
         
-        return false
+        result += "\tUser info: \(self.userInfo)\n"
+        if let badge = self.badge {
+            result += "\tBadge: \(badge)\n"
+        }
+        #if !os(watchOS)
+        result += "\tSound name: \(self.sound)\n"
+        #endif
+        result += "\tScheduled: \(self.scheduled)\n"
+        result += "\tDelivered: \(self.delivered)"
+        if let deliveryDate = deliveryDate {
+            result += "\n\tDelivered on: \(deliveryDate)"
+        }
+        
+        return result
     }
 }

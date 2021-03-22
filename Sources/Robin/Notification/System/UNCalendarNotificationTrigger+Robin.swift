@@ -24,6 +24,11 @@ import UserNotifications
 
 @available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
 internal extension UNCalendarNotificationTrigger {
+    /// Initializes an instance of `UNCalendarNotificationTrigger` given a starting date and a repeat interval.
+    ///
+    /// - Parameters:
+    ///   - date: The starting date of the trigger.
+    ///   - repeats: The repeat interval of the trigger.
     convenience init(date: Date, repeats: RobinNotificationRepeats) {
         var dateComponents: DateComponents = DateComponents()
         let shouldRepeat: Bool = repeats != .none

@@ -22,15 +22,6 @@
 
 @available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
 public class Robin {
-    static var notificationsScheduler: RobinScheduler!
-    public static var scheduler: RobinScheduler {
-        if notificationsScheduler == nil {
-            self.notificationsScheduler = NotificationsScheduler()
-        }
-
-        return self.notificationsScheduler
-    }
-    
     static var notificationCenterManager: RobinNotificationCenterManager!
     public static var manager: RobinNotificationCenterManager {
         if notificationCenterManager == nil {
@@ -38,6 +29,15 @@ public class Robin {
         }
         
         return self.notificationCenterManager
+    }
+    
+    static var notificationsScheduler: RobinScheduler!
+    public static var scheduler: RobinScheduler {
+        if notificationsScheduler == nil {
+            self.notificationsScheduler = NotificationsScheduler()
+        }
+
+        return self.notificationsScheduler
     }
     
     static var notificationsSettings: RobinSettingsManager!

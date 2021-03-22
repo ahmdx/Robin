@@ -22,6 +22,7 @@
 
 import UserNotifications
 
+/// A protocol that represents notifications delivered by the system.
 @available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
 internal protocol DeliveredSystemNotification {
     var date: Date { get }

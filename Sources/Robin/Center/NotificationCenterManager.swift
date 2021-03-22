@@ -22,6 +22,7 @@
 
 import UserNotifications
 
+/// An object that manages notifications delivered by the system.
 @available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
 internal class NotificationCenterManager: RobinNotificationCenterManager {
     fileprivate let center: RobinNotificationCenter

@@ -22,6 +22,10 @@
 
 import Foundation
 
+/// An object that holds multiple `RobinNotification` instances to be scheduled together under a single group identifier.
+///
+/// - note:
+/// Notification scheduled under the same group identifier are also grouped visually when displayed to the user.
 @available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
 public class RobinNotificationGroup {
     public let notifications: [RobinNotification]

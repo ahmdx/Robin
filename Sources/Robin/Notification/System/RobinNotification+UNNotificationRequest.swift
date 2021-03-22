@@ -24,6 +24,9 @@ import UserNotifications
 
 @available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
 internal extension RobinNotification {
+    /// Transforms an instance of `RobinNotification` to an instance of `UNNotificationRequest`.
+    ///
+    /// - Returns: A `UNNotificationRequest` from the the `RobinNotification` instance.
     func notificationRequest() -> UNNotificationRequest {
         let content = UNMutableNotificationContent()
         

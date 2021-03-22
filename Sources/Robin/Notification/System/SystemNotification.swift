@@ -22,6 +22,7 @@
 
 import UserNotifications
 
+/// A protocol that represents notifications to be delivered by the system.
 @available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
 public protocol SystemNotification {
     var identifier: String { get }

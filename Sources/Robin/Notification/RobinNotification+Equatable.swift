@@ -23,7 +23,7 @@
 import Foundation
 
 @available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
-extension RobinNotification {
+extension RobinNotification: Equatable {
     public static func ==(lhs: RobinNotification, rhs: RobinNotification) -> Bool {
         return lhs.identifier == rhs.identifier
     }
