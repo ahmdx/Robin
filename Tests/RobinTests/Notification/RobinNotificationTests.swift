@@ -70,8 +70,7 @@ class RobinNotificationTests: XCTestCase {
         XCTAssertEqual(badge, notification.badge)
         
         // Tests userInfo property
-        let userInfo: [AnyHashable : Any] = [Constants.NotificationKeys.identifier : notification.identifier, Constants.NotificationKeys.date : date]
-        XCTAssertEqual(userInfo[Constants.NotificationKeys.identifier] as! String, notification.userInfo[Constants.NotificationKeys.identifier] as! String)
+        let userInfo: [AnyHashable : Any] = [Constants.NotificationKeys.date: date]
         XCTAssertEqual(userInfo[Constants.NotificationKeys.date] as! Date, notification.userInfo[Constants.NotificationKeys.date] as! Date)
         
         // Tests sound property
@@ -119,10 +118,6 @@ class RobinNotificationTests: XCTestCase {
         notification.badge = badge
         XCTAssertEqual(badge, notification.badge)
         
-        // Tests userInfo property
-        let userInfo: [AnyHashable : Any] = [Constants.NotificationKeys.identifier : notification.identifier]
-        XCTAssertEqual(userInfo[Constants.NotificationKeys.identifier] as! String, notification.userInfo[Constants.NotificationKeys.identifier] as! String)
-        
         // Tests sound property
         XCTAssertTrue(notification.sound.isValid())
         let sound: String = "SoundName"
@@ -153,10 +148,6 @@ class RobinNotificationTests: XCTestCase {
         notification.setUserInfo(value: value, forKey: key)
         
         XCTAssertEqual(value, notification.userInfo[key] as! String)
-        
-        notification.setUserInfo(value: value, forKey: Constants.NotificationKeys.identifier)
-        
-        XCTAssertNotEqual(value, notification.userInfo[Constants.NotificationKeys.identifier] as! String)
     }
     
     /// Tests whether setting a `RobinNotification` userInfo key succeeds.
@@ -170,10 +161,6 @@ class RobinNotificationTests: XCTestCase {
         notification.removeUserInfoValue(forKey: key)
         
         XCTAssertNil(notification.userInfo[key])
-        
-        notification.removeUserInfoValue(forKey: Constants.NotificationKeys.identifier)
-        
-        XCTAssertEqual(notification.identifier, notification.userInfo[Constants.NotificationKeys.identifier] as? String)
     }
     
     /// Tests whether initialized RobinNotifications have different identifiers.

@@ -37,8 +37,6 @@ public struct Constants {
     public static var maximumAllowedNotifications = 60
     
     public struct NotificationKeys {
-        /// Holds the identifier of the notification; stored in the `userInfo` property.
-        public static let identifier = "RobinNotificationIdentifierKey"
         /// Holds the date of the notification; stored in the `userInfo` property.
         public static let date = "RobinNotificationDateKey"
     }

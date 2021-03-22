@@ -88,8 +88,6 @@ public class RobinNotification {
     internal init(identifier: String, body: String) {
         self.identifier = identifier
         self.body = body
-        
-        self.userInfo[Constants.NotificationKeys.identifier] = identifier
     }
     
     /// Creates a `RobinNotification` from the passed `SystemNotification`. For the details of the creation process, have a look at the system notifications extensions that implement the `SystemNotification` protocol.
@@ -100,26 +98,32 @@ public class RobinNotification {
         return notification.robinNotification()
     }
     
-    /// Adds a value to the specified key in the `userInfo` property. Note that the value is not added if the key is equal to the `identifierKey` or `dateKey`.
+    /// Adds a value to the specified key in the `userInfo` property.
+    ///
+    /// - note:
+    /// The value is omitted if the key is equal to one of `Constants.NotificationKeys`.
     ///
     /// - Parameters:
     ///   - value: The value to set.
     ///   - key: The key to set the value of.
     public func setUserInfo(value: Any, forKey key: AnyHashable) {
         if let keyString = key as? String {
-            if (keyString == Constants.NotificationKeys.identifier || keyString == Constants.NotificationKeys.date) {
+            if (keyString == Constants.NotificationKeys.date) {
                 return
             }
         }
         self.userInfo[key] = value;
     }
     
-    /// Removes the value of the specified key. Note that the value is not removed if the key is equal to the `identifierKey` or `dateKey`.
+    /// Removes the value of the specified key.
+    ///
+    /// - note:
+    /// The value is not removed if the key is equal to one of `Constants.NotificationKeys`.
     ///
     /// - Parameter key: The key to remove the value of.
     public func removeUserInfoValue(forKey key: AnyHashable) {
         if let keyString = key as? String {
-            if (keyString == Constants.NotificationKeys.identifier || keyString == Constants.NotificationKeys.date) {
+            if (keyString == Constants.NotificationKeys.date) {
                 return
             }
         }
