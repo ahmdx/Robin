@@ -34,7 +34,8 @@ public class RobinNotification {
     /// The trigger that causes the notification to fire.
     public var trigger: RobinNotificationTrigger! {
         didSet {
-            if case .date(let date, let repeats) = trigger {
+            if let trigger = trigger,
+               case let RobinNotificationTrigger.date(date, repeats) = trigger {
                 let truncatedDate = date.truncateSeconds()
 
                 self.trigger = .date(truncatedDate, repeats: repeats)
@@ -74,7 +75,7 @@ public class RobinNotification {
                             trigger: RobinNotificationTrigger = .date(.next(hours: 1), repeats: .none)) {
         self.init(identifier: identifier, body: body)
         
-        if case .date(let date, let repeats) = trigger {
+        if case RobinNotificationTrigger.date(let date, let repeats) = trigger {
             let truncatedDate = date.truncateSeconds()
 
             self.trigger = .date(truncatedDate, repeats: repeats)

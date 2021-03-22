@@ -34,13 +34,15 @@ extension RobinNotification: CustomStringConvertible {
             result += "\tThread identifier: \(threadIdentifier)\n"
         }
         result += "\tBody: \(self.body!)\n"
-        if case .date(let date, let repeats) = self.trigger {
+        if let trigger = self.trigger,
+           case let RobinNotificationTrigger.date(date, repeats) = trigger {
             result += "\tFires at: \(date)\n"
             result += "\tRepeats every: \(repeats.rawValue)\n"
         }
         
         #if !os(macOS) && !os(watchOS)
-        if case .location(let region, let repeats) = self.trigger {
+        if let trigger = self.trigger,
+           case let RobinNotificationTrigger.location(region, repeats) = trigger {
             result += "\tFires around: \(region)\n"
             result += "\tRepeating: \(repeats)\n"
         }

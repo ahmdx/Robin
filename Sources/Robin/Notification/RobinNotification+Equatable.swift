@@ -29,8 +29,10 @@ extension RobinNotification: Equatable {
     }
 
     public static func <(lhs: RobinNotification, rhs: RobinNotification) -> Bool {
-        guard case .date(let lhsDate, _) = lhs.trigger,
-              case .date(let rhsDate, _) = rhs.trigger else {
+        guard let lhsTrigger = lhs.trigger,
+              let rhsTrigger = rhs.trigger,
+              case let RobinNotificationTrigger.date(lhsDate, _) = lhsTrigger,
+              case let RobinNotificationTrigger.date(rhsDate, _) = rhsTrigger else {
             return lhs.identifier < rhs.identifier
         }
 
