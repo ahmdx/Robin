@@ -27,10 +27,10 @@ import CoreLocation
 
 @available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
 public enum RobinNotificationTrigger {
-    case date(_ date: Date, repeats: RobinNotificationRepeats = .none)
+    case date(_ date: Date, repeats: RobinNotificationRepeats)
     
     #if !os(macOS) && !os(watchOS)
-    case location(_ region: CLRegion, repeats: Bool = false)
+    case location(_ region: CLRegion, repeats: Bool)
     #endif
 }
 

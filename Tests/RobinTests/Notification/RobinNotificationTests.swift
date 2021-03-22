@@ -94,7 +94,7 @@ class RobinNotificationTests: XCTestCase {
         let region = CLCircularRegion(center: center, radius: 2000.0, identifier: "Headquarters")
         region.notifyOnEntry = true
         
-        let notification: RobinNotification = RobinNotification(body: body, trigger: .location(region))
+        let notification: RobinNotification = RobinNotification(body: body, trigger: .location(region, repeats: false))
         
         // Tests body property
         XCTAssertEqual(body, notification.body)
@@ -188,14 +188,14 @@ class RobinNotificationTests: XCTestCase {
     
     /// Tests whether testing for notification date precedence succeeds.
     func testNotificationDatePrecedence() {
-        let firstNotification: RobinNotification = RobinNotification(body: "First Notification", trigger: .date(.next(minutes: 10)))
-        let secondNotification: RobinNotification = RobinNotification(body: "Second Notification", trigger: .date(.next(hours: 1)))
+        let firstNotification: RobinNotification = RobinNotification(body: "First Notification", trigger: .date(.next(minutes: 10), repeats: .none))
+        let secondNotification: RobinNotification = RobinNotification(body: "Second Notification", trigger: .date(.next(hours: 1), repeats: .none))
         
         let precedes: Bool = firstNotification < secondNotification
         
         XCTAssertTrue(precedes)
         
-        firstNotification.trigger = .date(.next(days: 1))
+        firstNotification.trigger = .date(.next(days: 1), repeats: .none)
         
         let doesNotPrecede: Bool = firstNotification < secondNotification
         

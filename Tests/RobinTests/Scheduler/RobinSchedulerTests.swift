@@ -99,7 +99,7 @@ class RobinSchedulerTests: XCTestCase {
         
         _ = Robin.scheduler.schedule(notification: notification)
         
-        notification.trigger = .date(date)
+        notification.trigger = .date(date, repeats: .none)
         
         _ = Robin.scheduler.reschedule(notification: notification)
         
@@ -202,7 +202,7 @@ class RobinSchedulerTests: XCTestCase {
         let region = CLCircularRegion(center: center, radius: 2000.0, identifier: "Headquarters")
         region.notifyOnEntry = true
         
-        let notification: RobinNotification = RobinNotification(body: body, trigger: .location(region))
+        let notification: RobinNotification = RobinNotification(body: body, trigger: .location(region, repeats: false))
         
         let scheduledNotification = Robin.scheduler.schedule(notification: notification)
         

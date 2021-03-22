@@ -53,7 +53,7 @@ class RobinManagerTests: XCTestCase {
     func testGetDeliveredNotification() {
         let count: Int = 1
         
-        let trigger: RobinNotificationTrigger = .date(Date.next(days: 1).truncateSeconds())
+        let trigger: RobinNotificationTrigger = .date(Date.next(days: 1).truncateSeconds(), repeats: .none)
         let notification = RobinNotification(body: "This is a test notification", trigger: trigger)
         
         _ = Robin.scheduler.schedule(notification: notification)

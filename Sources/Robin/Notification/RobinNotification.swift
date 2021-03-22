@@ -109,7 +109,7 @@ public class RobinNotification: NSObject {
     
     public convenience init(identifier: String = UUID().uuidString,
                             body: String,
-                            trigger: RobinNotificationTrigger = .date(.next(hours: 1))) {
+                            trigger: RobinNotificationTrigger = .date(.next(hours: 1), repeats: .none)) {
         self.init(identifier: identifier, body: body)
         
         if case .date(let date, let repeats) = trigger {
