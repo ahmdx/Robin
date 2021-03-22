@@ -45,7 +45,7 @@ public class RobinNotification {
     }
     
     /// A dictionary that holds additional information.
-    private(set) public var userInfo: [AnyHashable : Any] = [:]
+    internal(set) public var userInfo: [AnyHashable : Any] = [:]
     
     /// The title string of the notification.
     public var title: String? = nil

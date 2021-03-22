@@ -45,7 +45,7 @@ public extension SystemNotification {
         
         let userInfo = content.userInfo
         for (key, value) in userInfo {
-            notification.setUserInfo(value: value, forKey: key)
+            notification.userInfo[key] = value
         }
         
         if content.title.trimmingCharacters(in: .whitespaces).count > 0 {
