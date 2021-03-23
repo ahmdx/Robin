@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name = 'Robin'
-  s.version = '0.97.0'
+  s.version = '0.97.1'
   s.summary = 'A notifications scheduler written in Swift.'
   s.swift_version = '4.2'
 

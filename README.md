@@ -48,19 +48,19 @@ Robin is available through both [Swift Package Manager](https://swift.org/packag
 To install using SPM:
 
 ```swift
-.package(url: "https://github.com/ahmdx/Robin", from: "0.97.0"),
+.package(url: "https://github.com/ahmdx/Robin", from: "0.97.1"),
 ```
 
 CocoaPods:
 
 ```ruby
-pod 'Robin', '~> 0.97.0'
+pod 'Robin', '~> 0.97.1'
 ```
 
 And if you want to include the test suite in your project:
 
 ```ruby
-pod 'Robin', '~> 0.97.0', :testspecs => ['Tests']
+pod 'Robin', '~> 0.97.1', :testspecs => ['Tests']
 ```
 
 ## Usage
@@ -131,7 +131,7 @@ Example notification, with a unique identifier, to be fired 30 seconds from now.
 let notification = RobinNotification(body: "A notification", trigger: .interval(30, repeats: false))
 ```
 
-> Note: `next(minutes:)`, `next(hours:)`, and `next(days:)` are part of a `Date` extension.
+> Note: `next(minutes:)`, `next(hours:)`, `next(days:)`, `next(weeks:)`, `next(months:)`, and `next(years:)` are part of a `Date` extension.
 
 Example notification, with a unique identifier, to be fired when entering a region.
 
