@@ -37,8 +37,10 @@ internal extension UNCalendarNotificationTrigger {
         switch repeats {
         case .none:
             dateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: date)
+            dateComponents.second = 0
         case .month:
             dateComponents = calendar.dateComponents([.day, .hour, .minute], from: date)
+            dateComponents.second = 0
         case .week:
             dateComponents.weekday = calendar.component(.weekday, from: date)
             fallthrough
