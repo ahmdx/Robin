@@ -36,10 +36,7 @@ public extension Date {
     /// - Parameter minutes: The number of minutes to add/subtract.
     /// - Returns: The date after the minutes addition/subtraction.
     func next(minutes: Int) -> Date {
-        let calendar = Calendar.current
-        var components = DateComponents()
-        components.minute = minutes
-        return (calendar as NSCalendar).date(byAdding: components, to: self, options: NSCalendar.Options(rawValue: 0))!
+        return Calendar.current.date(byAdding: .minute, value: minutes, to: self)!
     }
     
     /// Adds or subtracts a number of hours to the current date.
@@ -55,7 +52,7 @@ public extension Date {
     /// - Parameter hours: The number of hours to add/subtract.
     /// - Returns: The date after the hours addition/subtraction.
     func next(hours: Int) -> Date {
-        return self.next(minutes: hours * 60)
+        return Calendar.current.date(byAdding: .hour, value: hours, to: self)!
     }
     
     /// Adds or subtracts a number of days to the current date.
@@ -71,7 +68,55 @@ public extension Date {
     /// - Parameter days: The number of days to add/subtract.
     /// - Returns: The date after the days addition/subtraction.
     func next(days: Int) -> Date {
-        return self.next(minutes: days * 60 * 24)
+        return Calendar.current.date(byAdding: .day, value: days, to: self)!
+    }
+    
+    /// Adds or subtracts a number of weeks to the current date.
+    ///
+    /// - Parameter days: The number of weeks to add/subtract.
+    /// - Returns: The current date after the weeks addition/subtraction.
+    static func next(weeks: Int) -> Date {
+        return Date().next(weeks: weeks)
+    }
+    
+    /// Adds or subtracts a number of weeks to a date.
+    ///
+    /// - Parameter days: The number of weeks to add/subtract.
+    /// - Returns: The date after the weeks addition/subtraction.
+    func next(weeks: Int) -> Date {
+        return Calendar.current.date(byAdding: .weekOfMonth, value: weeks, to: self)!
+    }
+    
+    /// Adds or subtracts a number of months to the current date.
+    ///
+    /// - Parameter days: The number of months to add/subtract.
+    /// - Returns: The current date after the months addition/subtraction.
+    static func next(months: Int) -> Date {
+        return Date().next(months: months)
+    }
+    
+    /// Adds or subtracts a number of months to a date.
+    ///
+    /// - Parameter days: The number of months to add/subtract.
+    /// - Returns: The date after the months addition/subtraction.
+    func next(months: Int) -> Date {
+        return Calendar.current.date(byAdding: .month, value: months, to: self)!
+    }
+
+    /// Adds or subtracts a number of years to the current date.
+    ///
+    /// - Parameter days: The number of years to add/subtract.
+    /// - Returns: The current date after the years addition/subtraction.
+    static func next(years: Int) -> Date {
+        return Date().next(years: years)
+    }
+    
+    /// Adds or subtracts a number of years to a date.
+    ///
+    /// - Parameter days: The number of years to add/subtract.
+    /// - Returns: The date after the years addition/subtraction.
+    func next(years: Int) -> Date {
+        return Calendar.current.date(byAdding: .year, value: years, to: self)!
     }
     
     /// Removes the seconds component from the date.

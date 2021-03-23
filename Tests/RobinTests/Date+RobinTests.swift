@@ -24,31 +24,12 @@
 import XCTest
 @testable import Robin
 
-class Date_SchedulerTests: XCTestCase {
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
+class Date_Robin: XCTestCase {
     /// Tests whether `Date.next(minutes:)` succeeds.
     func testDateStaticNextMinutes() {
         let minutes: Int = 12
-        let date: Date = Date().truncateSeconds()
         
-        let calendar: Calendar = Calendar.current
-        var components: DateComponents = DateComponents()
-        components.minute = minutes
-        let dateAfterMinutes: Date = (calendar as NSCalendar).date(byAdding: components, to: date, options: NSCalendar.Options(rawValue: 0))!.truncateSeconds()
-        
-        let testDate: Date = .next(minutes: minutes)
-        
-        XCTAssertEqual(dateAfterMinutes, testDate.truncateSeconds())
+        XCTAssertEqual(Date.next(minutes: minutes).truncateSeconds(), Date().next(minutes: minutes).truncateSeconds())
     }
     
     /// Tests whether `Date().next(minutes:)` succeeds.
@@ -56,10 +37,7 @@ class Date_SchedulerTests: XCTestCase {
         let minutes: Int = 12
         let date: Date = Date().truncateSeconds()
         
-        let calendar: Calendar = Calendar.current
-        var components: DateComponents = DateComponents()
-        components.minute = minutes
-        let dateAfterMinutes: Date = (calendar as NSCalendar).date(byAdding: components, to: date, options: NSCalendar.Options(rawValue: 0))!.truncateSeconds()
+        let dateAfterMinutes: Date = Calendar.current.date(byAdding: .minute, value: minutes, to: date)!.truncateSeconds()
         
         let testDate: Date = date.next(minutes: minutes)
         
@@ -69,18 +47,15 @@ class Date_SchedulerTests: XCTestCase {
     /// Tests whether `Date.next(hours:)` succeeds.
     func testDateStaticNextHours() {
         let hours: Int = 12
-        let dateAfterHours: Date = Date().next(minutes: hours * 60).truncateSeconds()
         
-        let testDate: Date = .next(hours: hours)
-        
-        XCTAssertEqual(dateAfterHours, testDate.truncateSeconds())
+        XCTAssertEqual(Date.next(hours: hours).truncateSeconds(), Date().next(hours: hours).truncateSeconds())
     }
     
     /// Tests whether `Date().next(hours:)` succeeds.
     func testDateNextHours() {
         let hours: Int = 12
         let date: Date = Date().truncateSeconds()
-        let dateAfterHours: Date = Date().next(minutes: hours * 60).truncateSeconds()
+        let dateAfterHours: Date = Calendar.current.date(byAdding: .hour, value: hours, to: date)!.truncateSeconds()
         
         let testDate: Date = date.next(hours: hours)
         
@@ -90,22 +65,77 @@ class Date_SchedulerTests: XCTestCase {
     /// Tests whether `Date.next(days:)` succeeds.
     func testDateStaticNextDays() {
         let days: Int = 12
-        let dateAfterDays: Date = Date().next(minutes: days * 60 * 24).truncateSeconds()
         
-        let testDate: Date = .next(days: days)
-        
-        XCTAssertEqual(dateAfterDays, testDate.truncateSeconds())
+        XCTAssertEqual(Date.next(days: days).truncateSeconds(), Date().next(days: days).truncateSeconds())
     }
     
     /// Tests whether `Date().next(days:)` succeeds.
     func testDateNextDays() {
         let days: Int = 12
         let date: Date = Date().truncateSeconds()
-        let dateAfterDays: Date = Date().next(minutes: days * 60 * 24).truncateSeconds()
+        
+        let dateAfterDays: Date = Calendar.current.date(byAdding: .day, value: days, to: date)!.truncateSeconds()
         
         let testDate: Date = date.next(days: days)
         
         XCTAssertEqual(dateAfterDays, testDate)
+    }
+    
+    /// Tests whether `Date.next(weeks:)` succeeds.
+    func testDateStaticNextWeeks() {
+        let weeks: Int = 12
+        
+        XCTAssertEqual(Date.next(weeks: weeks).truncateSeconds(), Date().next(weeks: weeks).truncateSeconds())
+    }
+    
+    /// Tests whether `Date().next(weeks:)` succeeds.
+    func testDateNextWeeks() {
+        let weeks: Int = 12
+        let date: Date = Date().truncateSeconds()
+        
+        let dateAfterWeeks: Date = Calendar.current.date(byAdding: .weekOfMonth, value: weeks, to: date)!.truncateSeconds()
+        
+        let testDate: Date = date.next(weeks: weeks)
+        
+        XCTAssertEqual(dateAfterWeeks, testDate)
+    }
+    
+    /// Tests whether `Date.next(months:)` succeeds.
+    func testDateStaticNextMonths() {
+        let months: Int = 12
+        
+        XCTAssertEqual(Date.next(months: months).truncateSeconds(), Date().next(months: months).truncateSeconds())
+    }
+    
+    /// Tests whether `Date().next(months:)` succeeds.
+    func testDateNextMonths() {
+        let months: Int = 12
+        let date: Date = Date().truncateSeconds()
+        
+        let dateAfterMonths: Date = Calendar.current.date(byAdding: .month, value: months, to: date)!.truncateSeconds()
+        
+        let testDate: Date = date.next(months: months)
+        
+        XCTAssertEqual(dateAfterMonths, testDate)
+    }
+    
+    /// Tests whether `Date.next(years:)` succeeds.
+    func testDateStaticNextYears() {
+        let years: Int = 12
+        
+        XCTAssertEqual(Date.next(years: years).truncateSeconds(), Date().next(years: years).truncateSeconds())
+    }
+    
+    /// Tests whether `Date().next(years:)` succeeds.
+    func testDateNextYears() {
+        let years: Int = 12
+        let date: Date = Date().truncateSeconds()
+        
+        let dateAfterYears: Date = Calendar.current.date(byAdding: .year, value: years, to: date)!.truncateSeconds()
+        
+        let testDate: Date = date.next(years: years)
+        
+        XCTAssertEqual(dateAfterYears, testDate)
     }
     
     /// Tests whether `Date().truncateSeconds()` succeeds.
