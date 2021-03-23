@@ -28,10 +28,12 @@ import CoreLocation
 /// An enum that represents the type of trigger that causes a notification to fire.
 ///
 /// * .date: The notification should be fired on a specified time with an option to repeat.
+/// * .interval: The notification should be fired after a specified time interval with an option to repeat.
 /// * .location: The notification should be fired when entering or leaving a specified region with an option to repeat. (Not available on macOS or watchOS).
 @available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
 public enum RobinNotificationTrigger {
     case date(_ date: Date, repeats: RobinNotificationRepeats)
+    case interval(_ interval: TimeInterval, repeats: Bool)
     
     #if !os(macOS) && !os(watchOS)
     case location(_ region: CLRegion, repeats: Bool)
@@ -41,14 +43,19 @@ public enum RobinNotificationTrigger {
 @available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
 extension RobinNotificationTrigger: Equatable {
     public static func ==(lhs: RobinNotificationTrigger, rhs: RobinNotificationTrigger) -> Bool {
-        if case .date(let lhsDate, let lhsRepeats) = lhs,
-           case .date(let rhsDate, let rhsRepeats) = rhs {
+        if case let .date(lhsDate, lhsRepeats) = lhs,
+           case let .date(rhsDate, rhsRepeats) = rhs {
             return lhsDate == rhsDate && lhsRepeats == rhsRepeats
         }
         
+        if case let .interval(lhsInterval, lhsRepeats) = lhs,
+           case let .interval(rhsInterval, rhsRepeats) = rhs {
+            return lhsInterval == rhsInterval && lhsRepeats == rhsRepeats
+        }
+        
         #if !os(macOS) && !os(watchOS)
-        if case .location(let lhsRegion, let lhsRepeats) = lhs,
-           case .location(let rhsRegion, let rhsRepeats) = rhs {
+        if case let .location(lhsRegion, lhsRepeats) = lhs,
+           case let .location(rhsRegion, rhsRepeats) = rhs {
             return lhsRegion == rhsRegion && lhsRepeats == rhsRepeats
         }
         #endif

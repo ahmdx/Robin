@@ -83,6 +83,44 @@ class RobinNotificationTests: XCTestCase {
         XCTAssertFalse(notification.scheduled)
     }
     
+    /// Tests whether the initialization of an interval `RobinNotification` succeeds.
+    func testIntervalNotificationInitialization() {
+        let body: String = "This is a test notification"
+        let notification: RobinNotification = RobinNotification(body: body, trigger: .interval(30, repeats: false))
+        
+        // Tests body property
+        XCTAssertEqual(body, notification.body)
+        
+        // Tests trigger property
+        XCTAssertEqual(notification.trigger, .interval(30, repeats: false))
+        notification.trigger = .interval(60, repeats: true)
+        XCTAssertEqual(notification.trigger, .interval(60, repeats: true))
+        
+        // Tests title property
+        XCTAssertNil(notification.title)
+        let title: String = "Title"
+        notification.title = title
+        XCTAssertEqual(title, notification.title)
+        
+        // Tests identifier property
+        XCTAssertNotNil(notification.identifier)
+        
+        // Tests badge property
+        XCTAssertNil(notification.badge)
+        let badge: NSNumber = 5
+        notification.badge = badge
+        XCTAssertEqual(badge, notification.badge)
+        
+        // Tests sound property
+        XCTAssertTrue(notification.sound.isValid())
+        let sound: String = "SoundName"
+        notification.sound = RobinNotificationSound(named: sound)
+        XCTAssertTrue(notification.sound.isValid())
+        
+        // Tests scheduled property
+        XCTAssertFalse(notification.scheduled)
+    }
+    
     #if !os(macOS)
     /// Tests whether the initialization of a location `RobinNotification` succeeds.
     func testLocationNotificationInitialization() {

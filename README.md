@@ -48,19 +48,19 @@ Robin is available through both [Swift Package Manager](https://swift.org/packag
 To install using SPM:
 
 ```swift
-.package(url: "https://github.com/ahmdx/Robin", from: "0.96.1"),
+.package(url: "https://github.com/ahmdx/Robin", from: "0.97.0"),
 ```
 
 CocoaPods:
 
 ```ruby
-pod 'Robin', '~> 0.96.1'
+pod 'Robin', '~> 0.97.0'
 ```
 
 And if you want to include the test suite in your project:
 
 ```ruby
-pod 'Robin', '~> 0.96.1', :testspecs => ['Tests']
+pod 'Robin', '~> 0.97.0', :testspecs => ['Tests']
 ```
 
 ## Usage
@@ -122,7 +122,13 @@ init(identifier: String = default, body: String, trigger: RobinNotificationTrigg
 Example notification, with a unique identifier, to be fired an hour from now.
 
 ```swift
-let notification = RobinNotification(body: "A notification", trigger: .date(.next(hours: 1)))
+let notification = RobinNotification(body: "A notification", trigger: .date(.next(hours: 1), repeats: .none))
+```
+
+Example notification, with a unique identifier, to be fired 30 seconds from now.
+
+```swift
+let notification = RobinNotification(body: "A notification", trigger: .interval(30, repeats: false))
 ```
 
 > Note: `next(minutes:)`, `next(hours:)`, and `next(days:)` are part of a `Date` extension.
@@ -153,7 +159,7 @@ The following table summarizes all `RobinNotification` properties.
 | sound | `RobinNotificationSound` | The sound name of the notification. `not available on watchOS`|
 | threadIdentifier | `String?` | The identifier used to visually group notifications together. |
 | title | `String?` | The title string of the notification. |
-| trigger | `Enum` | The trigger that causes the notification to fire. One of `date` or `location`. |
+| trigger | `enum` | The trigger that causes the notification to fire. One of `date`, `interval`, or `location`. |
 | userInfo<sup>[2]</sup> | `[AnyHashable : Any]!` | A dictionary that holds additional information. |
 
 [1] `identifier` is read-only after `RobinNotification` is initialized.

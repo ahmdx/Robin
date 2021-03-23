@@ -65,6 +65,11 @@ internal extension RobinNotification {
             notificationTrigger = UNCalendarNotificationTrigger(date: date, repeats: repeats)
         }
         
+        if let trigger = trigger,
+           case let RobinNotificationTrigger.interval(interval, repeats) = trigger {
+            notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: interval, repeats: repeats)
+        }
+        
         #if !os(macOS) && !os(watchOS)
         if let trigger = trigger,
            case let RobinNotificationTrigger.location(region, repeats) = trigger {
