@@ -23,6 +23,7 @@
 #if !os(watchOS)
 import XCTest
 @testable import Robin
+import UserNotifications
 
 @available(iOS 10.0, macOS 10.14, *)
 class UNCalendarNotificationTrigger_RobinTests: XCTestCase {
