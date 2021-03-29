@@ -174,6 +174,7 @@ class RobinSchedulerTests: XCTestCase {
         notification.sound = RobinNotificationSound(named: "TestSound")
         notification.setUserInfo(value: "Value", forKey: "Key")
         notification.threadIdentifier = "thread"
+        notification.categoryIdentifier = "category"
         
         _ = Robin.scheduler.schedule(notification: notification)
         
@@ -189,7 +190,63 @@ class RobinSchedulerTests: XCTestCase {
         XCTAssertEqual(retrievedNotification?.scheduled, notification.scheduled)
         XCTAssertTrue(retrievedNotification!.scheduled)
         XCTAssertEqual(retrievedNotification?.threadIdentifier, notification.threadIdentifier)
+        XCTAssertEqual(retrievedNotification?.categoryIdentifier, notification.categoryIdentifier)
         XCTAssertEqual(1, Robin.scheduler.scheduledCount())
+    }
+    
+    /// Tests whether scheduling a date notification with repeating `.none` succeeds.
+    func testDateNotificationScheduleWithNoneRepeats() {
+        let notification = RobinNotification(body: "This is a test notification", trigger: .date(Date.next(hours: 1).truncateSeconds(), repeats: .none))
+        
+        _ = Robin.scheduler.schedule(notification: notification)
+        
+        let retrievedNotification = Robin.scheduler.notification(withIdentifier: notification.identifier)
+        
+        XCTAssertEqual(retrievedNotification?.trigger, .date(Date.next(hours: 1).truncateSeconds(), repeats: .none))
+    }
+    
+    /// Tests whether scheduling a date notification with repeating `.hour` succeeds.
+    func testDateNotificationScheduleWithHourRepeats() {
+        let notification = RobinNotification(body: "This is a test notification", trigger: .date(Date.next(hours: 1).truncateSeconds(), repeats: .hour))
+        
+        _ = Robin.scheduler.schedule(notification: notification)
+        
+        let retrievedNotification = Robin.scheduler.notification(withIdentifier: notification.identifier)
+        
+        XCTAssertEqual(retrievedNotification?.trigger, .date(Date.next(hours: 1).truncateSeconds(), repeats: .hour))
+    }
+    
+    /// Tests whether scheduling a date notification with repeating `.day` succeeds.
+    func testDateNotificationScheduleWithDayRepeats() {
+        let notification = RobinNotification(body: "This is a test notification", trigger: .date(Date.next(hours: 1).truncateSeconds(), repeats: .day))
+        
+        _ = Robin.scheduler.schedule(notification: notification)
+        
+        let retrievedNotification = Robin.scheduler.notification(withIdentifier: notification.identifier)
+        
+        XCTAssertEqual(retrievedNotification?.trigger, .date(Date.next(hours: 1).truncateSeconds(), repeats: .day))
+    }
+    
+    /// Tests whether scheduling a date notification with repeating `.week` succeeds.
+    func testDateNotificationScheduleWithWeekRepeats() {
+        let notification = RobinNotification(body: "This is a test notification", trigger: .date(Date.next(hours: 1).truncateSeconds(), repeats: .week))
+        
+        _ = Robin.scheduler.schedule(notification: notification)
+        
+        let retrievedNotification = Robin.scheduler.notification(withIdentifier: notification.identifier)
+        
+        XCTAssertEqual(retrievedNotification?.trigger, .date(Date.next(hours: 1).truncateSeconds(), repeats: .week))
+    }
+    
+    /// Tests whether scheduling a date notification with repeating `.month` succeeds.
+    func testDateNotificationScheduleWithMonthRepeats() {
+        let notification = RobinNotification(body: "This is a test notification", trigger: .date(Date.next(hours: 1).truncateSeconds(), repeats: .month))
+        
+        _ = Robin.scheduler.schedule(notification: notification)
+        
+        let retrievedNotification = Robin.scheduler.notification(withIdentifier: notification.identifier)
+        
+        XCTAssertEqual(retrievedNotification?.trigger, .date(Date.next(hours: 1).truncateSeconds(), repeats: .month))
     }
     
     /// Tests whether scheduling an interval `RobinNotification` succeeds.
@@ -212,6 +269,7 @@ class RobinSchedulerTests: XCTestCase {
         notification.sound = RobinNotificationSound(named: "TestSound")
         notification.setUserInfo(value: "Value", forKey: "Key")
         notification.threadIdentifier = "thread"
+        notification.categoryIdentifier = "category"
         
         _ = Robin.scheduler.schedule(notification: notification)
         
@@ -227,6 +285,7 @@ class RobinSchedulerTests: XCTestCase {
         XCTAssertEqual(retrievedNotification?.scheduled, notification.scheduled)
         XCTAssertTrue(retrievedNotification!.scheduled)
         XCTAssertEqual(retrievedNotification?.threadIdentifier, notification.threadIdentifier)
+        XCTAssertEqual(retrievedNotification?.categoryIdentifier, notification.categoryIdentifier)
         XCTAssertEqual(1, Robin.scheduler.scheduledCount())
     }
     
@@ -263,6 +322,7 @@ class RobinSchedulerTests: XCTestCase {
         notification.sound = RobinNotificationSound(named: "TestSound")
         notification.setUserInfo(value: "Value", forKey: "Key")
         notification.threadIdentifier = "thread"
+        notification.categoryIdentifier = "category"
         
         _ = Robin.scheduler.schedule(notification: notification)
         
@@ -278,6 +338,7 @@ class RobinSchedulerTests: XCTestCase {
         XCTAssertEqual(retrievedNotification?.scheduled, notification.scheduled)
         XCTAssertTrue(retrievedNotification!.scheduled)
         XCTAssertEqual(retrievedNotification?.threadIdentifier, notification.threadIdentifier)
+        XCTAssertEqual(retrievedNotification?.categoryIdentifier, notification.categoryIdentifier)
         XCTAssertEqual(1, Robin.scheduler.scheduledCount())
     }
     #endif

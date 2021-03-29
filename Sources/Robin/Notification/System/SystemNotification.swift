@@ -75,6 +75,7 @@ public extension SystemNotification {
         
         notification.badge = content.badge
         notification.threadIdentifier = content.threadIdentifier
+        notification.categoryIdentifier = content.categoryIdentifier
 
         #if !os(watchOS)
         if let sound = content.sound {

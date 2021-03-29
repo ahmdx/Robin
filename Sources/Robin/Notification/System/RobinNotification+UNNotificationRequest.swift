@@ -58,6 +58,10 @@ internal extension RobinNotification {
             content.threadIdentifier = threadIdentifier
         }
         
+        if let categoryIdentifier = self.categoryIdentifier {
+            content.categoryIdentifier = categoryIdentifier
+        }
+        
         var notificationTrigger: UNNotificationTrigger!
         
         if let trigger = trigger,

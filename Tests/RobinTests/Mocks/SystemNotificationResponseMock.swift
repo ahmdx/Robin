@@ -20,28 +20,20 @@
 // THE SOFTWARE.
 //
 
-import UserNotifications
+#if !os(watchOS)
+@testable import Robin
+@testable import UserNotifications
 
-/// A protocol that represents notifications delivered by the system.
-@available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
-public protocol DeliveredSystemNotification {
-    var date: Date { get }
-    var request: UNNotificationRequest { get }
-    
-    /// Creates a `RobinNotification` from the passed `DeliveredSystemNotification`.
-    ///
-    /// - Parameter notification: The system notification to create the `RobinNotification` from.
-    /// - Returns: The `RobinNotification` if the creation succeeded, nil otherwise.
-    func robinNotification() -> RobinNotification
+@available(iOS 10.0, macOS 10.14, *)
+struct SystemNotificationResponseMock: SystemNotificationResponse {
+    var robinNotification: RobinNotification
+    var actionIdentifier: String
 }
 
-@available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
-public extension DeliveredSystemNotification {
-    func robinNotification() -> RobinNotification {
-        let notification = self.request.robinNotification()
-        notification.deliveryDate = self.date
-        notification.delivered = true
-        
-        return notification
-    }
+@available(iOS 10.0, macOS 10.14, *)
+struct SystemNotificationTextResponseMock: SystemNotificationTextResponse {
+    var robinNotification: RobinNotification
+    var actionIdentifier: String
+    var userText: String
 }
+#endif

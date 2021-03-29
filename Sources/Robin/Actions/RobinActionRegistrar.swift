@@ -20,28 +20,24 @@
 // THE SOFTWARE.
 //
 
-import UserNotifications
-
-/// A protocol that represents notifications delivered by the system.
+/// An object that registers and deregisters `RobinActionHandler`s used to handle notification actions.
 @available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
-public protocol DeliveredSystemNotification {
-    var date: Date { get }
-    var request: UNNotificationRequest { get }
+internal class RobinActionRegistrar: RobinActions {
+    fileprivate(set) internal var registeredActions: [String : RobinActionHandler.Type] = [:]
     
-    /// Creates a `RobinNotification` from the passed `DeliveredSystemNotification`.
+    func register(actionHandler: RobinActionHandler.Type, forIdentifier identifier: String) {
+        self.registeredActions[identifier] = actionHandler
+    }
+    
+    func deregister(actionHandlerForIdentifier identifier: String) {
+        self.registeredActions[identifier] = nil
+    }
+    
+    /// Returns the registered `RobinActionHandler` type for the specified identifier.
     ///
-    /// - Parameter notification: The system notification to create the `RobinNotification` from.
-    /// - Returns: The `RobinNotification` if the creation succeeded, nil otherwise.
-    func robinNotification() -> RobinNotification
-}
-
-@available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
-public extension DeliveredSystemNotification {
-    func robinNotification() -> RobinNotification {
-        let notification = self.request.robinNotification()
-        notification.deliveryDate = self.date
-        notification.delivered = true
-        
-        return notification
+    /// - Parameter identifier: The identifier of the user notification action.
+    /// - Returns: The `RobinActionHandler` type if it exists.
+    func action(forIdentifier identifier: String) -> RobinActionHandler.Type? {
+        return self.registeredActions[identifier]
     }
 }

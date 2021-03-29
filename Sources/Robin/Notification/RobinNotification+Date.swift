@@ -49,13 +49,7 @@ extension RobinNotification {
             components.month = comps.month
             
             return calendar.date(from: components)!
-        case .week:
-            let comps = calendar.dateComponents([.year, .month, .day], from: date)
-            components.year = comps.year
-            components.month = comps.month
-            components.day = comps.day
-            
-            return calendar.date(from: components)!
+        case .week: fallthrough
         case .day:
             let comps = calendar.dateComponents([.year, .month, .day], from: date)
             components.year = comps.year

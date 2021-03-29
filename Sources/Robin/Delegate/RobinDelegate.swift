@@ -22,26 +22,18 @@
 
 import UserNotifications
 
-/// A protocol that represents notifications delivered by the system.
+/// A protocol that represents objects responsible for handling the system's notification center delegation.
 @available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
-public protocol DeliveredSystemNotification {
-    var date: Date { get }
-    var request: UNNotificationRequest { get }
-    
-    /// Creates a `RobinNotification` from the passed `DeliveredSystemNotification`.
+public protocol RobinDelegate {
+    /// Asks Robin to process the response provided by the system's notification center. Robin examines the response for the `actionIdentifier`
+    /// property and looks for its action handler in the registrar. If an action handler is found, it will be invoked to handle the response,
+    /// as an instance of `RobinNotificationResponse`, and Robin will invoke the `completionHandler` afterwards.
     ///
-    /// - Parameter notification: The system notification to create the `RobinNotification` from.
-    /// - Returns: The `RobinNotification` if the creation succeeded, nil otherwise.
-    func robinNotification() -> RobinNotification
-}
-
-@available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
-public extension DeliveredSystemNotification {
-    func robinNotification() -> RobinNotification {
-        let notification = self.request.robinNotification()
-        notification.deliveryDate = self.date
-        notification.delivered = true
-        
-        return notification
-    }
+    /// - attention:
+    /// If you don't pass the completion handler provided by the system's notification center delegate, you will need to invoke it yourself.
+    ///
+    /// - Parameters:
+    ///   - response: The system response.
+    ///   - completionHandler: A callback to be called when Robin finishes processing the response.
+    func didReceiveResponse(_ response: SystemNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void)
 }

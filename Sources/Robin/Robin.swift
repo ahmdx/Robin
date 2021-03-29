@@ -22,6 +22,18 @@
 
 @available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
 public class Robin {
+    static var registrar = RobinActionRegistrar()
+    public static let actions: RobinActions = registrar
+    
+    static var robinDelegate: RobinDelegate!
+    public static var delegate: RobinDelegate {
+        if robinDelegate == nil {
+            robinDelegate = NotificationDelegate(registrar: registrar)
+        }
+        
+        return robinDelegate
+    }
+    
     static var notificationCenterManager: RobinNotificationCenterManager!
     public static var manager: RobinNotificationCenterManager {
         if notificationCenterManager == nil {

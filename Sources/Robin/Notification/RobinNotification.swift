@@ -22,7 +22,7 @@
 
 import Foundation
 
-/// An object that represents system notifications.
+/// An object that represents notifications scheduled/delivered by the system.
 @available(iOS 10.0, watchOS 3.0, macOS 10.14, *)
 public class RobinNotification {
     /// A string assigned to the notification for later access.
@@ -69,6 +69,9 @@ public class RobinNotification {
     
     /// The identifier used to visually group notifications together.
     public var threadIdentifier: String?
+    
+    /// The identifier of the notification's category.
+    public var categoryIdentifier: String?
     
     public convenience init(identifier: String = UUID().uuidString,
                             body: String,
