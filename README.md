@@ -400,7 +400,7 @@ Robin.manager.removeAllDelivered()
 
 # Notes
 
-`Robin` is preset to allow 60 notifications to be scheduled by the system. The remaining four slots are kept for the app-defined notifications. These free slots are currently not handled by `Robin`; if you use `Robin` to utilize these slots, the notifications will be discarded. To change the maximum allowed, just update `Robin.maximumAllowedNotifications`.
+`Robin` is preset to allow 60 notifications to be scheduled by the system. The remaining four slots are kept for the app-defined notifications. These free slots are currently not handled by `Robin`; if you use `Robin` to utilize these slots, the notifications will be discarded.
 
 # Author
 
