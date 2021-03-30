@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name = 'Robin'
-  s.version = '0.97.2'
-  s.summary = 'A notifications scheduler written in Swift.'
+  s.version = '0.98.0'
+  s.summary = 'A feature-packed, multi-platform notification scheduler written in Swift.'
   s.swift_version = '4.2'
 
 # This description is used to generate tags and improve search results.
